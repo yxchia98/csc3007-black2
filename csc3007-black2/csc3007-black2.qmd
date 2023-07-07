@@ -1,0 +1,26 @@
+---
+title: "csc3007-black2"
+author: "CHIA YI XUAN, TSUI SAU CHI, JEANIE OH JUN NING, VARADHARAJAN JAYAPRIYA, GU JINMING, WONG JUN HAO"
+format: html
+number-sections: true
+knitr:
+  opts_chunk:
+    fig.width: 7.5
+    fig.height: 5
+    fig.align: center
+    out.width: 100%
+---
+```{r}
+#| label: required-packages
+#| message: false
+
+library(tidyverse)
+library(countrycode)
+library(directlabels)
+library(ggrepel)
+library(lintr)
+library(readxl)
+library(scales)
+
+```
+
