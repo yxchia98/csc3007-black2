@@ -1,14 +1,10 @@
 ---
-title: "csc3007-black2"
+title: "csc3007-black2-presentation"
+subtitle: "Add subtitle here"
 author: "CHIA YI XUAN, TSUI SAU CHI, JEANIE OH JUN NING, VARADHARAJAN JAYAPRIYA, GU JINMING, WONG JUN HAO"
-format: html
-number-sections: true
-knitr:
-  opts_chunk:
-    fig.width: 7.5
-    fig.height: 5
-    fig.align: center
-    out.width: 100%
+format:
+  revealjs: 
+    slide-number: true
 ---
 
 ```{r}
@@ -22,4 +18,8 @@ library(ggrepel)
 library(lintr)
 library(readxl)
 library(scales)
+
+renv::restore()
 ```
+
+# Research Question
