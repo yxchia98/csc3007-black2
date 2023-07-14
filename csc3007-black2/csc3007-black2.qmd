@@ -10,6 +10,7 @@ knitr:
     fig.align: center
     out.width: 100%
 ---
+
 ```{r}
 #| label: required-packages
 #| message: false
@@ -21,6 +22,4 @@ library(ggrepel)
 library(lintr)
 library(readxl)
 library(scales)
-
 ```
-
