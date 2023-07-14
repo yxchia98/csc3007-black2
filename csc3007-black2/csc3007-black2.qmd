@@ -74,13 +74,13 @@ Women participation in the economy is related to Goals 5 and 8.
 ## Choropleth Map:  **5.1.1**
 
 ```{r}
-
+# Wong Jun HAO
 ```
 
 ## Choropleth Map:  **5.5.2**
 
 ```{r}
-
+# Wong Jun HAO
 ```
 
 ## **5.1.1 vs 5.5.2 Anticipation**
@@ -92,25 +92,27 @@ We anticipate that the higher the nation's legal framework achievements in gende
 ## **5.1.1 vs 5.5.2 Relation**
 
 ```{r}
-
+# Wong Jun HAO
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 ```
 
 ## **5.1.1 vs 5.5.2 Relation data re-expression if needed**
 
 ```{r}
-
+# Wong Jun HAO
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 ```
 
 ## Choropleth Map:  **8.5.1**
 
 ```{r}
-
+# JEANIE OH JUN NING
 ```
 
 ## Choropleth Map:  **8.5.2**
 
 ```{r}
-
+# JEANIE OH JUN NING
 ```
 
 ## **8.5.1 vs 8.5.2 Anticipation**
@@ -122,19 +124,22 @@ We anticipate that countries with lower unemployment rates for women should have
 ## **8.5.1 vs 8.5.2 Relation**
 
 ```{r}
-
+# JEANIE OH JUN NING
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 ```
 
 ## **8.5.1 vs 8.5.2 Relation data re-expression if needed**
 
 ```{r}
-
+# JEANIE OH JUN NING
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 ```
 
 ## **Table of Women Economical Success**
 
 ```{r}
 
+# Table of performances. See Sample-Project slide 16
 ```
 
 ## **5.1.1 vs 8.5.2 Anticipation**
@@ -146,7 +151,7 @@ We anticipate that having a higher the nation's legal framework achievements in 
 ## **5.1.1 vs 8.5.2 Relation**
 
 ```{r}
-
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 ```
 
 ## **5.5.2 vs 8.5.1 Anticipation**
@@ -158,15 +163,17 @@ We anticipate that having more women in managerial positions will increase the a
 ## **5.5.2 vs 8.5.1 Relation**
 
 ```{r}
-
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 ```
 
 ## K-Means Clustering
 
+See project-sample slide 19
+
 ## Pairs Plot Highlighting Clusters
 
 ```{r}
-
+# See project-sample slide 20
 ```
 
 ## Decision Tree
@@ -174,10 +181,21 @@ We anticipate that having more women in managerial positions will increase the a
 ```{r}
 
 # 3 country-level variable are used here.
+# See project-sample slide 21
 ```
 
 ## Evaluation of Decision Tree
 
+\# See project-sample slide 22
+
 ## Summary of Quantitative Results
 
+\# See project-sample slide 23
+
+\# Last item, require above to be done
+
 ## Policy Implications
+
+\# See project-sample slide 24
+
+\# Last item, require above to be done
