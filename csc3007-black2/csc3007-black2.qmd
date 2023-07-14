@@ -1,5 +1,5 @@
 ---
-title: "csc3007-black2-presentation"
+title: "CSC3007-Team-Black-2"
 subtitle: "Add subtitle here"
 author: "CHIA YI XUAN, TSUI SAU CHI, JEANIE OH JUN NING, VARADHARAJAN JAYAPRIYA, GU JINMING, WONG JUN HAO"
 format:
@@ -18,8 +18,166 @@ library(ggrepel)
 library(lintr)
 library(readxl)
 library(scales)
-
-renv::restore()
 ```
 
-# Research Question
+```{r}
+
+# Load & Clean the dataset / prepare it here.
+```
+
+# Relationship between nation's legal framework achievements in gender equality and woman's success in the economy.
+
+## Purpose of This Presentation
+
+## Research Questions
+
+To what extent does a nation's legal framework on gender equality affect economic growth for women?
+
+Specifically, what is the relationship between a [nation's legal framework achievements in gender equality]{.underline} and [woman's success in the economy]{.underline}?
+
+Can [GDP]{.underline}, [Happy Planet Index Score]{.underline} and [Region]{.underline} serve as predictors for a nation's legal framework achievements in gender equality & proportion of women in managerial positions?
+
+## Importance of This Research
+
+-   Economic empowerment:
+
+The economic empowerment of women has broader implications for overall economic development.
+
+-   Policy formulation:
+
+Inform policymakers and lawmakers about the effectiveness and relevance of legal frameworks in fostering economic growth for women.
+
+## Importance of This Research
+
+-   Gender equality:
+
+The impact of these legal frameworks is crucial in advancing gender equality efforts.
+
+-   Societal impact:
+
+Sheds light on the potential benefits and consequences of legal frameworks on economic growth, impacting woman's lives and opportunities.
+
+## UN Sustainable Development Goals
+
+Women participation in the economy is related to Goals 5 and 8.
+
+## Selected Indicators
+
+**Indicator 5.1.1**: Legal frameworks that promote enforce and monitor gender equality (percentage of achievement 0 - 100) \-- Area 3: employment and economic benefits
+
+**Indicator 5.5.2:** Proportion of women in managerial positions
+
+**Indicator 8.5.1:** Average hourly earnings of employees by sex, age, occupation and persons with disabilities
+
+**Indicator 8.5.2:** Unemployment rate by sex, age and persons with disabilities
+
+## Choropleth Map:  **5.1.1**
+
+```{r}
+
+```
+
+## Choropleth Map:  **5.5.2**
+
+```{r}
+
+```
+
+## **5.1.1 vs 5.5.2 Anticipation**
+
+We anticipate that the higher the nation's legal framework achievements in gender equality would result in a higher percentage of women holding managerial positions.
+
+-   Because the chance of gender-based discrimination should be reduced as a result of the legal frameworks in place, this should result in better opportunities for women to hold managerial positions.
+
+## **5.1.1 vs 5.5.2 Relation**
+
+```{r}
+
+```
+
+## **5.1.1 vs 5.5.2 Relation data re-expression if needed**
+
+```{r}
+
+```
+
+## Choropleth Map:  **8.5.1**
+
+```{r}
+
+```
+
+## Choropleth Map:  **8.5.2**
+
+```{r}
+
+```
+
+## **8.5.1 vs 8.5.2 Anticipation**
+
+We anticipate that countries with lower unemployment rates for women should have higher average hourly earnings for women.
+
+-   Because countries with lower unemployment rates have a better economic environment which should result in higher average income for their citizens
+
+## **8.5.1 vs 8.5.2 Relation**
+
+```{r}
+
+```
+
+## **8.5.1 vs 8.5.2 Relation data re-expression if needed**
+
+```{r}
+
+```
+
+## **Table of Women Economical Success**
+
+```{r}
+
+```
+
+## **5.1.1 vs 8.5.2 Anticipation**
+
+We anticipate that having a higher the nation's legal framework achievements in gender equality would result in lower unemployment rate for women.
+
+-   Because by decreasing gender discrimination for women, more companies would be willing to employ women.
+
+## **5.1.1 vs 8.5.2 Relation**
+
+```{r}
+
+```
+
+## **5.5.2 vs 8.5.1 Anticipation**
+
+We anticipate that having more women in managerial positions will increase the average hourly earning for female employees.
+
+-   Because in general, employees in a managerial position would receive higher income and with more women holding managerial positions, the average hourly earning for female employees will increase.
+
+## **5.5.2 vs 8.5.1 Relation**
+
+```{r}
+
+```
+
+## K-Means Clustering
+
+## Pairs Plot Highlighting Clusters
+
+```{r}
+
+```
+
+## Decision Tree
+
+```{r}
+
+# 3 country-level variable are used here.
+```
+
+## Evaluation of Decision Tree
+
+## Summary of Quantitative Results
+
+## Policy Implications
