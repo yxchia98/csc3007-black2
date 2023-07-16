@@ -439,6 +439,30 @@ CHIA YI XUAN, TSUI SAU CHI, JEANIE OH JUN NING, VARADHARAJAN JAYAPRIYA, GU JINMI
 <h2><strong>5.1.1 vs 8.5.2 Relation</strong></h2>
 
 <img data-src="csc3007-black2_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<section id="vs-8.5.2-relation-re-expressed" class="slide level2">
+<h2><strong>5.1.1 vs 8.5.2 Relation Re-Expressed</strong></h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 43 × 6
+   ISO3  sex    `Unemployment Rate (%)` `Employment and Economic Benefits (%)`
+   &lt;chr&gt; &lt;chr&gt;                    &lt;dbl&gt;                                  &lt;dbl&gt;
+ 1 ROU   Female                     5                                      100
+ 2 LTU   Female                    20                                      100
+ 3 RWA   Female                    17                                       90
+ 4 DEU   Female                     6                                      100
+ 5 SVK   Female                    10.7                                    100
+ 6 SVN   Female                    18                                       90
+ 7 ESP   Female                    23.7                                    100
+ 8 ARM   Female                    20.4                                     80
+ 9 PSE   Female                    41.2                                     40
+10 LUX   Female                     4                                      100
+# ℹ 33 more rows
+# ℹ 2 more variables: `Employment and Economic Benefits (%, log)` &lt;dbl&gt;,
+#   `Unemployment Rate (%, log)` &lt;dbl&gt;</code></pre>
+</div>
+
+</div>
+<img data-src="csc3007-black2_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
 <section id="vs-8.5.1-anticipation" class="slide level2">
 <h2><strong>5.5.2 vs 8.5.1 Anticipation</strong></h2>
 <p>We anticipate that having more women in managerial positions will increase the average hourly earning for female employees.</p>
@@ -474,6 +498,7 @@ CHIA YI XUAN, TSUI SAU CHI, JEANIE OH JUN NING, VARADHARAJAN JAYAPRIYA, GU JINMI
 <p># Last item, require above to be done</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
+<<<<<<< Updated upstream
 <pre><code>D:\Projects\csc3007-black2\csc3007-black2\csc3007-black2.qmd:33:81: style: [line_length_linter] Lines should not be more than 80 characters.
 # Load 5.1.1 data - Legal frameworks that promote enforce and monitor gender equality (percentage of achievement 0 - 100) \-- Area 3: employment and economic benefits
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -532,11 +557,72 @@ D:\Projects\csc3007-black2\csc3007-black2\csc3007-black2.qmd:245:81: style: [lin
   left_join(formatted_5_5_2, by = c('ISO3', 'geoAreaName'), relationship = "many-to-many") |&gt;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
 D:\Projects\csc3007-black2\csc3007-black2\csc3007-black2.qmd:255:81: style: [line_length_linter] Lines should not be more than 80 characters.
+=======
+<pre><code>/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:32:81: style: [line_length_linter] Lines should not be more than 80 characters.
+# Load 5.1.1 data - Legal frameworks that promote enforce and monitor gender equality (percentage of achievement 0 - 100) \-- Area 3: employment and economic benefits
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:33:1: style: [object_length_linter] Variable and function names should not be longer than 30 characters.
+indicator_5_1_1_employment_economic_benefits &lt;- read_csv("data/Indicator_5.1.1%3A_Legal_frameworks_that_promote__enforce_and_monitor_gender_equality_(percentage_of_achievement__0_-_100)_--_Area_3%3A_employment_and_economic_benefits.csv", show_col_types = FALSE)
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:33:81: style: [line_length_linter] Lines should not be more than 80 characters.
+indicator_5_1_1_employment_economic_benefits &lt;- read_csv("data/Indicator_5.1.1%3A_Legal_frameworks_that_promote__enforce_and_monitor_gender_equality_(percentage_of_achievement__0_-_100)_--_Area_3%3A_employment_and_economic_benefits.csv", show_col_types = FALSE)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:36:81: style: [line_length_linter] Lines should not be more than 80 characters.
+indicator_5_5_2_managerial &lt;- read_csv("data/Indicator_5.5.2%3A_Proportion_of_women_in_managerial_positions_(percent).csv", show_col_types = FALSE)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:38:81: style: [line_length_linter] Lines should not be more than 80 characters.
+# Load 8.5.1 data - Average hourly earnings of employees by sex, age, occupation and persons with disabilities
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:39:81: style: [line_length_linter] Lines should not be more than 80 characters.
+indicator_8_5_1_average_hourly &lt;- read_csv("data/Indicator_8.5.1%3A_Average_hourly_earnings_of_employees_by_sex_and_occupation_(local_currency).csv", show_col_types = FALSE)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:42:81: style: [line_length_linter] Lines should not be more than 80 characters.
+indicator_8_5_2_unemployment &lt;- read_csv("data/Indicator_8.5.2%3A_Unemployment_rate__by_sex_and_disability_(percent).csv", show_col_types = FALSE)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:48:1: style: [object_length_linter] Variable and function names should not be longer than 30 characters.
+indicator_5_1_1_employment_economic_benefits &lt;- indicator_5_1_1_employment_economic_benefits |&gt; select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, latest_value)
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:48:81: style: [line_length_linter] Lines should not be more than 80 characters.
+indicator_5_1_1_employment_economic_benefits &lt;- indicator_5_1_1_employment_economic_benefits |&gt; select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, latest_value)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:50:81: style: [line_length_linter] Lines should not be more than 80 characters.
+indicator_5_5_2_managerial &lt;- indicator_5_5_2_managerial |&gt; select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, latest_value)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:52:81: style: [line_length_linter] Lines should not be more than 80 characters.
+indicator_8_5_1_average_hourly &lt;- indicator_8_5_1_average_hourly |&gt; select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, sex_code, sex_desc, type_of_occupation_desc, latest_value)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:54:81: style: [line_length_linter] Lines should not be more than 80 characters.
+indicator_8_5_2_unemployment &lt;- indicator_8_5_2_unemployment |&gt; select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, sex_code, sex_desc, disability_status_code, disability_status_desc, latest_value)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:56:1: style: [object_name_linter] Variable and function name style should be snake_case or symbols.
+World &lt;- select(World, ISO3="iso_a3", geometry="geometry")
+^~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:56:28: style: [infix_spaces_linter] Put spaces around all infix operators.
+World &lt;- select(World, ISO3="iso_a3", geometry="geometry")
+                           ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:56:47: style: [infix_spaces_linter] Put spaces around all infix operators.
+World &lt;- select(World, ISO3="iso_a3", geometry="geometry")
+                                              ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:225:81: style: [line_length_linter] Lines should not be more than 80 characters.
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-D:\Projects\csc3007-black2\csc3007-black2\csc3007-black2.qmd:255:153: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:225:153: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
                                                                                                                                                         ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:232:81: style: [line_length_linter] Lines should not be more than 80 characters.
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:232:153: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+                                                                                                                                                        ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:257:81: style: [line_length_linter] Lines should not be more than 80 characters.
+>>>>>>> Stashed changes
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:257:153: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+                                                                                                                                                        ^
+<<<<<<< Updated upstream
 D:\Projects\csc3007-black2\csc3007-black2\csc3007-black2.qmd:280:81: style: [line_length_linter] Lines should not be more than 80 characters.
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -580,6 +666,84 @@ D:\Projects\csc3007-black2\csc3007-black2\csc3007-black2.qmd:340:81: style: [lin
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 D:\Projects\csc3007-black2\csc3007-black2\csc3007-black2.qmd:340:153: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+=======
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:264:81: style: [line_length_linter] Lines should not be more than 80 characters.
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:264:153: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+                                                                                                                                                        ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:284:81: style: [line_length_linter] Lines should not be more than 80 characters.
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:284:153: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+                                                                                                                                                        ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:287:67: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+formatted_5_1_1 &lt;- indicator_5_1_1_employment_economic_benefits |&gt; 
+                                                                  ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:295:81: style: [line_length_linter] Lines should not be more than 80 characters.
+  select(ISO3, disability_status_desc, "sex" = sex_desc, "Unemployment Rate (%)" = latest_value) |&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:296:81: style: [line_length_linter] Lines should not be more than 80 characters.
+  filter(`sex` %in% c("Female"), disability_status_desc == "No breakdown by disability") |&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:304:37: style: [single_quotes_linter] Only use double-quotes.
+  left_join(formatted_5_1_1, by = c('ISO3')) |&gt;
+                                    ^~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:308:10: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+# initial 
+         ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:312:60: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+        columns = c("Employment and Economic Benefits (%)", 
+                                                           ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:315:32: style: [infix_spaces_linter] Put spaces around all infix operators.
+        lower = list(continuous=wrap("points", 
+                               ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:315:47: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+        lower = list(continuous=wrap("points", 
+                                              ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:316:46: style: [infix_spaces_linter] Put spaces around all infix operators.
+                                     position=position_jitter(
+                                             ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:317:46: style: [infix_spaces_linter] Put spaces around all infix operators.
+                                       height=1, 
+                                             ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:317:49: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+                                       height=1, 
+                                                ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:318:45: style: [infix_spaces_linter] Put spaces around all infix operators.
+                                       width=1)))
+                                            ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:327:81: style: [line_length_linter] Lines should not be more than 80 characters.
+  mutate("Employment and Economic Benefits (%, log)" = log10(`Employment and Economic Benefits (%)`^2),
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:334:60: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+        columns = c("Employment and Economic Benefits (%)", 
+                                                           ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:337:32: style: [infix_spaces_linter] Put spaces around all infix operators.
+        lower = list(continuous=wrap("points", 
+                               ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:337:47: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+        lower = list(continuous=wrap("points", 
+                                              ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:338:46: style: [infix_spaces_linter] Put spaces around all infix operators.
+                                     position=position_jitter(
+                                             ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:339:46: style: [infix_spaces_linter] Put spaces around all infix operators.
+                                       height=1, 
+                                             ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:339:49: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+                                       height=1, 
+                                                ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:340:45: style: [infix_spaces_linter] Put spaces around all infix operators.
+                                       width=1)))
+                                            ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:354:81: style: [line_length_linter] Lines should not be more than 80 characters.
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:354:153: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+>>>>>>> Stashed changes
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
                                                                                                                                                         ^</code></pre>
 </div>

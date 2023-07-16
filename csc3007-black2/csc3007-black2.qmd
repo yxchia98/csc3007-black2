@@ -313,24 +313,61 @@ We anticipate that having a higher the nation's legal framework achievements in 
 # format 5.1.1 data into focused columns
 formatted_5_1_1 <- indicator_5_1_1_employment_economic_benefits |> 
   drop_na(latest_value) |>
-  select(geoAreaName, ISO3, "Employment and Economic Benefits (%)" = latest_value) |>
+  select(ISO3, "Employment and Economic Benefits (%)" = latest_value) |>
   distinct(ISO3, .keep_all = TRUE)
 
 # format 8.5.2 data into focused columns
 formatted_8_5_2 <- indicator_8_5_2_unemployment |>
   drop_na(latest_value) |>
-  select(geoAreaName, ISO3, disability_status_desc, sex_desc, "Unemployment Rate (%)" = latest_value) |>
-  filter(sex_desc == "Female", disability_status_desc == "No breakdown by disability") |>
-  select(geoAreaName, ISO3, `Unemployment Rate (%)`) |>
+  select(ISO3, disability_status_desc, "sex" = sex_desc, "Unemployment Rate (%)" = latest_value) |>
+  filter(`sex` %in% c("Female"), disability_status_desc == "No breakdown by disability") |>
+  select(ISO3, sex, "Unemployment Rate (%)") |>
   distinct(ISO3, .keep_all = TRUE)
+
+
 
 # merge data using left join, and drop all NA rows
 merged_data <- formatted_8_5_2 |>
-  left_join(formatted_5_1_1, by = c('ISO3', 'geoAreaName')) |>
+  left_join(formatted_5_1_1, by = c('ISO3')) |>
   drop_na()
 
-ggpairs(merged_data |> select("Employment and Economic Benefits (%)", "Unemployment Rate (%)"), cardinality_threshold = NULL)
+
+# initial 
+ggpairs(merged_data,
+        cardinality_threshold = NULL,
+        mapping = aes(alpha = 0.7),
+        columns = c("Employment and Economic Benefits (%)", 
+            "Unemployment Rate (%)"),
+        diag = list(continuous = wrap("barDiag", bins = 8, fill = "black")),
+        lower = list(continuous=wrap("points", 
+                                     position=position_jitter(
+                                       height=1, 
+                                       width=1)))
+        )
+
 ```
+## **5.1.1 vs 8.5.2 Relation Re-Expressed**
+
+```{r}
+
+merged_data <- merged_data |>
+  mutate("Employment and Economic Benefits (%, log)" = log10(`Employment and Economic Benefits (%)`^2),
+         "Unemployment Rate (%, log)" = log10(`Unemployment Rate (%)`))
+merged_data
+# re-expressed plot
+ggpairs(merged_data,
+        cardinality_threshold = NULL,
+        mapping = aes(alpha = 0.7),
+        columns = c("Employment and Economic Benefits (%)", 
+            "Unemployment Rate (%, log)"),
+        diag = list(continuous = wrap("barDiag", bins = 8, fill = "black")),
+        lower = list(continuous=wrap("points", 
+                                     position=position_jitter(
+                                       height=1, 
+                                       width=1)))
+                )
+```
+
 
 ## **5.5.2 vs 8.5.1 Anticipation**
 
