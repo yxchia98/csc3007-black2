@@ -15,6 +15,7 @@ library(tidyverse)
 library(countrycode)
 library(directlabels)
 library(ggrepel)
+library(dplyr)
 library(lintr)
 library(readxl)
 library(scales)
@@ -23,6 +24,37 @@ library(scales)
 ```{r}
 
 # Load & Clean the dataset / prepare it here.
+
+# Load 5.1.1 data - Legal frameworks that promote enforce and monitor gender equality (percentage of achievement 0 - 100) \-- Area 3: employment and economic benefits
+indicator_5_1_1_employment_economic_benefits <- read_csv("data/Indicator_5.1.1%3A_Legal_frameworks_that_promote__enforce_and_monitor_gender_equality_(percentage_of_achievement__0_-_100)_--_Area_3%3A_employment_and_economic_benefits.csv", show_col_types = FALSE)
+indicator_5_1_1_employment_economic_benefits
+
+# Load 5.5.2 data - Proportion of women in managerial positions
+indicator_5_5_2_managerial <- read_csv("data/Indicator_5.5.2%3A_Proportion_of_women_in_managerial_positions_(percent).csv", show_col_types = FALSE)
+indicator_5_5_2_managerial
+
+# Load 8.5.1 data - Average hourly earnings of employees by sex, age, occupation and persons with disabilities
+indicator_8_5_1_average_hourly <- read_csv("data/Indicator_8.5.1%3A_Average_hourly_earnings_of_employees_by_sex_and_occupation_(local_currency).csv", show_col_types = FALSE)
+indicator_8_5_1_average_hourly
+
+
+# Load 8.5.2 data - Unemployment rate by sex, age and persons with disabilities
+indicator_8_5_2_unemployment <- read_csv("data/Indicator_8.5.2%3A_Unemployment_rate__by_sex_and_disability_(percent).csv", show_col_types = FALSE)
+indicator_8_5_2_unemployment
+
+# Clean data
+indicator_5_1_1_employment_economic_benefits <- indicator_5_1_1_employment_economic_benefits |> select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, latest_value)
+indicator_5_1_1_employment_economic_benefits
+
+indicator_5_5_2_managerial <- indicator_5_5_2_managerial |> select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, latest_value)
+indicator_5_5_2_managerial
+
+indicator_8_5_1_average_hourly <- indicator_8_5_1_average_hourly |> select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, sex_code, sex_desc, type_of_occupation_desc, latest_value)
+indicator_8_5_1_average_hourly
+
+indicator_8_5_2_unemployment <- indicator_8_5_2_unemployment |> select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, sex_code, sex_desc, disability_status_code, disability_status_desc, latest_value)
+indicator_8_5_2_unemployment
+
 ```
 
 # Relationship between nation's legal framework achievements in gender equality and woman's success in the economy.
@@ -151,6 +183,7 @@ We anticipate that having a higher the nation's legal framework achievements in 
 ## **5.1.1 vs 8.5.2 Relation**
 
 ```{r}
+# CHIA YI XUAN
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 ```
 
