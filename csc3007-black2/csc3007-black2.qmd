@@ -5,6 +5,7 @@ author: "CHIA YI XUAN, TSUI SAU CHI, JEANIE OH JUN NING, VARADHARAJAN JAYAPRIYA,
 format:
   revealjs: 
     slide-number: true
+    transition: fade
 ---
 
 ```{r}
@@ -23,6 +24,7 @@ library(tmap)
 library(GGally)
 library(ggplot2)
 library(plotly)
+library(recipes)
 ```
 
 ```{r}
@@ -298,74 +300,96 @@ We anticipate that countries with lower unemployment rates for women should have
 # Table of performances. See Sample-Project slide 16
 ```
 
-## **5.1.1 vs 8.5.2 Anticipation**
+## **5.1.1 vs 8.5.2 Anticipation** {data-transitions="slide-in"}
 
 We anticipate that having a higher the nation's legal framework achievements in gender equality would result in lower unemployment rate for women.
 
 -   Because by decreasing gender discrimination for women, more companies would be willing to employ women.
 
-## **5.1.1 vs 8.5.2 Relation**
-
+## **5.1.1 vs 8.5.2 Relation** {data-transitions="slide-in"}
+<small>There doesn't seem to be any significant correlation between the percentage of legal employment and benefit frameworks for females, and the unemployment rate of females. However, this might be due to skewed distributions, hence we will re-express this data.
+ </small>
 ```{r}
+#| fig-width: 10
+#| fig-height: 5
 # CHIA YI XUAN
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 
 # format 5.1.1 data into focused columns
 formatted_5_1_1 <- indicator_5_1_1_employment_economic_benefits |> 
   drop_na(latest_value) |>
-  select(ISO3, "Employment and Economic Benefits (%)" = latest_value) |>
+  select("Country" = geoAreaName, ISO3, "% Female Legal Coverage" = latest_value) |>
   distinct(ISO3, .keep_all = TRUE)
 
 # format 8.5.2 data into focused columns
 formatted_8_5_2 <- indicator_8_5_2_unemployment |>
   drop_na(latest_value) |>
-  select(ISO3, disability_status_desc, "sex" = sex_desc, "Unemployment Rate (%)" = latest_value) |>
+  select("Country" = geoAreaName, ISO3, disability_status_desc, "sex" = sex_desc, "% Females Unemployed" = latest_value) |>
   filter(`sex` %in% c("Female"), disability_status_desc == "No breakdown by disability") |>
-  select(ISO3, sex, "Unemployment Rate (%)") |>
+  select(Country, ISO3, sex, "% Females Unemployed") |>
   distinct(ISO3, .keep_all = TRUE)
 
 
 
 # merge data using left join, and drop all NA rows
 merged_data <- formatted_8_5_2 |>
-  left_join(formatted_5_1_1, by = c('ISO3')) |>
+  left_join(formatted_5_1_1, by = c("ISO3", "Country")) |>
   drop_na()
 
 
 # initial 
-ggpairs(merged_data,
-        cardinality_threshold = NULL,
-        mapping = aes(alpha = 0.7),
-        columns = c("Employment and Economic Benefits (%)", 
-            "Unemployment Rate (%)"),
-        diag = list(continuous = wrap("barDiag", bins = 8, fill = "black")),
-        lower = list(continuous=wrap("points", 
+plot <- ggpairs(merged_data,
+        mapping = aes(alpha = 0.7, fill = Country),
+        title = "Employment Legal Frameworks and Female Unemployment rate",
+        columns = c("% Female Legal Coverage", 
+            "% Females Unemployed"),
+        diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
+        lower = list(continuous = wrap("points", 
                                      position=position_jitter(
-                                       height=1, 
-                                       width=1)))
-        )
+                                       height = 1, 
+                                       width = 0.5),
+                                     fill = "black"))
+        ) 
+
+ggplotly(plot)
 
 ```
-## **5.1.1 vs 8.5.2 Relation Re-Expressed**
-
+## **5.1.1 vs 8.5.2 Relation Re-Expressed** {data-transitions="slide-in"}
+<small>After Box Cox and logarithmic transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant.
+</small>
 ```{r}
+#| fig-width: 10
+#| fig-height: 5
 
+# Perform transformation
 merged_data <- merged_data |>
-  mutate("Employment and Economic Benefits (%, log)" = log10(`Employment and Economic Benefits (%)`^2),
-         "Unemployment Rate (%, log)" = log10(`Unemployment Rate (%)`))
-merged_data
+  mutate("log_10(% Females Unemployed)" = log10(`% Females Unemployed`))
+
+x <- merged_data$`% Female Legal Coverage`
+b <- MASS::boxcox(x ~ 1, plotit = FALSE, )
+lambda <- b$x[which.max(b$y)] # -0.02
+
+new_x_exact <- (x ^ lambda - 1) / lambda
+new_x <- log(x)
+merged_data <- merged_data |>
+  mutate("Box-Cox % Female Legal Coverage" = new_x)
+
 # re-expressed plot
-ggpairs(merged_data,
-        cardinality_threshold = NULL,
-        mapping = aes(alpha = 0.7),
-        columns = c("Employment and Economic Benefits (%)", 
-            "Unemployment Rate (%, log)"),
-        diag = list(continuous = wrap("barDiag", bins = 8, fill = "black")),
-        lower = list(continuous=wrap("points", 
+plot <- ggpairs(merged_data,
+        mapping = aes(alpha = 0.7, fill = Country),
+        title = "Employment Legal Frameworks and Female Unemployment rate",
+        columns = c("Box-Cox % Female Legal Coverage", 
+            "log_10(% Females Unemployed)"),
+        diag = list(continuous = wrap("barDiag", bins = 8, color = "black")),
+        lower = list(continuous = wrap("points", 
                                      position=position_jitter(
                                        height=1, 
-                                       width=1)))
-                )
+                                       width=0.5),
+                                     fill = "black"))
+        ) 
+
+ggplotly(plot)
+
 ```
 
 
@@ -380,6 +404,38 @@ We anticipate that having more women in managerial positions will increase the a
 ```{r}
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 ```
+
+
+## Four-variable pair plot
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+
+# Yi Xuan and Jin Ming
+
+# format 5.1.1 data into focused columns
+formatted_5_1_1 <- indicator_5_1_1_employment_economic_benefits |> 
+  drop_na(latest_value) |>
+  select("Country" = geoAreaName, ISO3, "% Female Legal Coverage" = latest_value) |>
+  distinct(ISO3, .keep_all = TRUE)
+
+# format 8.5.2 data into focused columns
+formatted_8_5_2 <- indicator_8_5_2_unemployment |>
+  drop_na(latest_value) |>
+  select("Country" = geoAreaName, ISO3, disability_status_desc, "sex" = sex_desc, "% Females Unemployed" = latest_value) |>
+  filter(`sex` %in% c("Female"), disability_status_desc == "No breakdown by disability") |>
+  select(Country, ISO3, sex, "% Females Unemployed") |>
+  distinct(ISO3, .keep_all = TRUE)
+
+
+
+# merge data using left join, and drop all NA rows
+merged_data <- formatted_8_5_2 |>
+  left_join(formatted_5_1_1, by = c("ISO3", "Country")) |>
+  drop_na()
+
+```
+
 
 ## K-Means Clustering
 
