@@ -20,8 +20,6 @@ library(lintr)
 library(readxl)
 library(scales)
 library(tmap)
-library(GGally)
-library(ggplot2)
 ```
 
 ```{r}
@@ -282,27 +280,6 @@ We anticipate that having a higher the nation's legal framework achievements in 
 ```{r}
 # CHIA YI XUAN
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
-
-# format 5.1.1 data into focused columns
-formatted_5_1_1 <- indicator_5_1_1_employment_economic_benefits |> 
-  drop_na(latest_value) |>
-  select(geoAreaName, ISO3, "Employment and Economic Benefits (%)" = latest_value) |>
-  distinct(ISO3, .keep_all = TRUE)
-
-# format 8.5.2 data into focused columns
-formatted_8_5_2 <- indicator_8_5_2_unemployment |>
-  drop_na(latest_value) |>
-  select(geoAreaName, ISO3, disability_status_desc, sex_desc, "Unemployment Rate (%)" = latest_value) |>
-  filter(sex_desc == "Female", disability_status_desc == "No breakdown by disability") |>
-  select(geoAreaName, ISO3, `Unemployment Rate (%)`) |>
-  distinct(ISO3, .keep_all = TRUE)
-
-# merge data using left join, and drop all NA rows
-merged_data <- formatted_8_5_2 |>
-  left_join(formatted_5_1_1, by = c('ISO3', 'geoAreaName')) |>
-  drop_na()
-
-ggpairs(merged_data |> select("Employment and Economic Benefits (%)", "Unemployment Rate (%)"), cardinality_threshold = NULL)
 ```
 
 ## **5.5.2 vs 8.5.1 Anticipation**
