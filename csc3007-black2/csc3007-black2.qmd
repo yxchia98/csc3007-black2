@@ -346,12 +346,77 @@ We anticipate that having more women in managerial positions will increase the a
 
 ## K-Means Clustering
 
-See project-sample slide 19
+```{r}
+# VARADHARAJAN JAYAPRIYA
+# Combine the datasets
+combined_data <- bind_rows(
+  indicator_5_1_1_employment_economic_benefits,
+  indicator_5_5_2_managerial,
+  indicator_8_5_1_average_hourly,
+  indicator_8_5_2_unemployment
+)
+
+# Select columns for clustering (assuming "latest_value" is the numeric variable)
+columns_for_clustering <- c("latest_value")
+
+# Normalize the data using Min-Max scaling
+normalized_data <- combined_data %>%
+  mutate_at(vars(columns_for_clustering), scales::rescale)
+
+# Elbow plot to determine the optimal k value
+elbow_data <- data.frame(k = 1:10, total_withinss = numeric(10))
+
+for (k in 1:10) {
+  kmeans_result <- kmeans(normalized_data[columns_for_clustering], centers = k)
+  elbow_data[k, "total_withinss"] <- kmeans_result$tot.withinss
+}
+
+# Create the elbow plot
+ggplot(elbow_data, aes(x = k, y = total_withinss)) +
+  geom_line(color = "blue") +
+  geom_point(color = "blue") +
+  labs(x = "Number of Clusters (k)", y = "Total Within Sum of Squares") +
+  theme_minimal()
+
+```
 
 ## Pairs Plot Highlighting Clusters
 
 ```{r}
 # See project-sample slide 20
+
+# Set number of clusters (k)
+k <- 3
+
+# Build the K-means model
+set.seed(123)
+kmeans_result <- kmeans(normalized_data[columns_for_clustering], centers = k, nstart = 20)
+
+# Add cluster assignments to the original data
+normalized_data$cluster_id <- factor(kmeans_result$cluster)
+
+# Define cluster labels
+cluster_labels <- paste("Cluster", 1:k)
+
+# Convert the centroid matrix to a data frame
+centroids <- as.data.frame(kmeans_result$centers)
+
+# Plot the data with cluster assignments and circles
+ggplot(normalized_data, aes(x = latest_value, y = X, color = cluster_id)) +
+  geom_point(alpha = 0.5, size = 3) +
+  scale_color_manual(values = c("red", "blue", "green"), labels = cluster_labels) +
+  xlab("Normalized Indicator Value") +
+  ylab("Another Variable (X)") +
+  ggtitle("Clustering Analysis") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14, face = "bold"),
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 12)
+  )
+
 ```
 
 ## Decision Tree
