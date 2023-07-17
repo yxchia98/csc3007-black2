@@ -70,7 +70,7 @@ To what extent does a nation's legal framework on gender equality affect economi
 
 Specifically, what is the relationship between a [nation's legal framework achievements in gender equality]{.underline} and [woman's success in the economy]{.underline}?
 
-Can [GDP]{.underline}, [Happy Planet Index Score]{.underline} and [Region]{.underline} serve as predictors for a nation's legal framework achievements in gender equality & proportion of women in managerial positions?
+Can [GDP]{.underline}, [Happy Planet Index Score]{.underline} and [Continent]{.underline} serve as predictors for a nation's legal framework achievements in gender equality & proportion of women in managerial positions?
 
 ## Importance of This Research
 
@@ -820,8 +820,15 @@ ggplot(normalized_data, aes(x = latest_value, y = X, color = cluster_id)) +
 
 ```{r}
 
+# Add Lib 
+```
+
+```{r}
+
 # 3 country-level variable are used here.
-# See project-sample slide 21
+# TSUI SAU CHI (JAMES)
+
+# Step1: Import Data 
 ```
 
 ## Evaluation of Decision Tree
