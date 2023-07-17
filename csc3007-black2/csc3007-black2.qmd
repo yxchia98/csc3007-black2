@@ -592,8 +592,92 @@ We anticipate that having more women in managerial positions will increase the a
 
 ## **5.5.2 vs 8.5.1 Relation**
 
+There seems to be a negative correlation between the percentage of female hourly earnings and women in managerial positions. However, this might be due to skewed distributions of female hourly earnings, hence we will re-express this data using logarithmic transformations .
+
 ```{r}
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+
+# Format 5.5.2 data into focused columns
+formatted_5_5_2 <- indicator_5_5_2_managerial |>
+  drop_na(latest_value) |>
+  select("Country" = geoAreaName, ISO3, "% Women in Managerial Positions" = latest_value) |>
+  distinct(ISO3, .keep_all = TRUE)
+
+# Format 8.5.1 data into focused columns
+formatted_8_5_1 <- indicator_8_5_1_average_hourly |>
+  drop_na(latest_value) |>
+  filter(sex_desc == "Female") |>
+  select("Country" = geoAreaName, ISO3, "% Female Hourly Earnings" = latest_value) |>
+  distinct(ISO3, .keep_all = TRUE)
+
+# Merge data using left join, and drop all NA rows
+merged_data <- formatted_5_5_2 |>
+  left_join(formatted_8_5_1, by = c("ISO3", "Country")) |>
+  drop_na()
+
+# Create 4 grid plots using ggpairs()
+grid_plots <- ggpairs(merged_data,
+                      mapping = aes(alpha = 0.7, fill = Country),
+                      title = "Proportion of Women in Managerial Positions vs Average Hourly Earnings (Female Employees)",
+                      columns = c("% Women in Managerial Positions", "% Female Hourly Earnings"),
+                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
+                      lower = list(continuous = wrap("points",
+                                                    position = position_jitter(
+                                                      height = 1,
+                                                      width = 0.5),
+                                                    fill = "black"))
+)
+
+# Print 4 grid plots
+grid_plots
+
+```
+
+## **5.1.1 vs 8.5.2 Relation Re-Expressed** {data-transitions="slide-in"}
+
+After logarithmic transformations for female hourly earnings, correlation coefficient seems to have decreased. However, it still appears to be negatively correlated .
+
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+
+# Format 5.5.2 data into focused columns
+formatted_5_5_2 <- indicator_5_5_2_managerial |>
+  drop_na(latest_value) |>
+  select("Country" = geoAreaName, ISO3, "% Women in Managerial Positions" = latest_value) |>
+  distinct(ISO3, .keep_all = TRUE)
+
+# Format 8.5.1 data into focused columns
+formatted_8_5_1 <- indicator_8_5_1_average_hourly |>
+  drop_na(latest_value) |>
+  filter(sex_desc == "Female") |>
+  select("Country" = geoAreaName, ISO3, "% Female Hourly Earnings" = latest_value) |>
+  distinct(ISO3, .keep_all = TRUE)
+
+# Merge data using left join, and drop all NA rows
+merged_data <- formatted_5_5_2 |>
+  left_join(formatted_8_5_1, by = c("ISO3", "Country")) |>
+  drop_na()
+
+# Perform log transformation for "% Female Hourly Earnings"
+merged_data <- merged_data |>
+  mutate("log(% Female Hourly Earnings)" = log(`% Female Hourly Earnings`))
+
+# Create 4 grid plots using ggpairs()
+grid_plots <- ggpairs(merged_data,
+                      mapping = aes(alpha = 0.7, fill = Country),
+                      title = "Proportion of Women in Managerial Positions vs Average Hourly Earnings (Female Employees)",
+                      columns = c("% Women in Managerial Positions", "log(% Female Hourly Earnings)"),
+                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
+                      lower = list(continuous = wrap("points",
+                                                    position = position_jitter(
+                                                      height = 1,
+                                                      width = 0.5),
+                                                    fill = "black"))
+)
+
+# Print 4 grid plots
+grid_plots
 ```
 
 ## Four-variable pair plot
@@ -618,12 +702,42 @@ formatted_8_5_2 <- indicator_8_5_2_unemployment |>
   select(Country, ISO3, sex, "% Females Unemployed") |>
   distinct(ISO3, .keep_all = TRUE)
 
+# Format 5.5.2 data into focused columns
+formatted_5_5_2 <- indicator_5_5_2_managerial |>
+  drop_na(latest_value) |>
+  select("Country" = geoAreaName, ISO3, "% Women in Managerial Positions" = latest_value) |>
+  distinct(ISO3, .keep_all = TRUE)
+
+# Format 8.5.1 data into focused columns
+formatted_8_5_1 <- indicator_8_5_1_average_hourly |>
+  drop_na(latest_value) |>
+  filter(sex_desc == "Female") |>
+  select("Country" = geoAreaName, ISO3, "% Female Hourly Earnings" = latest_value) |>
+  distinct(ISO3, .keep_all = TRUE)
 
 
 # merge data using left join, and drop all NA rows
 merged_data <- formatted_8_5_2 |>
   left_join(formatted_5_1_1, by = c("ISO3", "Country")) |>
-  drop_na()
+  left_join(formatted_5_5_2, by = c("ISO3", "Country")) |>
+  left_join(formatted_8_5_1, by = c("ISO3", "Country"))
+
+# Drop rows with NA values
+merged_data <- drop_na(merged_data)
+
+# Create grid plots using ggpairs()
+grid_plots <- ggpairs(merged_data,
+                      mapping = aes(alpha = 0.7, fill = Country),
+                      title = "Relationship between Indicators",
+                      columns = c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings"),
+                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
+                      lower = list(continuous = wrap("points",
+                                                    position = position_jitter(height = 1, width = 0.5),
+                                                    fill = "black"))
+)
+
+# Print the grid plots
+grid_plots
 
 ```
 
