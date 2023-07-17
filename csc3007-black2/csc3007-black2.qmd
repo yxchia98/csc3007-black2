@@ -26,6 +26,10 @@ library(ggplot2)
 library(plotly)
 library(recipes)
 library(priceR)
+library(sf)
+library(tidymodels)
+library(rpart)
+library(rpart.plot)
 ```
 
 ```{r}
@@ -819,17 +823,78 @@ ggplot(normalized_data, aes(x = latest_value, y = X, color = cluster_id)) +
 ## Decision Tree
 
 ```{r}
+# Checking (To be removed) 
 
-# Add Lib 
+normalized_data <- arrange(normalized_data, geoAreaName)
+normalized_data
+```
+
+```{r}
+#| echo: false
+
+# TSUI SAU CHI (JAMES)
+
+# Load Country Level Data 
+
+# Step1: Import Data 
+happy_index <- read_excel("data/happy-planet-index-2006-2020-public-data-set.xlsx", sheet = 2, skip = 7)
+happy_index <- select(
+  happy_index, ISO3 = "ISO", GDP = "GDP per capita ($)", HPI
+  )
+
+countries_sf <- st_read("data/WB_countries_Admin0.geojson")
+countries_sf  <- select(
+  countries_sf, Continent = "CONTINENT", ISO3 = "ISO_A3"
+  )
+countries_sf <- st_drop_geometry(countries_sf)
+countries_sf <- as_tibble(countries_sf)
+
 ```
 
 ```{r}
 
-# 3 country-level variable are used here.
-# TSUI SAU CHI (JAMES)
+# Step1: Import Data
 
-# Step1: Import Data 
+merged_data <- select(
+  normalized_data, ISO3 = "ISO3", cluster_id = "cluster_id",
+) |> drop_na()
+
+# Merge data using left join, and drop all NA rows
+merged_data <-  merged_data |>
+  left_join(countries_sf, by = c("ISO3")) |>
+  drop_na()
+
+merged_data <-  merged_data |>
+  left_join(happy_index, by = c("ISO3")) |>
+  drop_na()
+
+merged_data <- distinct(merged_data)
+
+# Shuffle Data 
+shuffle_index <- sample(1:nrow(merged_data))
+merged_data <- merged_data[shuffle_index, ]
+
+# Step 2: Create training / Test Set
+set.seed(123)
+data_split <- initial_split(merged_data, prop = 0.8)
+train_data <- training(data_split)
+test_data <- testing(data_split)
+
+# Step 3: Build the model
+# Create a decision tree model specification
+tree_spec <- decision_tree() %>%
+ set_engine("rpart") %>%
+ set_mode("classification")
+
+# Fit the model to the training data
+#tree_fit <- tree_spec %>%
+# fit(cluster_id ~ ., data = train_data)
 ```
+```{r}
+tree <- rpart(cluster_id ~., data = train_data)
+rpart.plot(tree)
+```
+
 
 ## Evaluation of Decision Tree
 
