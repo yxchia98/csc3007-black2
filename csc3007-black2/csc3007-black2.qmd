@@ -25,6 +25,7 @@ library(GGally)
 library(ggplot2)
 library(plotly)
 library(recipes)
+library(priceR)
 ```
 
 ```{r}
@@ -250,8 +251,8 @@ merged_data <- formatted_5_1_1 |>
   drop_na()
 
 gpairs <- ggpairs(merged_data, columns = 3:4, ggplot2::aes(label=geoAreaName))
-
-ggplotly(gpairs)
+# ggplotly(gpairs)
+gpairs
 ```
 
 ## **5.1.1 vs 5.5.2 Relation data re-expression if needed**
@@ -265,12 +266,139 @@ ggplotly(gpairs)
 
 ```{r}
 # JEANIE OH JUN NING
+
+# getting exchange rate for USD 
+exchange_rate <- exchange_rate_latest("USD")  
+
+# retrieving only Females 
+indicator_8_5_1_average_hourly <- filter(indicator_8_5_1_average_hourly, sex_code == "F")  
+
+# get currency code and country code from country name 
+indicator_8_5_1_average_hourly <- mutate(indicator_8_5_1_average_hourly,   
+    currency_code = countrycode(
+      ISO3,
+      origin = 'iso3c',
+      destination = 'iso4217c',
+      warn = FALSE))  
+
+# get value in USD 
+indicator_8_5_1_average_hourly$exchange_usd <- exchange_rate$one_usd_is_equivalent_to[match(indicator_8_5_1_average_hourly$currency_code, exchange_rate$currency)] 
+
+indicator_8_5_1_average_hourly$amount_usd <- indicator_8_5_1_average_hourly$latest_value / indicator_8_5_1_average_hourly$exchange_usd   
+
+# max USD = 64.19665 
+# min value = 0 
+# max(indicator_8_5_1_average_hourly$amount_usd, na.rm = T) 
+# min(indicator_8_5_1_average_hourly$amount_usd, na.rm = T)  
+
+# graph from 1-65 
+cmap_851 <-   
+  World |> left_join(indicator_8_5_1_average_hourly, by = c("ISO3"))  
+
+cmap_851 <- mutate(cmap_851, 
+    usd_earning = cut(
+      amount_usd,
+      breaks = c(0,1,2,3,5,8,13,21,34,55,
+          max(amount_usd, na.rm = TRUE)), 
+      labels = c(
+        "0 to 1",
+        "1 to 2",
+        "2 to 3",
+        "3 to 5",
+        "5 to 8", 
+        "8 to 13",
+        "13 to 21",
+        "21 to 34",
+        "34 to 55",
+        "55 and above" 
+        )
+      ))   
+
+tm_poa_after_shape <- 
+  tm_polygons(col = "usd_earning",
+      palette = "Greens",
+      title = "Earnings in USD") + 
+  tm_layout(
+      main.title = "Average Hourly Earning by Women", 
+      legend.position = c("left", "top"),
+      inner.margins = c(0.01, 0.2, 0.01, 0.01), 
+      bg.color = "lightblue", 
+      earth.boundary = TRUE,
+      space.color = "white",
+      frame = FALSE   
+    ) + 
+  tm_text("ISO3", size = "AREA") +   
+  tm_credits("Source: United Nations Statistics Division",
+      position = c("left", "bottom"))  
+
+tm_poa <- tm_shape(cmap_851, projection = "ESRI:54012") + 
+  tm_poa_after_shape  
+
+tm_poa
 ```
 
 ## Choropleth Map: **8.5.2**
 
 ```{r}
 # JEANIE OH JUN NING
+
+# retrieving only Females 
+indicator_8_5_2_unemployment <- filter(indicator_8_5_2_unemployment, sex_code == "F") 
+
+# nrow(indicator_8_5_2_unemployment)
+# count <- sum(!is.na(indicator_8_5_2_unemployment$latest_value) & indicator_8_5_2_unemployment$latest_value >= 40 & indicator_8_5_2_unemployment$latest_value <= 50)
+# count
+
+# max percent =  50
+# min value = 0.9
+# max(indicator_8_5_2_unemployment$latest_value, na.rm = T) 
+# min(indicator_8_5_2_unemployment$latest_value, na.rm = T) 
+
+cmap_852 <-   
+  World |> left_join(indicator_8_5_2_unemployment, by = c("ISO3"))  
+
+cmap_852 <-
+  mutate(cmap_852,
+         percent = cut(
+           latest_value,
+           breaks = c(0, 5, 10, 15, 20, 30, 40,
+                      max(latest_value, na.rm = TRUE)),
+           labels = c(
+             "0 to 5",
+             "5 to 10",
+             "10 to 15",
+             "15 to 20",
+             "20 to 30",
+             "30 to 40",
+             "40 to 50"
+           )
+         ))
+
+
+
+tm_poa_after_shape <-
+  tm_polygons(col = "percent",
+              palette = "Greens",
+              title = "Percentages") +
+  tm_layout(
+    main.title =
+      "Unemployment Rate of Women",
+    legend.position = c("left", "top"),
+    inner.margins = c(0.01, 0.2, 0.01, 0.01),
+    bg.color = "lightblue",
+    earth.boundary = TRUE,
+    space.color = "white",
+    frame = FALSE
+  ) +
+  tm_text("ISO3", size = "AREA") +
+  tm_credits("Source: United Nations Statistics Division",
+             position = c("left", "bottom"))
+
+tm_poa <-
+  tm_shape(cmap_852, projection = "ESRI:54012") +
+  tm_poa_after_shape
+
+tm_poa
 ```
 
 ## **8.5.1 vs 8.5.2 Anticipation**
@@ -284,6 +412,44 @@ We anticipate that countries with lower unemployment rates for women should have
 ```{r}
 # JEANIE OH JUN NING
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+
+graph_usd_dollar <- select(
+  indicator_8_5_1_average_hourly,
+  amtusd = "amount_usd",
+  geoAreaName = "geoAreaName",
+  ISO3 = "ISO3"
+  )
+
+graph_unemployment <- select(
+  indicator_8_5_2_unemployment,
+  percent = "latest_value",
+  geoAreaName = "geoAreaName",
+  ISO3 = "ISO3"
+  )
+
+
+#joined_unemployment_amtusd <- left_join(graph_usd_dollar, graph_unemployment, by = c("ISO3", "geoAreaName")) %>% na.omit()
+
+joined_unemployment_amtusd <- graph_usd_dollar |>
+  left_join(graph_unemployment,
+            by = c('ISO3', 'geoAreaName'),
+            relationship = "many-to-many") |>
+  drop_na()
+
+min_max_scale <- function(x) {
+  (x - min(x)) / (max(x) - min(x))
+}
+
+joined_unemployment_amtusd <- joined_unemployment_amtusd %>%
+  mutate(amtusd_scaled = min_max_scale(amtusd),
+         percent_scaled = min_max_scale(percent))
+
+# Create a scatterplot matrix using ggpairs
+# ggpairs(joined_df, columns = 3:4)
+g_pairs <- ggpairs(joined_unemployment_amtusd, columns = c("amtusd_scaled", "percent_scaled"), ggplot2::aes(label=geoAreaName))
+
+# ggplotly(g_pairs)
+g_pairs
 ```
 
 ## **8.5.1 vs 8.5.2 Relation data re-expression if needed**
@@ -351,7 +517,8 @@ plot <- ggpairs(merged_data,
                                      fill = "black"))
         ) 
 
-ggplotly(plot)
+#ggplotly(plot)
+plot
 
 ```
 ## **5.1.1 vs 8.5.2 Relation Re-Expressed** {data-transitions="slide-in"}
@@ -388,7 +555,8 @@ plot <- ggpairs(merged_data,
                                      fill = "black"))
         ) 
 
-ggplotly(plot)
+# ggplotly(plot)
+plot
 
 ```
 
