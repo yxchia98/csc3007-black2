@@ -37,7 +37,7 @@ library(rpart.plot)
 
 # Load & Clean the dataset / prepare it here.
 
-# Load 5.1.1 data - Legal frameworks that promote enforce and monitor gender equality (percentage of achievement 0 - 100) \-- Area 3: employment and economic benefits
+# Load 5.1.1 data - Legal frameworks that promote enforce and monitor gender eqality (percentage of achievement 0 - 100) \-- Area 3: employment and economic benefits
 indicator_5_1_1_employment_economic_benefits <- read_csv("data/Indicator_5.1.1%3A_Legal_frameworks_that_promote__enforce_and_monitor_gender_equality_(percentage_of_achievement__0_-_100)_--_Area_3%3A_employment_and_economic_benefits.csv", show_col_types = FALSE)
 
 # Load 5.5.2 data - Proportion of women in managerial positions
@@ -870,6 +870,10 @@ merged_data <-  merged_data |>
 
 merged_data <- distinct(merged_data)
 
+merged_data$Continent <- as.factor(merged_data$Continent)
+merged_data$GDP <- as.numeric(merged_data$GDP)
+merged_data <- merged_data %>% select(-ISO3)
+
 # Shuffle Data 
 shuffle_index <- sample(1:nrow(merged_data))
 merged_data <- merged_data[shuffle_index, ]
@@ -879,12 +883,12 @@ set.seed(123)
 data_split <- initial_split(merged_data, prop = 0.8)
 train_data <- training(data_split)
 test_data <- testing(data_split)
-```
-```{r}
+
 # Step 3: Build the model
-#rpart.control(maxdepth = 1)
-#tree <- rpart(cluster_id ~., data = train_data, method="class")
-#rpart.plot(tree)
+tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit=1, minbucket=1)
+rpart.plot(tree, box.palette="GnRd")
+str(train_data)
+
 ```
 
 
