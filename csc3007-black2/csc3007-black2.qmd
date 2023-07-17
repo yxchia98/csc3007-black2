@@ -232,34 +232,55 @@ formatted_5_1_1 <-
   select(
     indicator_5_1_1_employment_economic_benefits,
     ISO3 = "ISO3",
-    geoAreaName = "geoAreaName",
-    percent_achieve = "latest_value"
+    Country = "geoAreaName",
+    "% Employment Legal Framework Achievement" = "latest_value"
   )
 
 formatted_5_5_2 <-
   select(
     indicator_5_5_2_managerial,
     ISO3 = "ISO3",
-    geoAreaName = "geoAreaName",
-    percent_managerial = "latest_value"
+    Country = "geoAreaName",
+    "% Female in Management Position" = "latest_value"
   )
 
 merged_data <- formatted_5_1_1 |>
   left_join(formatted_5_5_2,
-            by = c('ISO3', 'geoAreaName'),
+            by = c('ISO3', 'Country'),
             relationship = "many-to-many") |>
   drop_na()
 
-gpairs <- ggpairs(merged_data, columns = 3:4, ggplot2::aes(label=geoAreaName))
-# ggplotly(gpairs)
-gpairs
+plot <- ggpairs(
+  merged_data,
+  mapping = aes(alpha = 0.7, fill = Country),
+  title = "Employment Legal Frameworks and Female Managerial Rate",
+  columns = c(
+    "% Employment Legal Framework Achievement",
+    "% Female in Management Position"
+  ),
+  diag = list(continuous = wrap(
+    "barDiag", bins = 10, color = "black"
+  )),
+  lower = list(
+    continuous = wrap(
+      "points",
+      position = position_jitter(height = 1,
+                                 width = 0.5),
+      fill = "black"
+    )
+  )
+)
+
+#ggplotly(plot)
+plot
 ```
 
 ## **5.1.1 vs 5.5.2 Relation data re-expression if needed**
 
 ```{r}
 # Wong Jun HAO
-# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation
+# Perform transformation
 ```
 
 ## Choropleth Map: **8.5.1**
@@ -473,8 +494,9 @@ We anticipate that having a higher the nation's legal framework achievements in 
 -   Because by decreasing gender discrimination for women, more companies would be willing to employ women.
 
 ## **5.1.1 vs 8.5.2 Relation** {data-transitions="slide-in"}
-<small>There doesn't seem to be any significant correlation between the percentage of legal employment and benefit frameworks for females, and the unemployment rate of females. However, this might be due to skewed distributions, hence we will re-express this data.
- </small>
+
+<small>There doesn't seem to be any significant correlation between the percentage of legal employment and benefit frameworks for females, and the unemployment rate of females. However, this might be due to skewed distributions, hence we will re-express this data. </small>
+
 ```{r}
 #| fig-width: 10
 #| fig-height: 5
@@ -521,9 +543,11 @@ plot <- ggpairs(merged_data,
 plot
 
 ```
+
 ## **5.1.1 vs 8.5.2 Relation Re-Expressed** {data-transitions="slide-in"}
-<small>After Box Cox and logarithmic transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant.
-</small>
+
+<small>After Box Cox and logarithmic transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant. </small>
+
 ```{r}
 #| fig-width: 10
 #| fig-height: 5
@@ -560,7 +584,6 @@ plot
 
 ```
 
-
 ## **5.5.2 vs 8.5.1 Anticipation**
 
 We anticipate that having more women in managerial positions will increase the average hourly earning for female employees.
@@ -573,8 +596,8 @@ We anticipate that having more women in managerial positions will increase the a
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 ```
 
-
 ## Four-variable pair plot
+
 ```{r}
 #| fig-width: 10
 #| fig-height: 5
@@ -603,7 +626,6 @@ merged_data <- formatted_8_5_2 |>
   drop_na()
 
 ```
-
 
 ## K-Means Clustering
 
