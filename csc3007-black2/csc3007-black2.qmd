@@ -632,7 +632,7 @@ grid_plots
 
 ```
 
-## **5.1.1 vs 8.5.2 Relation Re-Expressed** {data-transitions="slide-in"}
+## **5.5.2 vs 8.5.1 Relation Re-Expressed** {data-transitions="slide-in"}
 
 After logarithmic transformations for female hourly earnings, correlation coefficient seems to have decreased. However, it still appears to be negatively correlated .
 
