@@ -484,13 +484,6 @@ plot <- ggpairs(
 plot
 ```
 
-## **8.5.1 vs 8.5.2 Relation data re-expression if needed**
-
-```{r}
-# JEANIE OH JUN NING
-# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
-```
-
 ## **Table of Women Economical Success**
 
 ```{r}
