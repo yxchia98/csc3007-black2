@@ -31,7 +31,6 @@ library(tidymodels)
 library(rpart)
 library(rpart.plot)
 library(caret)
-library(factoextra)
 ```
 
 ```{r}
@@ -747,6 +746,7 @@ grid_plots
 
 ## K-Means Clustering
 
+<<<<<<< Updated upstream
 ```{r} 
 # VARADHARAJAN JAYAPRIYA 
 # merge data using left join, and drop all NA rows 
@@ -757,20 +757,33 @@ merged_data <- formatted_8_5_2 |>
   left_join(formatted_5_5_2, 
             by = c("ISO3", "Country")) |>   
   left_join(formatted_8_5_1, 
-            by = c("ISO3", "Country"))  
+            by = c("ISO3", "Country")) 
+
+# Perform log transformation for "% Female Hourly Earnings"
+merged_data <- merged_data |>
+  mutate("log(% Female Hourly Earnings)" = log(`% Female Hourly Earnings`))
+
 # Drop rows with NA values 
 merged_data <- drop_na(merged_data) 
-merged_data  
-
-merged_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings")] = scale(merged_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings")])  
 
 merged_data_cols <- merged_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings")]  
 set.seed(123) 
-km.out <- kmeans(merged_data_cols, centers = 3, nstart = 20) 
-km.out  
 
-#Elbow Method 
-fviz_nbclust(merged_data_cols, kmeans, method = "wss")
+# Elbow plot to determine the optimal k value
+elbow_data <- data.frame(k = 1:10, total_withinss = numeric(10))
+
+for (k in 1:10) {
+  kmeans_result <- kmeans(merged_data_cols, centers = k)
+  elbow_data[k, "total_withinss"] <- kmeans_result$tot.withinss
+}
+
+# Create the elbow plot
+ggplot(elbow_data, aes(x = k, y = total_withinss)) +
+  geom_line(color = "blue") +
+  geom_point(color = "blue") +
+  labs(x = "Number of Clusters (k)", y = "Total Within Sum of Squares") +
+  theme_minimal()
+
 ```
 
 ## Pairs Plot Highlighting Clusters
@@ -778,16 +791,16 @@ fviz_nbclust(merged_data_cols, kmeans, method = "wss")
 ```{r}
 # See project-sample slide 20
 
-# Perform k-means clustering with k = 4
+# Perform k-means clustering with k = 3
 set.seed(123)
-km.out <- kmeans(merged_data_cols, centers = 4, nstart = 20)
+km.out <- kmeans(merged_data_cols, centers = 3, nstart = 20)
 
 # Add cluster information to the merged_data dataframe
 merged_data$Cluster <- km.out$cluster
 
 # Create a pair plot using ggpairs
 ggpairs(merged_data,
-        columns = c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings"),
+        columns = c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "log(% Female Hourly Earnings)"),
         mapping = aes(color = as.factor(Cluster)),
         title = "Pair Plot with K-means Clustering (k = 4)",
         diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
@@ -828,28 +841,73 @@ Can the cluster assignment be predicted based on the country's [GDP]{.underline}
 
 ```{r}
 
+# Step1: Import Data & Data-preprocessing
+merged_data <- select(
+  merged_data, ISO3 = "ISO3", cluster_id = "Cluster",
+) |> drop_na()
 
+# Merge data using left join, and drop all NA rows
+merged_data <-  merged_data |>
+  left_join(countries_sf, by = c("ISO3")) |>
+  drop_na()
+
+merged_data <-  merged_data |>
+  left_join(happy_index, by = c("ISO3")) |>
+  drop_na()
+
+merged_data <- distinct(merged_data)
+
+merged_data$Continent <- as.factor(merged_data$Continent)
+merged_data$GDP <- round(as.numeric(merged_data$GDP), 2)
+merged_data <- merged_data %>% select(-ISO3)
+merged_data <- na.omit(merged_data)
+
+# # Shuffle Data
+shuffle_index <- sample(1:nrow(merged_data))
+merged_data <- merged_data[shuffle_index, ]
+
+# Step 2: Create training / Test Set
+set.seed(123)
+data_split <- initial_split(merged_data, prop = 0.8)
+train_data <- training(data_split)
+test_data <- testing(data_split)
+
+# Step 3: Build the model
+tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit=3, minbucket=1)
+rpart.plot(tree, box.palette="GnRd")
 ```
 
 ## Evaluation of Decision Tree
 
-The decision tree does not assign any country to cluster 2 (*Fill in*).
-
-Ten-fold cross validation indicates that the decision tree has a low accuracy of 0.91
-
-The relative importance of the predictors for classification are as follows:
-
--   HPI: *Fill in*
--   Continent: *Fill in*
--   GDP size: *Fill in*
 
 ```{r}
 #| echo: false
 #| message: FALSE
 #| results: 'hide'
 
+# Step 4: Evaluating Model
 
+ctrl <- trainControl(method = "cv", number = 10)
+model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=3, minbucket=1)
+model
+
+# Step 5: Get Relative Importance
+relative_importance <- vector(length = length(tree$variable.importance))
+for (i in 1:length(tree$variable.importance)) {
+  relative_importance[i] <- tree$variable.importance[i] / tree$variable.importance[1]
+}
+relative_importance
 ```
+
+The decision tree does not assign any country to cluster 2 (*Fill in*).
+
+Ten-fold cross validation indicates that the decision tree has a low accuracy of `r model$results$Accuracy`
+
+The relative importance of the predictors for classification are as follows:
+
+-   HPI: `r relative_importance[1]`
+-   Continent: `r relative_importance[2]`
+-   GDP size: `r relative_importance[3]`
 
 ## Summary of Quantitative Results
 
