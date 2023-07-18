@@ -518,9 +518,6 @@ merged_table <- table_5_1_1 |>
   left_join(table_8_5_1, by = c("ISO3", "Country")) |>
   select(Country, `% Legal Frameworks`, `% Managerial Positions`, `% Females Unemployed`, `Average Hourly Earnings $USD`)
 
-# kbl(merged_table, full_width = T) |>
-#   add_header_above(c(" " = 1, "Group 1" = 2, "Group 2" = 2))
-
 # merged_table |>
 # datatable(rownames = FALSE, options=list(
 #      initComplete = htmlwidgets::JS(
@@ -530,13 +527,13 @@ merged_table <- table_5_1_1 |>
 
 ```
 
-## 5.1.1 vs 8.5.2 Anticipation
+## Anticipation of what having Fair Employment Frameworks does to Female Unemployment
 
 We anticipate that having a higher the nation's legal framework achievements in gender equality would result in lower unemployment rate for women.
 
 -   Because by decreasing gender discrimination for women, more companies would be willing to employ women.
 
-## 5.1.1 vs 8.5.2 Relation
+## Fair Employment Frameworks vs Female Unemployment Rates
 
 <small>There doesn't seem to be any significant correlation between the percentage of legal employment and benefit frameworks for females, and the unemployment rate of females. However, this might be due to skewed distributions, hence we will re-express this data. </small>
 
@@ -586,7 +583,7 @@ plot
 
 ```
 
-## 5.1.1 vs 8.5.2 Relation Re-Expressed
+## Fair Employment Frameworks vs Female Unemployment Rates Re-Expressed
 
 <small>After Box Cox and logarithmic transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant. </small>
 
@@ -632,9 +629,9 @@ We anticipate that having more women in managerial positions will increase the a
 -   Because in general, employees in a managerial position would receive higher income and with more women holding managerial positions, the average hourly earning for female employees will increase.
 
 ## **5.5.2 vs 8.5.1 Relation**
-
+<small>
 There seems to be a negative correlation between the percentage of female hourly earnings and women in managerial positions. However, this might be due to skewed distributions of female hourly earnings, hence we will re-express this data using logarithmic transformations .
-
+</small>
 ```{r}
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 
@@ -904,9 +901,11 @@ The relative importance of the predictors for classification are as follows:
 
 ## Summary of Quantitative Results
 
-\# See project-sample slide 23
-
-\# Last item, require above to be done
+- Moderate correlation between same-goal indicators.
+- Moderate correlation between legal employment and benefit frameworks for females and the representation of women in managerial positions.
+- Little correlations of statistical significance are observed between indicators for different goals.
+- Potentially influenced by the country's originally high unemployment rates across all genders.
+- Missing data for significant countries such as Russia and China.
 
 ## Policy Implications
 
