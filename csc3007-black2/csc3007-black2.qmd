@@ -39,8 +39,10 @@ library(DT)
 #| echo: false
 
 # Load & Clean the dataset / prepare it here.
-# Load 5.1.1 data - Legal frameworks that promote enforce and monitor gender eqality (percentage of achievement 0 - 100) \-- Area 3: employment and economic benefits
-indicator_5_1_1_employment_economic_benefits <-
+# Load 5.1.1 data - Legal frameworks that promote enforce and monitor gender
+# equality (percentage of achievement 0 - 100) \-- 
+# Area 3: employment and economic benefits
+indicator_5_1_1_frameworks <-
   read_csv(
     "data/Indicator_5.1.1%3A_Legal_frameworks_that_promote__enforce_and_monitor_gender_equality_(percentage_of_achievement__0_-_100)_--_Area_3%3A_employment_and_economic_benefits.csv",
     show_col_types = FALSE
@@ -71,15 +73,15 @@ indicator_8_5_2_unemployment <-
 data(World)
 
 # Clean data
-indicator_5_1_1_employment_economic_benefits <-
-  indicator_5_1_1_employment_economic_benefits |> select(indicator_reference,
-                                                         geoAreaName,
-                                                         parentName,
-                                                         type,
-                                                         X,
-                                                         Y,
-                                                         ISO3,
-                                                         latest_value)
+indicator_5_1_1_frameworks <-
+  indicator_5_1_1_frameworks |> select(indicator_reference,
+                                       geoAreaName,
+                                       parentName,
+                                       type,
+                                       X,
+                                       Y,
+                                       ISO3,
+                                       latest_value)
 
 indicator_5_5_2_managerial <-
   indicator_5_5_2_managerial |> select(indicator_reference,
@@ -177,7 +179,7 @@ Women participation in the economy is related to Goals 5 and 8.
 # Wong Jun HAO
 cmap_511 <-
   World |>
-  left_join(indicator_5_1_1_employment_economic_benefits, by = c("ISO3"))
+  left_join(indicator_5_1_1_frameworks, by = c("ISO3"))
 
 cmap_511 <-
   mutate(cmap_511,
@@ -291,7 +293,7 @@ We anticipate that the higher the nation's legal framework achievements in gende
 
 formatted_5_1_1 <-
   select(
-    indicator_5_1_1_employment_economic_benefits,
+    indicator_5_1_1_frameworks,
     ISO3 = "ISO3",
     Country = "geoAreaName",
     "% Employment Legal Framework Achievement" = "latest_value"
@@ -620,25 +622,37 @@ plot
 
 ```{r}
 
+
 # Table of performances. See Sample-Project slide 16
-table_5_1_1 <- indicator_5_1_1_employment_economic_benefits |>
+table_5_1_1 <- indicator_5_1_1_frameworks |>
   select("Country" = geoAreaName, ISO3, "% Legal Frameworks" = latest_value) |>
   distinct(ISO3, .keep_all = TRUE)
 
 
 table_5_2_2 <- indicator_5_5_2_managerial |>
-  select("Country" = geoAreaName, ISO3, "% Managerial Positions" = latest_value) |>
+  select("Country" = geoAreaName,
+         ISO3,
+         "% Managerial Positions" = latest_value) |>
   distinct(ISO3, .keep_all = TRUE)
 
 
 table_8_5_1 <- indicator_8_5_1_average_hourly |>
-  select("Country" = geoAreaName, ISO3, "Average Hourly Earnings $USD" = amount_usd) |>
+  select("Country" = geoAreaName,
+         ISO3,
+         "Average Hourly Earnings $USD" = amount_usd) |>
   distinct(ISO3, .keep_all = TRUE)
 
 
 table_8_5_2 <- indicator_8_5_2_unemployment |>
-  select("Country" = geoAreaName, ISO3, disability_status_desc, "sex" = sex_desc, "% Females Unemployed" = latest_value) |>
-  filter(`sex` %in% c("Female"), disability_status_desc == "No breakdown by disability") |>
+  select(
+    "Country" = geoAreaName,
+    ISO3,
+    disability_status_desc,
+    "sex" = sex_desc,
+    "% Females Unemployed" = latest_value
+  ) |>
+  filter(`sex` %in% c("Female"),
+         disability_status_desc == "No breakdown by disability") |>
   select(Country, ISO3, "% Females Unemployed") |>
   distinct(ISO3, .keep_all = TRUE)
 
@@ -646,14 +660,23 @@ merged_table <- table_5_1_1 |>
   left_join(table_5_2_2, by = c("ISO3", "Country")) |>
   left_join(table_8_5_2, by = c("ISO3", "Country")) |>
   left_join(table_8_5_1, by = c("ISO3", "Country")) |>
-  select(Country, `% Legal Frameworks`, `% Managerial Positions`, `% Females Unemployed`, `Average Hourly Earnings $USD`)
+  select(
+    Country,
+    `% Legal Frameworks`,
+    `% Managerial Positions`,
+    `% Females Unemployed`,
+    `Average Hourly Earnings $USD`
+  )
 
 merged_table |>
-datatable(rownames = FALSE, options=list(
-     initComplete = htmlwidgets::JS(
-        "function(settings, json) {",
-        paste0("$(this.api().table().container()).css({'font-size': '50%'});"),
-        "}")))
+  datatable(rownames = FALSE,
+            options = list(initComplete = htmlwidgets::JS(
+              "function(settings, json) {",
+              paste0(
+                "$(this.api().table().container()).css({'font-size': '50%'});"
+              ),
+              "}"
+            )))
 
 ```
 
@@ -671,10 +694,10 @@ We anticipate that having a higher the nation's legal framework achievements in 
 #| fig-width: 10
 #| fig-height: 5
 # CHIA YI XUAN
-# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+# Correlation Graph. See Sample-Project slide 11,12,15 
 
 # format 5.1.1 data into focused columns
-formatted_5_1_1 <- indicator_5_1_1_employment_economic_benefits |>
+formatted_5_1_1 <- indicator_5_1_1_frameworks |>
   drop_na(latest_value) |>
   select("Country" = geoAreaName,
          ISO3,
@@ -840,7 +863,7 @@ grid_plots
 # Yi Xuan and Jin Ming
 
 # format 5.1.1 data into focused columns
-formatted_5_1_1 <- indicator_5_1_1_employment_economic_benefits |>
+formatted_5_1_1 <- indicator_5_1_1_frameworks |>
   drop_na(latest_value) |>
   select("Country" = geoAreaName,
          ISO3,
