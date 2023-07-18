@@ -30,6 +30,7 @@ library(sf)
 library(tidymodels)
 library(rpart)
 library(rpart.plot)
+library(caret)
 ```
 
 ```{r}
@@ -853,7 +854,7 @@ countries_sf <- as_tibble(countries_sf)
 
 ```{r}
 
-# Step1: Import Data
+# Step1: Import Data & Data-preprocessing
 
 merged_data <- select(
   normalized_data, ISO3 = "ISO3", cluster_id = "cluster_id",
@@ -871,10 +872,12 @@ merged_data <-  merged_data |>
 merged_data <- distinct(merged_data)
 
 merged_data$Continent <- as.factor(merged_data$Continent)
-merged_data$GDP <- as.numeric(merged_data$GDP)
+merged_data$GDP <- round(as.numeric(merged_data$GDP), 2)
 merged_data <- merged_data %>% select(-ISO3)
 
-# Shuffle Data 
+merged_data <- na.omit(merged_data)
+
+# # Shuffle Data
 shuffle_index <- sample(1:nrow(merged_data))
 merged_data <- merged_data[shuffle_index, ]
 
@@ -888,6 +891,19 @@ test_data <- testing(data_split)
 tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit=1, minbucket=1)
 rpart.plot(tree, box.palette="GnRd")
 str(train_data)
+
+```
+
+```{r}
+
+# Step 4: Evaluating Model
+
+ctrl <- trainControl(method = "cv", number = 10)
+model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=1, minbucket=1)
+model
+
+# Step 5: Get Relative Importance
+as.data.frame(tree$variable.importance)
 
 ```
 
