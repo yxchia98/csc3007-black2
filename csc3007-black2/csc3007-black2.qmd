@@ -941,12 +941,13 @@ merged_data <- formatted_8_5_2 |>
 # Perform sqrt transformation for "% Female Hourly Earnings" and log transformation for "% Females Unemployed"
 normalised_data <- merged_data |>
   mutate("sqrt(Female Hourly Earnings USD)" = sqrt(`% Female Hourly Earnings`)) |>
-  mutate("log_10(% Females Unemployed)" = log10(`% Females Unemployed`))
+  mutate("log_10(% Females Unemployed)" = log10(`% Females Unemployed`)) |>
+  mutate("sqrt(% Gender Equality Frameworks)" = sqrt(`% Gender Equality Frameworks`))
 
 # Drop rows with NA values 
 normalised_data <- drop_na(normalised_data) 
 
-normalised_data_cols <- normalised_data[, c("% Gender Equality Frameworks", "% Females Unemployed", "% Women in Managerial Positions", "sqrt(Female Hourly Earnings USD)")]  
+normalised_data_cols <- normalised_data[, c("sqrt(% Gender Equality Frameworks)", "log_10(% Females Unemployed)", "% Women in Managerial Positions", "sqrt(Female Hourly Earnings USD)")]  
 set.seed(123)
 
 # Elbow plot to determine the optimal k value
@@ -980,7 +981,7 @@ normalised_data$Cluster <- km.out$cluster
 
 # Create a pair plot using ggpairs
 ggpairs(normalised_data,
-        columns = c("% Gender Equality Frameworks", "log_10(% Females Unemployed)", "% Women in Managerial Positions", "sqrt(Female Hourly Earnings USD)"),
+        columns = c("sqrt(% Gender Equality Frameworks)", "log_10(% Females Unemployed)", "% Women in Managerial Positions", "sqrt(Female Hourly Earnings USD)"),
         mapping = aes(color = as.factor(Cluster)),
         title = "Pair Plot with K-means Clustering (k = 2)",
         diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
