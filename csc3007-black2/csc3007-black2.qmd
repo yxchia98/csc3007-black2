@@ -674,16 +674,25 @@ We anticipate that having a higher the nation's legal framework achievements in 
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 
 # format 5.1.1 data into focused columns
-formatted_5_1_1 <- indicator_5_1_1_employment_economic_benefits |> 
+formatted_5_1_1 <- indicator_5_1_1_employment_economic_benefits |>
   drop_na(latest_value) |>
-  select("Country" = geoAreaName, ISO3, "% Gender Equality Frameworks" = latest_value) |>
+  select("Country" = geoAreaName,
+         ISO3,
+         "% Gender Equality Frameworks" = latest_value) |>
   distinct(ISO3, .keep_all = TRUE)
 
 # format 8.5.2 data into focused columns
 formatted_8_5_2 <- indicator_8_5_2_unemployment |>
   drop_na(latest_value) |>
-  select("Country" = geoAreaName, ISO3, disability_status_desc, "sex" = sex_desc, "% Females Unemployed" = latest_value) |>
-  filter(`sex` %in% c("Female"), disability_status_desc == "No breakdown by disability") |>
+  select(
+    "Country" = geoAreaName,
+    ISO3,
+    disability_status_desc,
+    "sex" = sex_desc,
+    "% Females Unemployed" = latest_value
+  ) |>
+  filter(`sex` %in% c("Female"),
+         disability_status_desc == "No breakdown by disability") |>
   select(Country, ISO3, sex, "% Females Unemployed") |>
   distinct(ISO3, .keep_all = TRUE)
 
@@ -695,19 +704,26 @@ merged_data <- formatted_8_5_2 |>
   drop_na()
 
 
-# initial 
-plot <- ggpairs(merged_data,
-        mapping = aes(alpha = 0.7, fill = Country),
-        title = "Employment Legal Frameworks and Female Unemployment rate",
-        columns = c("% Gender Equality Frameworks", 
-            "% Females Unemployed"),
-        diag = list(continuous = wrap("barDiag", bins = 10, color = "black", alpha = 1)),
-        lower = list(continuous = wrap("points", 
-                                     position=position_jitter(
-                                       height = 1, 
-                                       width = 0.5)))
-        ) +
-  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+# initial
+plot <- ggpairs(
+  merged_data,
+  mapping = aes(alpha = 0.7, fill = Country),
+  title = "Employment Legal Frameworks and Female Unemployment rate",
+  columns = c("% Gender Equality Frameworks",
+              "% Females Unemployed"),
+  diag = list(continuous = wrap(
+    "barDiag",
+    bins = 10,
+    color = "black",
+    alpha = 1
+  )),
+  lower = list(continuous = wrap("points",
+                                 position = position_jitter(
+                                   height = 1,
+                                   width = 0.5
+                                 )))
+) +
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
 # ggplotly(plot)
 plot
 
@@ -723,31 +739,43 @@ plot
 
 # Perform transformation
 merged_data <- merged_data |>
-  mutate("log_10(% Females Unemployed)" = log10(`% Females Unemployed`), 
-         "sqrt(% Gender Equality Frameworks)" = 
-           sqrt(`% Gender Equality Frameworks`))
+  mutate(
+    "log_10(% Females Unemployed)" = log10(`% Females Unemployed`),
+    "sqrt(% Gender Equality Frameworks)" =
+      sqrt(`% Gender Equality Frameworks`)
+  )
 
 # x <- merged_data$`% Gender Equality Frameworks`
 # b <- MASS::boxcox(x ~ 1, plotit = FALSE, )
 # lambda <- b$x[which.max(b$y)] # -0.02
-# 
+#
 # new_x_exact <- (x ^ lambda - 1) / lambda
 # new_x <- log(x)
 # merged_data <- merged_data |>
 #   mutate("Box-Cox % Gender Equality Frameworks" = new_x)
 
 # re-expressed plot
-plot <- ggpairs(merged_data,
-        mapping = aes(alpha = 0.7, fill = Country),
-        title = "Employment Legal Frameworks and Female Unemployment rate",
-        columns = c("sqrt(% Gender Equality Frameworks)", 
-            "log_10(% Females Unemployed)"),
-        diag = list(continuous = wrap("barDiag", bins = 8, color = "black", alpha = 1)),
-        lower = list(continuous = wrap("points", 
-                                     position=position_jitter(
-                                       height=1, 
-                                       width=0.5)))) +
-  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+plot <- ggpairs(
+  merged_data,
+  mapping = aes(alpha = 0.7, fill = Country),
+  title = "Employment Legal Frameworks and Female Unemployment rate",
+  columns = c(
+    "sqrt(% Gender Equality Frameworks)",
+    "log_10(% Females Unemployed)"
+  ),
+  diag = list(continuous = wrap(
+    "barDiag",
+    bins = 8,
+    color = "black",
+    alpha = 1
+  )),
+  lower = list(continuous = wrap("points",
+                                 position = position_jitter(
+                                   height = 1,
+                                   width = 0.5
+                                 )))
+) +
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
 
 # ggplotly(plot)
 plot
@@ -812,30 +840,43 @@ grid_plots
 # Yi Xuan and Jin Ming
 
 # format 5.1.1 data into focused columns
-formatted_5_1_1 <- indicator_5_1_1_employment_economic_benefits |> 
+formatted_5_1_1 <- indicator_5_1_1_employment_economic_benefits |>
   drop_na(latest_value) |>
-  select("Country" = geoAreaName, ISO3, "% Gender Equality Frameworks" = latest_value) |>
+  select("Country" = geoAreaName,
+         ISO3,
+         "% Gender Equality Frameworks" = latest_value) |>
   distinct(ISO3, .keep_all = TRUE)
 
 # format 8.5.2 data into focused columns
 formatted_8_5_2 <- indicator_8_5_2_unemployment |>
   drop_na(latest_value) |>
-  select("Country" = geoAreaName, ISO3, disability_status_desc, "sex" = sex_desc, "% Females Unemployed" = latest_value) |>
-  filter(`sex` %in% c("Female"), disability_status_desc == "No breakdown by disability") |>
+  select(
+    "Country" = geoAreaName,
+    ISO3,
+    disability_status_desc,
+    "sex" = sex_desc,
+    "% Females Unemployed" = latest_value
+  ) |>
+  filter(`sex` %in% c("Female"),
+         disability_status_desc == "No breakdown by disability") |>
   select(Country, ISO3, sex, "% Females Unemployed") |>
   distinct(ISO3, .keep_all = TRUE)
 
 # Format 5.5.2 data into focused columns
 formatted_5_5_2 <- indicator_5_5_2_managerial |>
   drop_na(latest_value) |>
-  select("Country" = geoAreaName, ISO3, "% Women in Managerial Positions" = latest_value) |>
+  select("Country" = geoAreaName,
+         ISO3,
+         "% Women in Managerial Positions" = latest_value) |>
   distinct(ISO3, .keep_all = TRUE)
 
 # Format 8.5.1 data into focused columns
 formatted_8_5_1 <- indicator_8_5_1_average_hourly |>
   drop_na(latest_value) |>
   filter(sex_desc == "Female") |>
-  select("Country" = geoAreaName, ISO3, "% Female Hourly Earnings" = latest_value) |>
+  select("Country" = geoAreaName,
+         ISO3,
+         "% Female Hourly Earnings" = latest_value) |>
   distinct(ISO3, .keep_all = TRUE)
 
 
@@ -848,20 +889,35 @@ merged_data <- formatted_8_5_2 |>
 # Perform sqrt transformation for "% Female Hourly Earnings" and log transformation for "% Females Unemployed"
 merged_data <- merged_data |>
   mutate("sqrt(Female Hourly Earnings USD)" = sqrt(`% Female Hourly Earnings`)) |>
-  mutate("log_10(% Females Unemployed)" = log10(`% Females Unemployed`))
+  mutate("log_10(% Females Unemployed)" = log10(`% Females Unemployed`)) |>
+  mutate("sqrt(% Gender Equality Frameworks)" = sqrt(`% Gender Equality Frameworks`))
 
 # Drop rows with NA values
 merged_data <- drop_na(merged_data)
 
 # Create grid plots using ggpairs()
-grid_plots <- ggpairs(merged_data,
-                      mapping = aes(alpha = 0.7, fill = Country),
-                      title = "Relationship between Indicators",
-                      columns = c("% Gender Equality Frameworks", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings"),
-                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black", alpha = 1)),
-                      lower = list(continuous = wrap("points",
-                                                    position = position_jitter(height = 1, width = 0.5)))) +
-  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+grid_plots <- ggpairs(
+  merged_data,
+  mapping = aes(alpha = 0.7, fill = Country),
+  title = "Relationship between Indicators",
+  columns = c(
+    "sqrt(% Gender Equality Frameworks)",
+    "log_10(% Females Unemployed)",
+    "% Women in Managerial Positions",
+    "sqrt(Female Hourly Earnings USD)"
+  ),
+  diag = list(continuous = wrap(
+    "barDiag",
+    bins = 8,
+    color = "black",
+    alpha = 1
+  )),
+  lower = list(continuous = wrap("points",
+                                 position = position_jitter(
+                                   height = 1, width = 0.5
+                                 )))
+) +
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
 
 # Print the grid plots
 grid_plots
