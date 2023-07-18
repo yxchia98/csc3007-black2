@@ -855,6 +855,7 @@ merged_data <- distinct(merged_data)
 
 merged_data$Continent <- as.factor(merged_data$Continent)
 merged_data$GDP <- round(as.numeric(merged_data$GDP), 2)
+merged_data$cluster_id <- as.factor(merged_data$cluster_id)
 merged_data <- merged_data %>% select(-ISO3)
 merged_data <- na.omit(merged_data)
 
@@ -894,7 +895,7 @@ for (i in 1:length(tree$variable.importance)) {
 relative_importance
 ```
 
-Ten-fold cross validation indicates that the decision tree has a low accuracy of "Fill in"
+Ten-fold cross validation indicates that the decision tree has a low accuracy of `r model$results$Accuracy`
 
 The relative importance of the predictors for classification are as follows:
 
