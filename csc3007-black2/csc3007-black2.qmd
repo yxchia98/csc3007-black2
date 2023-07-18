@@ -289,7 +289,6 @@ We anticipate that the higher the nation's legal framework achievements in gende
 ```{r}
 # Wong Jun HAO
 
-
 formatted_5_1_1 <-
   select(
     indicator_5_1_1_employment_economic_benefits,
@@ -324,7 +323,10 @@ plot <- ggpairs(
     "% Female in Management Position"
   ),
   diag = list(continuous = wrap(
-    "barDiag", bins = 10, color = "black", alpha = 1
+    "barDiag",
+    bins = 10,
+    color = "black",
+    alpha = 1
   )),
   lower = list(
     continuous = wrap(
@@ -335,8 +337,7 @@ plot <- ggpairs(
     )
   )
 ) +
-  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
-
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
 
 plot
 ```
@@ -347,7 +348,6 @@ plot
 
 ```{r}
 # Wong Jun HAO
-
 
 merged_data <- merged_data |>
   mutate(
@@ -376,7 +376,6 @@ plot <- ggpairs(
   )
 ) +
   scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
-
 
 plot
 ```
