@@ -229,6 +229,8 @@ We anticipate that the higher the nation's legal framework achievements in gende
 
 ## **5.1.1 vs 5.5.2 Relation**
 
+<small>There seem to be a moderate correlation between the percentage of achievement legal employment and benefit frameworks for females, and the percentage of woman in managerial position. Re-expression of data is not needed as both data are on the same scale. </small>
+
 ```{r}
 # Wong Jun HAO
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation
@@ -278,14 +280,6 @@ plot <- ggpairs(
 
 #ggplotly(plot)
 plot
-```
-
-## **5.1.1 vs 5.5.2 Relation data re-expression if needed**
-
-```{r}
-# Wong Jun HAO
-# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation
-# Perform transformation
 ```
 
 ## Choropleth Map: **8.5.1**
@@ -852,7 +846,6 @@ Can the cluster assignment be predicted based on the country's [GDP]{.underline}
 ```{r}
 
 # Step1: Import Data & Data-preprocessing
-
 merged_data <- select(
   normalized_data, ISO3 = "ISO3", cluster_id = "cluster_id",
 ) |> drop_na()
@@ -886,7 +879,6 @@ test_data <- testing(data_split)
 # Step 3: Build the model
 tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit=2, minbucket=1)
 rpart.plot(tree, box.palette="GnRd")
-
 ```
 
 ## Evaluation of Decision Tree
@@ -914,7 +906,6 @@ model
 
 # Step 5: Get Relative Importance
 as.data.frame(tree$variable.importance)
-
 ```
 
 ## Summary of Quantitative Results
