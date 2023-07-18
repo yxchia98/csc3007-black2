@@ -5,7 +5,7 @@ author: "CHIA YI XUAN, TSUI SAU CHI, JEANIE OH JUN NING, VARADHARAJAN JAYAPRIYA,
 format:
   revealjs: 
     slide-number: true
-    transition: fade
+    transition: slide
 ---
 
 ```{r}
@@ -492,13 +492,13 @@ g_pairs
 # Table of performances. See Sample-Project slide 16
 ```
 
-## **5.1.1 vs 8.5.2 Anticipation** {data-transitions="slide-in"}
+## **5.1.1 vs 8.5.2 Anticipation** {data-transitions="zoom"}
 
 We anticipate that having a higher the nation's legal framework achievements in gender equality would result in lower unemployment rate for women.
 
 -   Because by decreasing gender discrimination for women, more companies would be willing to employ women.
 
-## **5.1.1 vs 8.5.2 Relation** {data-transitions="slide-in"}
+## **5.1.1 vs 8.5.2 Relation** {data-transitions="zoom"}
 
 <small>There doesn't seem to be any significant correlation between the percentage of legal employment and benefit frameworks for females, and the unemployment rate of females. However, this might be due to skewed distributions, hence we will re-express this data. </small>
 
@@ -549,7 +549,7 @@ plot
 
 ```
 
-## **5.1.1 vs 8.5.2 Relation Re-Expressed** {data-transitions="slide-in"}
+## **5.1.1 vs 8.5.2 Relation Re-Expressed** {data-transitions="slide"}
 
 <small>After Box Cox and logarithmic transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant. </small>
 
