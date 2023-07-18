@@ -828,40 +828,7 @@ Can the cluster assignment be predicted based on the country's [GDP]{.underline}
 
 ```{r}
 
-# Step1: Import Data & Data-preprocessing
-merged_data <- select(
-  normalized_data, ISO3 = "ISO3", cluster_id = "cluster_id",
-) |> drop_na()
 
-# Merge data using left join, and drop all NA rows
-merged_data <-  merged_data |>
-  left_join(countries_sf, by = c("ISO3")) |>
-  drop_na()
-
-merged_data <-  merged_data |>
-  left_join(happy_index, by = c("ISO3")) |>
-  drop_na()
-
-merged_data <- distinct(merged_data)
-
-merged_data$Continent <- as.factor(merged_data$Continent)
-merged_data$GDP <- round(as.numeric(merged_data$GDP), 2)
-merged_data <- merged_data %>% select(-ISO3)
-merged_data <- na.omit(merged_data)
-
-# # Shuffle Data
-shuffle_index <- sample(1:nrow(merged_data))
-merged_data <- merged_data[shuffle_index, ]
-
-# Step 2: Create training / Test Set
-set.seed(123)
-data_split <- initial_split(merged_data, prop = 0.8)
-train_data <- training(data_split)
-test_data <- testing(data_split)
-
-# Step 3: Build the model
-tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit=2, minbucket=1)
-rpart.plot(tree, box.palette="GnRd")
 ```
 
 ## Evaluation of Decision Tree
@@ -881,14 +848,7 @@ The relative importance of the predictors for classification are as follows:
 #| message: FALSE
 #| results: 'hide'
 
-# Step 4: Evaluating Model
 
-ctrl <- trainControl(method = "cv", number = 10)
-model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=2, minbucket=1)
-model
-
-# Step 5: Get Relative Importance
-as.data.frame(tree$variable.importance)
 ```
 
 ## Summary of Quantitative Results
