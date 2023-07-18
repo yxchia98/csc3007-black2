@@ -527,22 +527,15 @@ We anticipate that countries with lower unemployment rates for women should have
 
 -   Because countries with lower unemployment rates have a better economic environment which should result in higher average income for their citizens
 
-## **8.5.1 vs 8.5.2 Relation data re-expression**
-
+## **8.5.1 vs 8.5.2 Relation**
 ```{r}
-# JEANIE OH JUN NING
-# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
-
 formatted_8_5_1 <-
   select(
     indicator_8_5_1_average_hourly,
     ISO3 = "ISO3",
     Country = "geoAreaName",
-    amount_usd = "amount_usd"
+    "Average Hourly Earning in USD for Female" = "amount_usd"
   )
-
-formatted_8_5_1 <- formatted_8_5_1 %>%
-  mutate("(Sqrt) Average Hourly Earning in USD for Female" = sqrt(amount_usd))
 
 formatted_8_5_2 <-
   select(
@@ -563,7 +556,7 @@ plot <- ggpairs(
   mapping = aes(alpha = 0.7, fill = Country),
   title = "Female Average Hourly Earning (USD) and Female Unemployment Rate",
   columns = c(
-    "(Sqrt) Average Hourly Earning in USD for Female",
+    "Average Hourly Earning in USD for Female",
     "% Female that is Unemployed"
   ),
   diag = list(continuous = wrap(
@@ -576,8 +569,47 @@ plot <- ggpairs(
                                  width = 0.5)))) +
   scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
 
+plot
 
-#ggplotly(plot)
+```
+
+
+
+## **8.5.1 vs 8.5.2 Relation Data re-expression**
+
+```{r}
+# JEANIE OH JUN NING
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+
+merged_data <- merged_data |>
+  mutate(
+    "sqrt Average Hourly Earning in USD for Female" =
+      sqrt(`Average Hourly Earning in USD for Female`),
+    "log10 % Female that is Unemployed" = 
+      log10(`% Female that is Unemployed`),
+  )
+
+plot <- ggpairs(
+  merged_data,
+  mapping = aes(alpha = 0.7, fill = Country),
+  title = "Female Average Hourly Earning (USD) and Female Unemployment Rate",
+  columns = c(
+    "sqrt Average Hourly Earning in USD for Female",
+    "log10 % Female that is Unemployed"
+  ),
+  diag = list(continuous = wrap(
+    "barDiag", bins = 10, color = "black"
+  )),
+  lower = list(
+    continuous = wrap(
+      "points",
+      position = position_jitter(height = 1,
+                                 width = 0.5),
+      fill = "black"
+    )
+  )
+)
+
 plot
 ```
 
