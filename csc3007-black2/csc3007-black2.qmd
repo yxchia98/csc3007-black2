@@ -724,7 +724,7 @@ plot
 # Perform transformation
 merged_data <- merged_data |>
   mutate("log_10(% Females Unemployed)" = log10(`% Females Unemployed`), 
-         "sqrt(`% Gender Equality Frameworks`)" = 
+         "sqrt(% Gender Equality Frameworks)" = 
            sqrt(`% Gender Equality Frameworks`))
 
 # x <- merged_data$`% Gender Equality Frameworks`
@@ -740,7 +740,7 @@ merged_data <- merged_data |>
 plot <- ggpairs(merged_data,
         mapping = aes(alpha = 0.7, fill = Country),
         title = "Employment Legal Frameworks and Female Unemployment rate",
-        columns = c("sqrt(`% Gender Equality Frameworks`)", 
+        columns = c("sqrt(% Gender Equality Frameworks)", 
             "log_10(% Females Unemployed)"),
         diag = list(continuous = wrap("barDiag", bins = 8, color = "black", alpha = 1)),
         lower = list(continuous = wrap("points", 
