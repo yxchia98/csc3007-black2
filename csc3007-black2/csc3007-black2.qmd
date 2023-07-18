@@ -40,32 +40,90 @@ library(DT)
 #| echo: false
 
 # Load & Clean the dataset / prepare it here.
-
 # Load 5.1.1 data - Legal frameworks that promote enforce and monitor gender eqality (percentage of achievement 0 - 100) \-- Area 3: employment and economic benefits
-indicator_5_1_1_employment_economic_benefits <- read_csv("data/Indicator_5.1.1%3A_Legal_frameworks_that_promote__enforce_and_monitor_gender_equality_(percentage_of_achievement__0_-_100)_--_Area_3%3A_employment_and_economic_benefits.csv", show_col_types = FALSE)
+indicator_5_1_1_employment_economic_benefits <-
+  read_csv(
+    "data/Indicator_5.1.1%3A_Legal_frameworks_that_promote__enforce_and_monitor_gender_equality_(percentage_of_achievement__0_-_100)_--_Area_3%3A_employment_and_economic_benefits.csv",
+    show_col_types = FALSE
+  )
 
 # Load 5.5.2 data - Proportion of women in managerial positions
-indicator_5_5_2_managerial <- read_csv("data/Indicator_5.5.2%3A_Proportion_of_women_in_managerial_positions_(percent).csv", show_col_types = FALSE)
+indicator_5_5_2_managerial <-
+  read_csv(
+    "data/Indicator_5.5.2%3A_Proportion_of_women_in_managerial_positions_(percent).csv",
+    show_col_types = FALSE
+  )
 
 # Load 8.5.1 data - Average hourly earnings of employees by sex, age, occupation and persons with disabilities
-indicator_8_5_1_average_hourly <- read_csv("data/Indicator_8.5.1%3A_Average_hourly_earnings_of_employees_by_sex_and_occupation_(local_currency).csv", show_col_types = FALSE)
+indicator_8_5_1_average_hourly <-
+  read_csv(
+    "data/Indicator_8.5.1%3A_Average_hourly_earnings_of_employees_by_sex_and_occupation_(local_currency).csv",
+    show_col_types = FALSE
+  )
 
 # Load 8.5.2 data - Unemployment rate by sex, age and persons with disabilities
-indicator_8_5_2_unemployment <- read_csv("data/Indicator_8.5.2%3A_Unemployment_rate__by_sex_and_disability_(percent).csv", show_col_types = FALSE)
+indicator_8_5_2_unemployment <-
+  read_csv(
+    "data/Indicator_8.5.2%3A_Unemployment_rate__by_sex_and_disability_(percent).csv",
+    show_col_types = FALSE
+  )
 
 # Load Map Geometry data from tmap
 data(World)
 
 # Clean data
-indicator_5_1_1_employment_economic_benefits <- indicator_5_1_1_employment_economic_benefits |> select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, latest_value)
+indicator_5_1_1_employment_economic_benefits <-
+  indicator_5_1_1_employment_economic_benefits |> select(indicator_reference,
+                                                         geoAreaName,
+                                                         parentName,
+                                                         type,
+                                                         X,
+                                                         Y,
+                                                         ISO3,
+                                                         latest_value)
 
-indicator_5_5_2_managerial <- indicator_5_5_2_managerial |> select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, latest_value)
+indicator_5_5_2_managerial <-
+  indicator_5_5_2_managerial |> select(indicator_reference,
+                                       geoAreaName,
+                                       parentName,
+                                       type,
+                                       X,
+                                       Y,
+                                       ISO3,
+                                       latest_value)
 
-indicator_8_5_1_average_hourly <- indicator_8_5_1_average_hourly |> select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, sex_code, sex_desc, type_of_occupation_desc, latest_value)
+indicator_8_5_1_average_hourly <-
+  indicator_8_5_1_average_hourly |> select(
+    indicator_reference,
+    geoAreaName,
+    parentName,
+    type,
+    X,
+    Y,
+    ISO3,
+    sex_code,
+    sex_desc,
+    type_of_occupation_desc,
+    latest_value
+  )
 
-indicator_8_5_2_unemployment <- indicator_8_5_2_unemployment |> select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, sex_code, sex_desc, disability_status_code, disability_status_desc, latest_value)
+indicator_8_5_2_unemployment <-
+  indicator_8_5_2_unemployment |> select(
+    indicator_reference,
+    geoAreaName,
+    parentName,
+    type,
+    X,
+    Y,
+    ISO3,
+    sex_code,
+    sex_desc,
+    disability_status_code,
+    disability_status_desc,
+    latest_value
+  )
 
-World <- select(World, ISO3="iso_a3", geometry="geometry")
+World <- select(World, ISO3 = "iso_a3", geometry = "geometry")
 ```
 
 # Relationship between nation's legal framework achievements in gender equality and woman's success in the economy.
@@ -232,11 +290,11 @@ We anticipate that the higher the nation's legal framework achievements in gende
 
 ## **5.1.1 vs 5.5.2 Relation**
 
-<small>There seem to be a moderate correlation between the percentage of achievement in legal employment and benefit frameworks for females, and the percentage of woman in managerial position. The data distrubtion for the percentage of achievement in legal employment is left skewed and percentage of woman in managerial position is normally distributed. Despite the left skewed distribution Re-expression of data is not needed as both data are on the same scale of 0 to 100. </small>
+<small>There seem to be a moderate correlation between the percentage of achievement in legal employment and benefit frameworks for females, and the percentage of woman in managerial position. The data distribution for the percentage of achievement in legal employment is left skewed and percentage of woman in managerial position is normally distributed.</small>
 
 ```{r}
 # Wong Jun HAO
-# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation
+
 
 formatted_5_1_1 <-
   select(
@@ -256,7 +314,7 @@ formatted_5_5_2 <-
 
 merged_data <- formatted_5_1_1 |>
   left_join(formatted_5_5_2,
-            by = c('ISO3', 'Country'),
+            by = c("ISO3", "Country"),
             relationship = "many-to-many") |>
   drop_na()
 
@@ -281,7 +339,44 @@ plot <- ggpairs(
   )
 )
 
-#ggplotly(plot)
+plot
+```
+
+## **5.1.1 vs 5.5.2 Relation Re-expressed**
+
+<small> The percentage of achievement in legal employment is re-expressed by taking the squared root of the skewed values. This helps to reduce the impact of extreme values and make the distribution more symmetrical. This resulted in an insignificant correlation value increase by 0.032</small>
+
+```{r}
+# Wong Jun HAO
+
+
+merged_data <- merged_data |>
+  mutate(
+    "sqrt % Employment Legal Framework Achievement" =
+      sqrt(`% Employment Legal Framework Achievement`)
+  )
+
+plot <- ggpairs(
+  merged_data,
+  mapping = aes(alpha = 0.7, fill = Country),
+  title = "Employment Legal Frameworks and Female Managerial Rate",
+  columns = c(
+    "sqrt % Employment Legal Framework Achievement",
+    "% Female in Management Position"
+  ),
+  diag = list(continuous = wrap(
+    "barDiag", bins = 10, color = "black"
+  )),
+  lower = list(
+    continuous = wrap(
+      "points",
+      position = position_jitter(height = 1,
+                                 width = 0.5),
+      fill = "black"
+    )
+  )
+)
+
 plot
 ```
 
