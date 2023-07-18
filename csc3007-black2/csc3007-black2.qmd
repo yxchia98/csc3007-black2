@@ -31,6 +31,7 @@ library(tidymodels)
 library(rpart)
 library(rpart.plot)
 library(caret)
+library(factoextra)
 ```
 
 ```{r}
@@ -742,38 +743,30 @@ grid_plots
 
 ## K-Means Clustering
 
-```{r}
-# VARADHARAJAN JAYAPRIYA
-# Combine the datasets
-combined_data <- bind_rows(
-  indicator_5_1_1_employment_economic_benefits,
-  indicator_5_5_2_managerial,
-  indicator_8_5_1_average_hourly,
-  indicator_8_5_2_unemployment
-)
+```{r} 
+# VARADHARAJAN JAYAPRIYA 
+# merge data using left join, and drop all NA rows 
 
-# Select columns for clustering (assuming "latest_value" is the numeric variable)
-columns_for_clustering <- c("latest_value")
+merged_data <- formatted_8_5_2 |>   
+  left_join(formatted_5_1_1, 
+            by = c("ISO3", "Country")) |>   
+  left_join(formatted_5_5_2, 
+            by = c("ISO3", "Country")) |>   
+  left_join(formatted_8_5_1, 
+            by = c("ISO3", "Country"))  
+# Drop rows with NA values 
+merged_data <- drop_na(merged_data) 
+merged_data  
 
-# Normalize the data using Min-Max scaling
-normalized_data <- combined_data %>%
-  mutate_at(vars(columns_for_clustering), scales::rescale)
+merged_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings")] = scale(merged_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings")])  
 
-# Elbow plot to determine the optimal k value
-elbow_data <- data.frame(k = 1:10, total_withinss = numeric(10))
+merged_data_cols <- merged_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings")]  
+set.seed(123) 
+km.out <- kmeans(merged_data_cols, centers = 3, nstart = 20) 
+km.out  
 
-for (k in 1:10) {
-  kmeans_result <- kmeans(normalized_data[columns_for_clustering], centers = k)
-  elbow_data[k, "total_withinss"] <- kmeans_result$tot.withinss
-}
-
-# Create the elbow plot
-ggplot(elbow_data, aes(x = k, y = total_withinss)) +
-  geom_line(color = "blue") +
-  geom_point(color = "blue") +
-  labs(x = "Number of Clusters (k)", y = "Total Within Sum of Squares") +
-  theme_minimal()
-
+#Elbow Method 
+fviz_nbclust(merged_data_cols, kmeans, method = "wss")
 ```
 
 ## Pairs Plot Highlighting Clusters
@@ -781,38 +774,24 @@ ggplot(elbow_data, aes(x = k, y = total_withinss)) +
 ```{r}
 # See project-sample slide 20
 
-# Set number of clusters (k)
-k <- 3
-
-# Build the K-means model
+# Perform k-means clustering with k = 4
 set.seed(123)
-kmeans_result <- kmeans(normalized_data[columns_for_clustering], centers = k, nstart = 20)
+km.out <- kmeans(merged_data_cols, centers = 4, nstart = 20)
 
-# Add cluster assignments to the original data
-normalized_data$cluster_id <- factor(kmeans_result$cluster)
+# Add cluster information to the merged_data dataframe
+merged_data$Cluster <- km.out$cluster
 
-# Define cluster labels
-cluster_labels <- paste("Cluster", 1:k)
-
-# Convert the centroid matrix to a data frame
-centroids <- as.data.frame(kmeans_result$centers)
-
-# Plot the data with cluster assignments and circles
-ggplot(normalized_data, aes(x = latest_value, y = X, color = cluster_id)) +
-  geom_point(alpha = 0.5, size = 3) +
-  scale_color_manual(values = c("red", "blue", "green"), labels = cluster_labels) +
-  xlab("Normalized Indicator Value") +
-  ylab("Another Variable (X)") +
-  ggtitle("Clustering Analysis") +
-  theme_minimal() +
-  theme(
-    plot.title = element_text(size = 16, face = "bold"),
-    axis.text = element_text(size = 12),
-    axis.title = element_text(size = 14, face = "bold"),
-    legend.title = element_text(size = 14),
-    legend.text = element_text(size = 12)
-  )
-
+# Create a pair plot using ggpairs
+ggpairs(merged_data,
+        columns = c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings"),
+        mapping = aes(color = as.factor(Cluster)),
+        title = "Pair Plot with K-means Clustering (k = 4)",
+        diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
+        lower = list(continuous = wrap("points",
+                                       position = position_jitter(height = 1, width = 0.5),
+                                       fill = "black")),
+        upper = NULL  # Disable correlation calculation for clustered data
+)
 ```
 
 ## Decision Tree {data-transitions="slide-in"}
