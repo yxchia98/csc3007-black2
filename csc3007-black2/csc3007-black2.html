@@ -5,9 +5,10 @@
 <script src="csc3007-black2_files/libs/quarto-html/popper.min.js"></script>
 <script src="csc3007-black2_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="csc3007-black2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="csc3007-black2_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="csc3007-black2_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="csc3007-black2_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.2.475">
+  <meta name="generator" content="quarto-1.3.353">
 
   <meta name="author" content="CHIA YI XUAN, TSUI SAU CHI, JEANIE OH JUN NING, VARADHARAJAN JAYAPRIYA, GU JINMING, WONG JUN HAO">
   <title>CSC3007-Team-Black-2</title>
@@ -25,11 +26,11 @@
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
       width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="csc3007-black2_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="csc3007-black2_files/libs/revealjs/dist/theme/quarto.css">
   <link href="csc3007-black2_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="csc3007-black2_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="csc3007-black2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -72,44 +73,44 @@
     font-weight: 400;
   }
 
-  .callout.callout-captioned.callout-style-simple .callout-body {
+  .callout.callout-titled.callout-style-simple .callout-body {
     margin-top: 0.2em;
   }
 
-  .callout:not(.callout-captioned) .callout-body {
+  .callout:not(.callout-titled) .callout-body {
       display: flex;
   }
 
-  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
     padding-left: 1.6em;
   }
 
-  .callout.callout-captioned .callout-header {
+  .callout.callout-titled .callout-header {
     padding-top: 0.2em;
     margin-bottom: -0.2em;
   }
 
-  .callout.callout-captioned .callout-caption  p {
+  .callout.callout-titled .callout-title  p {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
     
-  .callout.callout-captioned.callout-style-simple .callout-content  p {
+  .callout.callout-titled.callout-style-simple .callout-content  p {
     margin-top: 0;
   }
 
-  .callout.callout-captioned.callout-style-default .callout-content  p {
+  .callout.callout-titled.callout-style-default .callout-content  p {
     margin-top: 0.7em;
   }
 
-  .callout.callout-style-simple div.callout-caption {
+  .callout.callout-style-simple div.callout-title {
     border-bottom: none;
     font-size: .9rem;
     font-weight: 600;
     opacity: 75%;
   }
 
-  .callout.callout-style-default  div.callout-caption {
+  .callout.callout-style-default  div.callout-title {
     border-bottom: none;
     font-weight: 600;
     opacity: 85%;
@@ -141,7 +142,7 @@
     background-size: 0.9rem 0.9rem;
   }
 
-  .callout-caption {
+  .callout-title {
     display: flex
   }
     
@@ -154,16 +155,16 @@
     display: none !important;
   }
 
-  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
     margin-bottom: 0.5rem;
   }
 
-  .callout.callout-captioned .callout-icon::before {
+  .callout.callout-titled .callout-icon::before {
     margin-top: .5rem;
     padding-right: .5rem;
   }
 
-  .callout:not(.callout-captioned) .callout-icon::before {
+  .callout:not(.callout-titled) .callout-icon::before {
     margin-top: 1rem;
     padding-right: .5rem;
   }
@@ -178,7 +179,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
   }
 
-  div.callout-note.callout-style-default .callout-caption {
+  div.callout-note.callout-style-default .callout-title {
     background-color: #dae6fb
   }
 
@@ -190,7 +191,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
   }
 
-  div.callout-important.callout-style-default .callout-caption {
+  div.callout-important.callout-style-default .callout-title {
     background-color: #f7dddc
   }
 
@@ -202,7 +203,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
   }
 
-  div.callout-warning.callout-style-default .callout-caption {
+  div.callout-warning.callout-style-default .callout-title {
     background-color: #fcefdc
   }
 
@@ -214,7 +215,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
   }
 
-  div.callout-tip.callout-style-default .callout-caption {
+  div.callout-tip.callout-style-default .callout-title {
     background-color: #ccf1e3
   }
 
@@ -226,7 +227,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
   }
 
-  div.callout-caution.callout-style-default .callout-caption {
+  div.callout-caution.callout-style-default .callout-title {
     background-color: #ffe5d0
   }
 
@@ -336,15 +337,6 @@ CHIA YI XUAN, TSUI SAU CHI, JEANIE OH JUN NING, VARADHARAJAN JAYAPRIYA, GU JINMI
 </div>
 
 </section>
-<section class="slide level2 center">
-
-<div class="cell">
-
-</div>
-<div class="cell">
-
-</div>
-</section>
 <section>
 <section id="relationship-between-nations-legal-framework-achievements-in-gender-equality-and-womans-success-in-the-economy." class="title-slide slide level1 center">
 <h1>Relationship between nation’s legal framework achievements in gender equality and woman’s success in the economy.</h1>
@@ -436,26 +428,23 @@ CHIA YI XUAN, TSUI SAU CHI, JEANIE OH JUN NING, VARADHARAJAN JAYAPRIYA, GU JINMI
 <h2><strong>8.5.1 vs 8.5.2 Relation data re-expression</strong></h2>
 
 <img data-src="csc3007-black2_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
-<section id="table-of-women-economical-success" class="slide level2 center" data-margin="10">
-<h2><strong>Table of Women Economical Success</strong></h2>
-<div class="cell">
-
-</div>
+<section id="table-of-women-economical-success" class="slide level2 center">
+<h2>Table of Women Economical Success</h2>
 </section>
-<section id="vs-8.5.2-anticipation-1" class="slide level2 center" data-transitions="zoom">
-<h2><strong>5.1.1 vs 8.5.2 Anticipation</strong></h2>
+<section id="vs-8.5.2-anticipation-1" class="slide level2 center">
+<h2>5.1.1 vs 8.5.2 Anticipation</h2>
 <p>We anticipate that having a higher the nation’s legal framework achievements in gender equality would result in lower unemployment rate for women.</p>
 <ul>
 <li>Because by decreasing gender discrimination for women, more companies would be willing to employ women.</li>
 </ul>
 </section>
-<section id="vs-8.5.2-relation" class="slide level2 center" data-transitions="zoom">
-<h2><strong>5.1.1 vs 8.5.2 Relation</strong></h2>
+<section id="vs-8.5.2-relation" class="slide level2 center">
+<h2>5.1.1 vs 8.5.2 Relation</h2>
 <p><small>There doesn’t seem to be any significant correlation between the percentage of legal employment and benefit frameworks for females, and the unemployment rate of females. However, this might be due to skewed distributions, hence we will re-express this data. </small></p>
 
 <img data-src="csc3007-black2_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
-<section id="vs-8.5.2-relation-re-expressed" class="slide level2 center" data-transitions="slide">
-<h2><strong>5.1.1 vs 8.5.2 Relation Re-Expressed</strong></h2>
+<section id="vs-8.5.2-relation-re-expressed" class="slide level2 center">
+<h2>5.1.1 vs 8.5.2 Relation Re-Expressed</h2>
 <p><small>After Box Cox and logarithmic transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant. </small></p>
 
 <img data-src="csc3007-black2_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
@@ -485,17 +474,11 @@ CHIA YI XUAN, TSUI SAU CHI, JEANIE OH JUN NING, VARADHARAJAN JAYAPRIYA, GU JINMI
 <img data-src="csc3007-black2_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
 <section id="decision-tree" class="slide level2 center" data-transitions="slide-in">
 <h2>Decision Tree</h2>
-<div class="cell">
-
-</div>
 <p>Can the cluster assignment be predicted based on the country’s <u>GDP</u>, <u>Happy Planet Index Score</u> and <u>Continent</u>?</p>
 
 <img data-src="csc3007-black2_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
 <section id="evaluation-of-decision-tree" class="slide level2 center">
 <h2>Evaluation of Decision Tree</h2>
-<div class="cell">
-
-</div>
 <p>Ten-fold cross validation indicates that the decision tree has a low accuracy of 0.6166667</p>
 <p>The relative importance of the predictors for classification are as follows:</p>
 <ul>
@@ -515,499 +498,523 @@ CHIA YI XUAN, TSUI SAU CHI, JEANIE OH JUN NING, VARADHARAJAN JAYAPRIYA, GU JINMI
 <p># Last item, require above to be done</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:44:81: style: [line_length_linter] Lines should not be more than 80 characters.
+<pre><code>/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:44:81: style: [line_length_linter] Lines should not be more than 80 characters.
 # Load 5.1.1 data - Legal frameworks that promote enforce and monitor gender eqality (percentage of achievement 0 - 100) \-- Area 3: employment and economic benefits
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:45:1: style: [object_length_linter] Variable and function names should not be longer than 30 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:45:1: style: [object_length_linter] Variable and function names should not be longer than 30 characters.
 indicator_5_1_1_employment_economic_benefits &lt;- read_csv("data/Indicator_5.1.1%3A_Legal_frameworks_that_promote__enforce_and_monitor_gender_equality_(percentage_of_achievement__0_-_100)_--_Area_3%3A_employment_and_economic_benefits.csv", show_col_types = FALSE)
 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:45:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:45:81: style: [line_length_linter] Lines should not be more than 80 characters.
 indicator_5_1_1_employment_economic_benefits &lt;- read_csv("data/Indicator_5.1.1%3A_Legal_frameworks_that_promote__enforce_and_monitor_gender_equality_(percentage_of_achievement__0_-_100)_--_Area_3%3A_employment_and_economic_benefits.csv", show_col_types = FALSE)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:48:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:48:81: style: [line_length_linter] Lines should not be more than 80 characters.
 indicator_5_5_2_managerial &lt;- read_csv("data/Indicator_5.5.2%3A_Proportion_of_women_in_managerial_positions_(percent).csv", show_col_types = FALSE)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:50:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:50:81: style: [line_length_linter] Lines should not be more than 80 characters.
 # Load 8.5.1 data - Average hourly earnings of employees by sex, age, occupation and persons with disabilities
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:51:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:51:81: style: [line_length_linter] Lines should not be more than 80 characters.
 indicator_8_5_1_average_hourly &lt;- read_csv("data/Indicator_8.5.1%3A_Average_hourly_earnings_of_employees_by_sex_and_occupation_(local_currency).csv", show_col_types = FALSE)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:54:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:54:81: style: [line_length_linter] Lines should not be more than 80 characters.
 indicator_8_5_2_unemployment &lt;- read_csv("data/Indicator_8.5.2%3A_Unemployment_rate__by_sex_and_disability_(percent).csv", show_col_types = FALSE)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:60:1: style: [object_length_linter] Variable and function names should not be longer than 30 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:60:1: style: [object_length_linter] Variable and function names should not be longer than 30 characters.
 indicator_5_1_1_employment_economic_benefits &lt;- indicator_5_1_1_employment_economic_benefits |&gt; select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, latest_value)
 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:60:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:60:81: style: [line_length_linter] Lines should not be more than 80 characters.
 indicator_5_1_1_employment_economic_benefits &lt;- indicator_5_1_1_employment_economic_benefits |&gt; select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, latest_value)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:62:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:62:81: style: [line_length_linter] Lines should not be more than 80 characters.
 indicator_5_5_2_managerial &lt;- indicator_5_5_2_managerial |&gt; select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, latest_value)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:64:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:64:81: style: [line_length_linter] Lines should not be more than 80 characters.
 indicator_8_5_1_average_hourly &lt;- indicator_8_5_1_average_hourly |&gt; select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, sex_code, sex_desc, type_of_occupation_desc, latest_value)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:66:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:66:81: style: [line_length_linter] Lines should not be more than 80 characters.
 indicator_8_5_2_unemployment &lt;- indicator_8_5_2_unemployment |&gt; select(indicator_reference, geoAreaName, parentName, type, X, Y, ISO3, sex_code, sex_desc, disability_status_code, disability_status_desc, latest_value)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:68:1: style: [object_name_linter] Variable and function name style should be snake_case or symbols.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:68:1: style: [object_name_linter] Variable and function name style should be snake_case or symbols.
 World &lt;- select(World, ISO3="iso_a3", geometry="geometry")
 ^~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:68:28: style: [infix_spaces_linter] Put spaces around all infix operators.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:68:28: style: [infix_spaces_linter] Put spaces around all infix operators.
 World &lt;- select(World, ISO3="iso_a3", geometry="geometry")
                            ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:68:47: style: [infix_spaces_linter] Put spaces around all infix operators.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:68:47: style: [infix_spaces_linter] Put spaces around all infix operators.
 World &lt;- select(World, ISO3="iso_a3", geometry="geometry")
                                               ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:239:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:239:81: style: [line_length_linter] Lines should not be more than 80 characters.
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:259:20: style: [single_quotes_linter] Only use double-quotes.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:259:20: style: [single_quotes_linter] Only use double-quotes.
             by = c('ISO3', 'Country'),
                    ^~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:259:28: style: [single_quotes_linter] Only use double-quotes.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:259:28: style: [single_quotes_linter] Only use double-quotes.
             by = c('ISO3', 'Country'),
                            ^~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:284:2: style: [commented_code_linter] Commented code should be removed.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:283:27: style: [infix_spaces_linter] Put spaces around all infix operators.
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+                          ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:286:2: style: [commented_code_linter] Commented code should be removed.
 #ggplotly(plot)
  ^~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:293:32: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:295:32: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # getting exchange rate for USD 
                                ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:294:45: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:296:45: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 exchange_rate &lt;- exchange_rate_latest("USD")  
                                             ^~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:296:26: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:298:26: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # retrieving only Females 
                          ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:297:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:299:81: style: [line_length_linter] Lines should not be more than 80 characters.
 indicator_8_5_1_average_hourly &lt;- filter(indicator_8_5_1_average_hourly, sex_code == "F")  
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:297:90: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:299:90: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 indicator_8_5_1_average_hourly &lt;- filter(indicator_8_5_1_average_hourly, sex_code == "F")  
                                                                                          ^~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:299:55: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:301:55: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # get currency code and country code from country name 
                                                       ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:300:73: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:302:73: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 indicator_8_5_1_average_hourly &lt;- mutate(indicator_8_5_1_average_hourly,   
                                                                         ^~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:303:16: style: [single_quotes_linter] Only use double-quotes.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:305:16: style: [single_quotes_linter] Only use double-quotes.
       origin = 'iso3c',
                ^~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:304:21: style: [single_quotes_linter] Only use double-quotes.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:306:21: style: [single_quotes_linter] Only use double-quotes.
       destination = 'iso4217c',
                     ^~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:305:21: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:307:21: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
       warn = FALSE))  
                     ^~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:307:19: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:309:19: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # get value in USD 
                   ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:308:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:310:81: style: [line_length_linter] Lines should not be more than 80 characters.
 indicator_8_5_1_average_hourly$exchange_usd &lt;- exchange_rate$one_usd_is_equivalent_to[match(indicator_8_5_1_average_hourly$currency_code, exchange_rate$currency)] 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:308:163: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:310:163: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 indicator_8_5_1_average_hourly$exchange_usd &lt;- exchange_rate$one_usd_is_equivalent_to[match(indicator_8_5_1_average_hourly$currency_code, exchange_rate$currency)] 
                                                                                                                                                                   ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:310:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:312:81: style: [line_length_linter] Lines should not be more than 80 characters.
 indicator_8_5_1_average_hourly$amount_usd &lt;- indicator_8_5_1_average_hourly$latest_value / indicator_8_5_1_average_hourly$exchange_usd   
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:310:135: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:312:135: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 indicator_8_5_1_average_hourly$amount_usd &lt;- indicator_8_5_1_average_hourly$latest_value / indicator_8_5_1_average_hourly$exchange_usd   
                                                                                                                                       ^~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:312:21: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:314:21: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # max USD = 64.19665 
                     ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:313:16: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:315:16: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # min value = 0 
                ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:314:3: style: [commented_code_linter] Commented code should be removed.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:316:3: style: [commented_code_linter] Commented code should be removed.
 # max(indicator_8_5_1_average_hourly$amount_usd, na.rm = T) 
   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:314:60: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:316:60: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # max(indicator_8_5_1_average_hourly$amount_usd, na.rm = T) 
                                                            ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:315:3: style: [commented_code_linter] Commented code should be removed.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:317:3: style: [commented_code_linter] Commented code should be removed.
 # min(indicator_8_5_1_average_hourly$amount_usd, na.rm = T)  
   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:315:60: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:317:60: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # min(indicator_8_5_1_average_hourly$amount_usd, na.rm = T)  
                                                            ^~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:317:18: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:319:18: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # graph from 1-65 
                  ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:318:12: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:320:12: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 cmap_851 &lt;-   
            ^~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:319:69: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:321:69: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
   World |&gt; left_join(indicator_8_5_1_average_hourly, by = c("ISO3"))  
                                                                     ^~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:321:29: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:323:29: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 cmap_851 &lt;- mutate(cmap_851, 
                             ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:324:20: style: [commas_linter] Commas should always have a space after.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:326:20: style: [commas_linter] Commas should always have a space after.
       breaks = c(0,1,2,3,5,8,13,21,34,55,
                    ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:324:22: style: [commas_linter] Commas should always have a space after.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:326:22: style: [commas_linter] Commas should always have a space after.
       breaks = c(0,1,2,3,5,8,13,21,34,55,
                      ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:324:24: style: [commas_linter] Commas should always have a space after.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:326:24: style: [commas_linter] Commas should always have a space after.
       breaks = c(0,1,2,3,5,8,13,21,34,55,
                        ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:324:26: style: [commas_linter] Commas should always have a space after.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:326:26: style: [commas_linter] Commas should always have a space after.
       breaks = c(0,1,2,3,5,8,13,21,34,55,
                          ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:324:28: style: [commas_linter] Commas should always have a space after.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:326:28: style: [commas_linter] Commas should always have a space after.
       breaks = c(0,1,2,3,5,8,13,21,34,55,
                            ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:324:30: style: [commas_linter] Commas should always have a space after.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:326:30: style: [commas_linter] Commas should always have a space after.
       breaks = c(0,1,2,3,5,8,13,21,34,55,
                              ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:324:33: style: [commas_linter] Commas should always have a space after.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:326:33: style: [commas_linter] Commas should always have a space after.
       breaks = c(0,1,2,3,5,8,13,21,34,55,
                                 ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:324:36: style: [commas_linter] Commas should always have a space after.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:326:36: style: [commas_linter] Commas should always have a space after.
       breaks = c(0,1,2,3,5,8,13,21,34,55,
                                    ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:324:39: style: [commas_linter] Commas should always have a space after.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:326:39: style: [commas_linter] Commas should always have a space after.
       breaks = c(0,1,2,3,5,8,13,21,34,55,
                                       ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:325:42: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:327:42: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
           max(amount_usd, na.rm = TRUE)), 
                                          ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:331:18: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:333:18: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
         "5 to 8", 
                  ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:336:23: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:338:23: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
         "55 and above" 
                       ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:338:9: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:340:9: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
       ))   
         ^~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:340:22: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:342:22: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 tm_poa_after_shape &lt;- 
                      ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:343:35: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:345:35: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
       title = "Earnings in USD") + 
                                   ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:345:54: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:347:54: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
       main.title = "Average Hourly Earning by Women", 
                                                      ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:347:48: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:349:48: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
       inner.margins = c(0.01, 0.2, 0.01, 0.01), 
                                                ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:348:30: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:350:30: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
       bg.color = "lightblue", 
                              ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:351:20: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:353:20: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
       frame = FALSE   
                    ^~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:352:8: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:354:8: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
     ) + 
        ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:353:35: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:355:35: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
   tm_text("ISO3", size = "AREA") +   
                                   ^~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:355:38: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:357:38: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
       position = c("left", "bottom"))  
                                      ^~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:357:58: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:359:58: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 tm_poa &lt;- tm_shape(cmap_851, projection = "ESRI:54012") + 
                                                          ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:358:21: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:360:21: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
   tm_poa_after_shape  
                     ^~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:368:26: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:370:26: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # retrieving only Females 
                          ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:369:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:371:81: style: [line_length_linter] Lines should not be more than 80 characters.
 indicator_8_5_2_unemployment &lt;- filter(indicator_8_5_2_unemployment, sex_code == "F") 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:369:86: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:371:86: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 indicator_8_5_2_unemployment &lt;- filter(indicator_8_5_2_unemployment, sex_code == "F") 
                                                                                      ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:371:3: style: [commented_code_linter] Commented code should be removed.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:373:3: style: [commented_code_linter] Commented code should be removed.
 # nrow(indicator_8_5_2_unemployment)
   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:372:3: style: [commented_code_linter] Commented code should be removed.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:374:3: style: [commented_code_linter] Commented code should be removed.
 # count &lt;- sum(!is.na(indicator_8_5_2_unemployment$latest_value) &amp; indicator_8_5_2_unemployment$latest_value &gt;= 40 &amp; indicator_8_5_2_unemployment$latest_value &lt;= 50)
   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:372:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:374:81: style: [line_length_linter] Lines should not be more than 80 characters.
 # count &lt;- sum(!is.na(indicator_8_5_2_unemployment$latest_value) &amp; indicator_8_5_2_unemployment$latest_value &gt;= 40 &amp; indicator_8_5_2_unemployment$latest_value &lt;= 50)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:377:3: style: [commented_code_linter] Commented code should be removed.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:379:3: style: [commented_code_linter] Commented code should be removed.
 # max(indicator_8_5_2_unemployment$latest_value, na.rm = T) 
   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:377:60: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:379:60: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # max(indicator_8_5_2_unemployment$latest_value, na.rm = T) 
                                                            ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:378:3: style: [commented_code_linter] Commented code should be removed.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:380:3: style: [commented_code_linter] Commented code should be removed.
 # min(indicator_8_5_2_unemployment$latest_value, na.rm = T) 
   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:378:60: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:380:60: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # min(indicator_8_5_2_unemployment$latest_value, na.rm = T) 
                                                            ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:380:12: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:382:12: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 cmap_852 &lt;-   
            ^~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:381:67: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:383:67: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
   World |&gt; left_join(indicator_8_5_2_unemployment, by = c("ISO3"))  
                                                                   ^~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:437:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:439:81: style: [line_length_linter] Lines should not be more than 80 characters.
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:437:153: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:439:153: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
                                                                                                                                                         ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:460:20: style: [single_quotes_linter] Only use double-quotes.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:462:20: style: [single_quotes_linter] Only use double-quotes.
             by = c('ISO3', 'Country'),
                    ^~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:460:28: style: [single_quotes_linter] Only use double-quotes.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:462:28: style: [single_quotes_linter] Only use double-quotes.
             by = c('ISO3', 'Country'),
                            ^~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:498:81: style: [line_length_linter] Lines should not be more than 80 characters.
-  select("Country" = geoAreaName, ISO3, "% Managerial Positions" = latest_value) |&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:503:81: style: [line_length_linter] Lines should not be more than 80 characters.
-  select("Country" = geoAreaName, ISO3, "Average Hourly Earnings $USD" = amount_usd) |&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:508:81: style: [line_length_linter] Lines should not be more than 80 characters.
-  select("Country" = geoAreaName, ISO3, disability_status_desc, "sex" = sex_desc, "% Females Unemployed" = latest_value) |&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:509:81: style: [line_length_linter] Lines should not be more than 80 characters.
-  filter(`sex` %in% c("Female"), disability_status_desc == "No breakdown by disability") |&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:517:81: style: [line_length_linter] Lines should not be more than 80 characters.
-  select(Country, `% Legal Frameworks`, `% Managerial Positions`, `% Females Unemployed`, `Average Hourly Earnings $USD`)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:520:5: style: [commented_code_linter] Commented code should be removed.
-#   add_header_above(c(" " = 1, "Group 1" = 2, "Group 2" = 2))
-    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:525:11: style: [commented_code_linter] Commented code should be removed.
-#         "function(settings, json) {",
-          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:526:11: style: [commented_code_linter] Commented code should be removed.
-#         paste0("$(this.api().table().container()).css({'font-size': '50%'});"),
-          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:526:81: style: [line_length_linter] Lines should not be more than 80 characters.
-#         paste0("$(this.api().table().container()).css({'font-size': '50%'});"),
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:545:81: style: [line_length_linter] Lines should not be more than 80 characters.
-# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:545:153: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
-# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
-                                                                                                                                                        ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:548:67: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
-formatted_5_1_1 &lt;- indicator_5_1_1_employment_economic_benefits |&gt; 
-                                                                  ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:550:81: style: [line_length_linter] Lines should not be more than 80 characters.
-  select("Country" = geoAreaName, ISO3, "% Female Legal Coverage" = latest_value) |&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:556:81: style: [line_length_linter] Lines should not be more than 80 characters.
-  select("Country" = geoAreaName, ISO3, disability_status_desc, "sex" = sex_desc, "% Females Unemployed" = latest_value) |&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:557:81: style: [line_length_linter] Lines should not be more than 80 characters.
-  filter(`sex` %in% c("Female"), disability_status_desc == "No breakdown by disability") |&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:569:10: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
-# initial 
-         ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:573:47: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
-        columns = c("% Female Legal Coverage", 
-                                              ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:576:49: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
-        lower = list(continuous = wrap("points", 
-                                                ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:577:46: style: [infix_spaces_linter] Put spaces around all infix operators.
-                                     position=position_jitter(
-                                             ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:578:51: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
-                                       height = 1, 
-                                                  ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:581:10: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
-        ) 
-         ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:583:2: style: [commented_code_linter] Commented code should be removed.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:482:27: style: [infix_spaces_linter] Put spaces around all infix operators.
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+                          ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:485:2: style: [commented_code_linter] Commented code should be removed.
 #ggplotly(plot)
  ^~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:613:55: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
-        columns = c("Box-Cox % Female Legal Coverage", 
-                                                      ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:616:49: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
-        lower = list(continuous = wrap("points", 
-                                                ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:617:46: style: [infix_spaces_linter] Put spaces around all infix operators.
-                                     position=position_jitter(
-                                             ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:618:46: style: [infix_spaces_linter] Put spaces around all infix operators.
-                                       height=1, 
-                                             ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:618:49: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
-                                       height=1, 
-                                                ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:619:45: style: [infix_spaces_linter] Put spaces around all infix operators.
-                                       width=0.5),
-                                            ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:621:10: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
-        ) 
-         ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:623:3: style: [commented_code_linter] Commented code should be removed.
-# ggplotly(plot)
-  ^~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:639:81: style: [line_length_linter] Lines should not be more than 80 characters.
-# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:639:153: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
-# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
-                                                                                                                                                        ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:644:81: style: [line_length_linter] Lines should not be more than 80 characters.
-  select("Country" = geoAreaName, ISO3, "% Women in Managerial Positions" = latest_value) |&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:651:81: style: [line_length_linter] Lines should not be more than 80 characters.
-  select("Country" = geoAreaName, ISO3, "% Female Hourly Earnings" = latest_value) |&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:662:81: style: [line_length_linter] Lines should not be more than 80 characters.
-                      title = "Proportion of Women in Managerial Positions vs Average Hourly Earnings (Female Employees)",
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:663:81: style: [line_length_linter] Lines should not be more than 80 characters.
-                      columns = c("% Women in Managerial Positions", "% Female Hourly Earnings"),
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:664:81: style: [line_length_linter] Lines should not be more than 80 characters.
-                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:686:67: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
-formatted_5_1_1 &lt;- indicator_5_1_1_employment_economic_benefits |&gt; 
-                                                                  ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:688:81: style: [line_length_linter] Lines should not be more than 80 characters.
-  select("Country" = geoAreaName, ISO3, "% Female Legal Coverage" = latest_value) |&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:694:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:500:81: style: [line_length_linter] Lines should not be more than 80 characters.
+  select("Country" = geoAreaName, ISO3, "% Managerial Positions" = latest_value) |&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:505:81: style: [line_length_linter] Lines should not be more than 80 characters.
+  select("Country" = geoAreaName, ISO3, "Average Hourly Earnings $USD" = amount_usd) |&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:510:81: style: [line_length_linter] Lines should not be more than 80 characters.
   select("Country" = geoAreaName, ISO3, disability_status_desc, "sex" = sex_desc, "% Females Unemployed" = latest_value) |&gt;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:695:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:511:81: style: [line_length_linter] Lines should not be more than 80 characters.
   filter(`sex` %in% c("Female"), disability_status_desc == "No breakdown by disability") |&gt;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:702:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:519:81: style: [line_length_linter] Lines should not be more than 80 characters.
+  select(Country, `% Legal Frameworks`, `% Managerial Positions`, `% Females Unemployed`, `Average Hourly Earnings $USD`)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:522:5: style: [commented_code_linter] Commented code should be removed.
+#   add_header_above(c(" " = 1, "Group 1" = 2, "Group 2" = 2))
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:527:11: style: [commented_code_linter] Commented code should be removed.
+#         "function(settings, json) {",
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:528:11: style: [commented_code_linter] Commented code should be removed.
+#         paste0("$(this.api().table().container()).css({'font-size': '50%'});"),
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:528:81: style: [line_length_linter] Lines should not be more than 80 characters.
+#         paste0("$(this.api().table().container()).css({'font-size': '50%'});"),
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:547:81: style: [line_length_linter] Lines should not be more than 80 characters.
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:547:153: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+                                                                                                                                                        ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:550:67: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+formatted_5_1_1 &lt;- indicator_5_1_1_employment_economic_benefits |&gt; 
+                                                                  ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:552:81: style: [line_length_linter] Lines should not be more than 80 characters.
+  select("Country" = geoAreaName, ISO3, "% Female Legal Coverage" = latest_value) |&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:558:81: style: [line_length_linter] Lines should not be more than 80 characters.
+  select("Country" = geoAreaName, ISO3, disability_status_desc, "sex" = sex_desc, "% Females Unemployed" = latest_value) |&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:559:81: style: [line_length_linter] Lines should not be more than 80 characters.
+  filter(`sex` %in% c("Female"), disability_status_desc == "No breakdown by disability") |&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:571:10: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+# initial 
+         ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:575:47: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+        columns = c("% Female Legal Coverage", 
+                                              ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:577:81: style: [line_length_linter] Lines should not be more than 80 characters.
+        diag = list(continuous = wrap("barDiag", bins = 10, color = "black", alpha = 1)),
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:578:49: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+        lower = list(continuous = wrap("points", 
+                                                ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:579:46: style: [infix_spaces_linter] Put spaces around all infix operators.
+                                     position=position_jitter(
+                                             ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:580:51: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+                                       height = 1, 
+                                                  ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:583:27: style: [infix_spaces_linter] Put spaces around all infix operators.
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+                          ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:584:3: style: [commented_code_linter] Commented code should be removed.
+# ggplotly(plot)
+  ^~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:614:55: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+        columns = c("Box-Cox % Female Legal Coverage", 
+                                                      ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:616:81: style: [line_length_linter] Lines should not be more than 80 characters.
+        diag = list(continuous = wrap("barDiag", bins = 8, color = "black", alpha = 1)),
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:617:49: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+        lower = list(continuous = wrap("points", 
+                                                ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:618:46: style: [infix_spaces_linter] Put spaces around all infix operators.
+                                     position=position_jitter(
+                                             ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:619:46: style: [infix_spaces_linter] Put spaces around all infix operators.
+                                       height=1, 
+                                             ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:619:49: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+                                       height=1, 
+                                                ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:620:45: style: [infix_spaces_linter] Put spaces around all infix operators.
+                                       width=0.5)))) +
+                                            ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:621:27: style: [infix_spaces_linter] Put spaces around all infix operators.
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+                          ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:623:3: style: [commented_code_linter] Commented code should be removed.
+# ggplotly(plot)
+  ^~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:639:81: style: [line_length_linter] Lines should not be more than 80 characters.
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:639:153: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
+                                                                                                                                                        ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:644:81: style: [line_length_linter] Lines should not be more than 80 characters.
   select("Country" = geoAreaName, ISO3, "% Women in Managerial Positions" = latest_value) |&gt;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:709:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:651:81: style: [line_length_linter] Lines should not be more than 80 characters.
   select("Country" = geoAreaName, ISO3, "% Female Hourly Earnings" = latest_value) |&gt;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:719:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:662:81: style: [line_length_linter] Lines should not be more than 80 characters.
+                      title = "Proportion of Women in Managerial Positions vs Average Hourly Earnings (Female Employees)",
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:663:81: style: [line_length_linter] Lines should not be more than 80 characters.
+                      columns = c("% Women in Managerial Positions", "% Female Hourly Earnings"),
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:664:81: style: [line_length_linter] Lines should not be more than 80 characters.
+                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black", alpha = 1)),
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:668:72: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+                                                      width = 0.5)))) + 
+                                                                       ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:669:27: style: [infix_spaces_linter] Put spaces around all infix operators.
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+                          ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:686:67: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+formatted_5_1_1 &lt;- indicator_5_1_1_employment_economic_benefits |&gt; 
+                                                                  ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:688:81: style: [line_length_linter] Lines should not be more than 80 characters.
+  select("Country" = geoAreaName, ISO3, "% Female Legal Coverage" = latest_value) |&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:694:81: style: [line_length_linter] Lines should not be more than 80 characters.
+  select("Country" = geoAreaName, ISO3, disability_status_desc, "sex" = sex_desc, "% Females Unemployed" = latest_value) |&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:695:81: style: [line_length_linter] Lines should not be more than 80 characters.
+  filter(`sex` %in% c("Female"), disability_status_desc == "No breakdown by disability") |&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:702:81: style: [line_length_linter] Lines should not be more than 80 characters.
+  select("Country" = geoAreaName, ISO3, "% Women in Managerial Positions" = latest_value) |&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:709:81: style: [line_length_linter] Lines should not be more than 80 characters.
+  select("Country" = geoAreaName, ISO3, "% Female Hourly Earnings" = latest_value) |&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:719:81: style: [line_length_linter] Lines should not be more than 80 characters.
 # Perform sqrt transformation for "% Female Hourly Earnings" and log transformation for "% Females Unemployed"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:731:81: style: [line_length_linter] Lines should not be more than 80 characters.
-                      columns = c("% Female Legal Coverage", "log_10(% Females Unemployed)", "% Women in Managerial Positions", "sqrt(% Female Hourly Earnings)"),
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:732:81: style: [line_length_linter] Lines should not be more than 80 characters.
-                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:734:81: style: [line_length_linter] Lines should not be more than 80 characters.
-                                                    position = position_jitter(height = 1, width = 0.5),
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:746:25: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:731:81: style: [line_length_linter] Lines should not be more than 80 characters.
+                      columns = c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings"),
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:732:81: style: [line_length_linter] Lines should not be more than 80 characters.
+                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black", alpha = 1)),
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:734:81: style: [line_length_linter] Lines should not be more than 80 characters.
+                                                    position = position_jitter(height = 1, width = 0.5)))) +
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:735:27: style: [infix_spaces_linter] Put spaces around all infix operators.
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+                          ^
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:745:25: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # VARADHARAJAN JAYAPRIYA 
                         ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:747:51: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:746:51: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # merge data using left join, and drop all NA rows 
                                                   ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:749:34: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:748:34: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 merged_data &lt;- formatted_8_5_2 |&gt;   
                                  ^~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:750:29: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:749:29: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
   left_join(formatted_5_1_1, 
                             ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:751:42: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:750:42: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
             by = c("ISO3", "Country")) |&gt;   
                                          ^~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:752:29: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:751:29: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
   left_join(formatted_5_5_2, 
                             ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:753:42: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:752:42: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
             by = c("ISO3", "Country")) |&gt;   
                                          ^~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:754:29: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:753:29: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
   left_join(formatted_8_5_1, 
                             ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:755:39: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:754:39: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
             by = c("ISO3", "Country")) 
                                       ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:757:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:756:81: style: [line_length_linter] Lines should not be more than 80 characters.
 # Perform sqrt transformation for "% Female Hourly Earnings" and log transformation for "% Females Unemployed"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:762:27: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:761:27: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # Drop rows with NA values 
                           ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:763:44: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:762:44: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 normalised_data &lt;- drop_na(normalised_data) 
                                            ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:765:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:764:81: style: [line_length_linter] Lines should not be more than 80 characters.
 normalised_data_cols &lt;- normalised_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "sqrt(% Female Hourly Earnings)")]  
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:765:165: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:764:165: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 normalised_data_cols &lt;- normalised_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "sqrt(% Female Hourly Earnings)")]  
                                                                                                                                                                     ^~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:766:14: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:765:14: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 set.seed(123) 
              ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:792:1: style: [object_name_linter] Variable and function name style should be snake_case or symbols.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:791:1: style: [object_name_linter] Variable and function name style should be snake_case or symbols.
 km.out &lt;- kmeans(normalised_data_cols, centers = 2, nstart = 20)
 ^~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:799:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:798:81: style: [line_length_linter] Lines should not be more than 80 characters.
         columns = c("% Female Legal Coverage", "log_10(% Females Unemployed)", "% Women in Managerial Positions", "sqrt(% Female Hourly Earnings)"),
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:804:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:803:81: style: [line_length_linter] Lines should not be more than 80 characters.
                                        position = position_jitter(height = 1, width = 0.5),
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:819:26: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:818:26: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # Load Country Level Data 
                          ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:821:21: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:820:21: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # Step1: Import Data 
                     ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:822:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:821:81: style: [line_length_linter] Lines should not be more than 80 characters.
 happy_index &lt;- read_excel("data/happy-planet-index-2006-2020-public-data-set.xlsx", sheet = 2, skip = 7)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:863:25: warning: [seq_linter] 1:nrow(...) is likely to be wrong in the empty edge case. Use seq_len(nrow(...)) instead.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:862:25: warning: [seq_linter] 1:nrow(...) is likely to be wrong in the empty edge case. Use seq_len(nrow(...)) instead.
 shuffle_index &lt;- sample(1:nrow(merged_data))
                         ^~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:873:26: style: [infix_spaces_linter] Put spaces around all infix operators.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:872:26: style: [infix_spaces_linter] Put spaces around all infix operators.
 tree &lt;- rpart(cluster_id ~., data = train_data, method="class", minsplit=5, minbucket=1)
                          ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:873:55: style: [infix_spaces_linter] Put spaces around all infix operators.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:872:55: style: [infix_spaces_linter] Put spaces around all infix operators.
 tree &lt;- rpart(cluster_id ~., data = train_data, method="class", minsplit=5, minbucket=1)
                                                       ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:873:73: style: [infix_spaces_linter] Put spaces around all infix operators.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:872:73: style: [infix_spaces_linter] Put spaces around all infix operators.
 tree &lt;- rpart(cluster_id ~., data = train_data, method="class", minsplit=5, minbucket=1)
                                                                         ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:873:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:872:81: style: [line_length_linter] Lines should not be more than 80 characters.
 tree &lt;- rpart(cluster_id ~., data = train_data, method="class", minsplit=5, minbucket=1)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:873:86: style: [infix_spaces_linter] Put spaces around all infix operators.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:872:86: style: [infix_spaces_linter] Put spaces around all infix operators.
 tree &lt;- rpart(cluster_id ~., data = train_data, method="class", minsplit=5, minbucket=1)
                                                                                      ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:874:29: style: [infix_spaces_linter] Put spaces around all infix operators.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:873:29: style: [infix_spaces_linter] Put spaces around all infix operators.
 rpart.plot(tree, box.palette="GnRd")
                             ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:887:27: style: [infix_spaces_linter] Put spaces around all infix operators.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:886:27: style: [infix_spaces_linter] Put spaces around all infix operators.
 model &lt;- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=5, minbucket=1)
                           ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:887:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:886:81: style: [line_length_linter] Lines should not be more than 80 characters.
 model &lt;- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=5, minbucket=1)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:887:95: style: [infix_spaces_linter] Put spaces around all infix operators.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:886:95: style: [infix_spaces_linter] Put spaces around all infix operators.
 model &lt;- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=5, minbucket=1)
                                                                                               ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:887:108: style: [infix_spaces_linter] Put spaces around all infix operators.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:886:108: style: [infix_spaces_linter] Put spaces around all infix operators.
 model &lt;- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=5, minbucket=1)
                                                                                                            ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:892:11: warning: [seq_linter] 1:length(...) is likely to be wrong in the empty edge case. Use seq_along(...) instead.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:891:11: warning: [seq_linter] 1:length(...) is likely to be wrong in the empty edge case. Use seq_along(...) instead.
 for (i in 1:length(tree$variable.importance)) {
           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:893:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/Users/yxchia/Documents/Github &amp; Codes/csc3007-black2/csc3007-black2/csc3007-black2.qmd:892:81: style: [line_length_linter] Lines should not be more than 80 characters.
   relative_importance[i] &lt;- tree$variable.importance[i] / tree$variable.importance[1]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~</code></pre>
 </div>
@@ -1047,7 +1054,7 @@ for (i in 1:length(tree$variable.importance)) {
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1289,9 +1296,23 @@ for (i in 1:length(tree$variable.importance)) {
       tabsets.forEach(function(tabset) {
         const tabby = new Tabby('#' + tabset.id);
       });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
       const clipboard = new window.ClipboardJS('.code-copy-button', {
-        target: function(trigger) {
-          return trigger.previousElementSibling;
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
         }
       });
       clipboard.on('success', function(e) {
@@ -1339,7 +1360,7 @@ for (i in 1:length(tree$variable.importance)) {
           },
           interactive: true,
           interactiveBorder: 10,
-          theme: 'quarto-reveal',
+          theme: 'light-border',
           placement: 'bottom-start'
         };
           config['offset'] = [0,0];

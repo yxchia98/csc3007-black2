@@ -269,7 +269,7 @@ plot <- ggpairs(
     "% Female in Management Position"
   ),
   diag = list(continuous = wrap(
-    "barDiag", bins = 10, color = "black"
+    "barDiag", bins = 10, color = "black", alpha = 1
   )),
   lower = list(
     continuous = wrap(
@@ -279,7 +279,9 @@ plot <- ggpairs(
       fill = "black"
     )
   )
-)
+) +
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+
 
 #ggplotly(plot)
 plot
@@ -470,21 +472,21 @@ plot <- ggpairs(
     "% Female that is Unemployed"
   ),
   diag = list(continuous = wrap(
-    "barDiag", bins = 10, color = "black"
+    "barDiag", bins = 10, color = "black", alpha = 1
   )),
   lower = list(
     continuous = wrap(
       "points",
       position = position_jitter(height = 1,
-                                 width = 0.5),
-      fill = "black"
-    )
-  )
-)
+                                 width = 0.5)))) +
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+
+
+#ggplotly(plot)
 plot
 ```
 
-## **Table of Women Economical Success** {margin="10"}
+## Table of Women Economical Success
 
 ```{r}
 
@@ -528,13 +530,13 @@ merged_table <- table_5_1_1 |>
 
 ```
 
-## **5.1.1 vs 8.5.2 Anticipation** {data-transitions="zoom"}
+## 5.1.1 vs 8.5.2 Anticipation
 
 We anticipate that having a higher the nation's legal framework achievements in gender equality would result in lower unemployment rate for women.
 
 -   Because by decreasing gender discrimination for women, more companies would be willing to employ women.
 
-## **5.1.1 vs 8.5.2 Relation** {data-transitions="zoom"}
+## 5.1.1 vs 8.5.2 Relation
 
 <small>There doesn't seem to be any significant correlation between the percentage of legal employment and benefit frameworks for females, and the unemployment rate of females. However, this might be due to skewed distributions, hence we will re-express this data. </small>
 
@@ -572,20 +574,19 @@ plot <- ggpairs(merged_data,
         title = "Employment Legal Frameworks and Female Unemployment rate",
         columns = c("% Female Legal Coverage", 
             "% Females Unemployed"),
-        diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
+        diag = list(continuous = wrap("barDiag", bins = 10, color = "black", alpha = 1)),
         lower = list(continuous = wrap("points", 
                                      position=position_jitter(
                                        height = 1, 
-                                       width = 0.5),
-                                     fill = "black"))
-        ) 
-
-#ggplotly(plot)
+                                       width = 0.5)))
+        ) +
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+# ggplotly(plot)
 plot
 
 ```
 
-## **5.1.1 vs 8.5.2 Relation Re-Expressed** {data-transitions="slide"}
+## 5.1.1 vs 8.5.2 Relation Re-Expressed
 
 <small>After Box Cox and logarithmic transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant. </small>
 
@@ -612,13 +613,12 @@ plot <- ggpairs(merged_data,
         title = "Employment Legal Frameworks and Female Unemployment rate",
         columns = c("Box-Cox % Female Legal Coverage", 
             "log_10(% Females Unemployed)"),
-        diag = list(continuous = wrap("barDiag", bins = 8, color = "black")),
+        diag = list(continuous = wrap("barDiag", bins = 8, color = "black", alpha = 1)),
         lower = list(continuous = wrap("points", 
                                      position=position_jitter(
                                        height=1, 
-                                       width=0.5),
-                                     fill = "black"))
-        ) 
+                                       width=0.5)))) +
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
 
 # ggplotly(plot)
 plot
@@ -661,13 +661,13 @@ grid_plots <- ggpairs(merged_data,
                       mapping = aes(alpha = 0.7, fill = Country),
                       title = "Proportion of Women in Managerial Positions vs Average Hourly Earnings (Female Employees)",
                       columns = c("% Women in Managerial Positions", "% Female Hourly Earnings"),
-                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
+                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black", alpha = 1)),
                       lower = list(continuous = wrap("points",
                                                     position = position_jitter(
                                                       height = 1,
-                                                      width = 0.5),
-                                                    fill = "black"))
-)
+                                                      width = 0.5)))) + 
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+
 
 # Print 4 grid plots
 grid_plots
@@ -728,12 +728,11 @@ merged_data <- drop_na(merged_data)
 grid_plots <- ggpairs(merged_data,
                       mapping = aes(alpha = 0.7, fill = Country),
                       title = "Relationship between Indicators",
-                      columns = c("% Female Legal Coverage", "log_10(% Females Unemployed)", "% Women in Managerial Positions", "sqrt(% Female Hourly Earnings)"),
-                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
+                      columns = c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings"),
+                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black", alpha = 1)),
                       lower = list(continuous = wrap("points",
-                                                    position = position_jitter(height = 1, width = 0.5),
-                                                    fill = "black"))
-)
+                                                    position = position_jitter(height = 1, width = 0.5)))) +
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
 
 # Print the grid plots
 grid_plots
