@@ -34,6 +34,7 @@ library(rpart)
 library(rpart.plot)
 library(caret)
 library(DT)
+library(kableExtra)
 ```
 
 ```{r}
@@ -490,36 +491,42 @@ plot
 
 ```{r}
 
-# # Table of performances. See Sample-Project slide 16
-# table_5_1_1 <- indicator_5_1_1_employment_economic_benefits |>
-#   select("Country" = geoAreaName, ISO3, "% Legal Frameworks" = latest_value) |>
-#   distinct(ISO3, .keep_all = TRUE)
+# Table of performances. See Sample-Project slide 16
+table_5_1_1 <- indicator_5_1_1_employment_economic_benefits |>
+  select("Country" = geoAreaName, ISO3, "% Legal Frameworks" = latest_value) |>
+  distinct(ISO3, .keep_all = TRUE)
+
+
+table_5_2_2 <- indicator_5_5_2_managerial |>
+  select("Country" = geoAreaName, ISO3, "% Managerial Positions" = latest_value) |>
+  distinct(ISO3, .keep_all = TRUE)
+
+
+table_8_5_1 <- indicator_8_5_1_average_hourly |>
+  select("Country" = geoAreaName, ISO3, "Average Hourly Earnings $USD" = amount_usd) |>
+  distinct(ISO3, .keep_all = TRUE)
+
+
+table_8_5_2 <- indicator_8_5_2_unemployment |>
+  select("Country" = geoAreaName, ISO3, disability_status_desc, "sex" = sex_desc, "% Females Unemployed" = latest_value) |>
+  filter(`sex` %in% c("Female"), disability_status_desc == "No breakdown by disability") |>
+  select(Country, ISO3, "% Females Unemployed") |>
+  distinct(ISO3, .keep_all = TRUE)
+
+merged_table <- table_5_1_1 |>
+  left_join(table_5_2_2, by = c("ISO3", "Country")) |>
+  left_join(table_8_5_2, by = c("ISO3", "Country")) |>
+  left_join(table_8_5_1, by = c("ISO3", "Country")) |>
+  select(Country, `% Legal Frameworks`, `% Managerial Positions`, `% Females Unemployed`, `Average Hourly Earnings $USD`)
 # 
-# 
-# table_5_2_2 <- indicator_5_5_2_managerial |>
-#   select("Country" = geoAreaName, ISO3, "% Managerial Positions" = latest_value) |>
-#   distinct(ISO3, .keep_all = TRUE)
-# 
-# 
-# table_8_5_1 <- indicator_8_5_1_average_hourly |>
-#   select("Country" = geoAreaName, ISO3, "Average Hourly Earnings $USD" = amount_usd) |>
-#   distinct(ISO3, .keep_all = TRUE)
-# 
-# 
-# table_8_5_2 <- indicator_8_5_2_unemployment |>
-#   select("Country" = geoAreaName, ISO3, disability_status_desc, "sex" = sex_desc, "% Females Unemployed" = latest_value) |>
-#   filter(`sex` %in% c("Female"), disability_status_desc == "No breakdown by disability") |>
-#   select(Country, ISO3, "% Females Unemployed") |>
-#   distinct(ISO3, .keep_all = TRUE)
-# 
-# merged_table <- table_5_1_1 |>
-#   left_join(table_5_2_2, by = c("ISO3", "Country")) |>
-#   left_join(table_8_5_2, by = c("ISO3", "Country")) |>
-#   left_join(table_8_5_1, by = c("ISO3", "Country")) |>
-#   select(Country, `% Legal Frameworks`, `% Managerial Positions`, `% Females Unemployed`, `Average Hourly Earnings $USD`)
-# 
-# 
-# datatable(merged_table)
+# kbl(merged_table, full_width = T) |>
+#   add_header_above(c(" " = 1, "Group 1" = 2, "Group 2" = 2))
+merged_table |>
+  datatable(rownames = FALSE, options=list(
+       initComplete = htmlwidgets::JS(
+          "function(settings, json) {",
+          paste0("$(this.api().table().container()).css({'font-size': '50%'});"),
+          "}")))
 ```
 
 ## **5.1.1 vs 8.5.2 Anticipation** {data-transitions="zoom"}
