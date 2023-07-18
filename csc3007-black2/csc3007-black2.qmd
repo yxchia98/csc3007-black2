@@ -229,7 +229,7 @@ We anticipate that the higher the nation's legal framework achievements in gende
 
 ## **5.1.1 vs 5.5.2 Relation**
 
-<small>There seem to be a moderate correlation between the percentage of achievement legal employment and benefit frameworks for females, and the percentage of woman in managerial position. Re-expression of data is not needed as both data are on the same scale. </small>
+<small>There seem to be a moderate correlation between the percentage of achievement in legal employment and benefit frameworks for females, and the percentage of woman in managerial position. The data distrubtion for the percentage of achievement in legal employment is left skewed and percentage of woman in managerial position is normally distributed. Despite the left skewed distribution Re-expression of data is not needed as both data are on the same scale of 0 to 100. </small>
 
 ```{r}
 # Wong Jun HAO
