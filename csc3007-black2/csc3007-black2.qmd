@@ -893,8 +893,7 @@ ggpairs(normalised_data,
         diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
         lower = list(continuous = wrap("points",
                                        position = position_jitter(height = 1, width = 0.5),
-                                       fill = "black")),
-        upper = NULL  # Disable correlation calculation for clustered data
+                                       fill = "black"))
 )
 ```
 
