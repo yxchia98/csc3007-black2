@@ -524,7 +524,8 @@ We anticipate that countries with lower unemployment rates for women should have
 
 -   Because countries with lower unemployment rates have a better economic environment which should result in higher average income for their citizens
 
-## unemployment rates vs hourly earnings for women
+## EFFECTS OF UNEMPLOYMENT RATES ON HOURLY EARNINGS FOR WOMEN
+<small>A correlation of -0.097 indicates a weak negative relationship between unemployment rate for women and average hourly earning (USD) for women. Both data distribution are left skewed.</small>
 ```{r}
 formatted_8_5_1 <-
   select(
@@ -576,7 +577,8 @@ plot
 
 
 
-## unemployment rates vs hourly earnings for women re-expressed
+## EFFECTS OF UNEMPLOYMENT RATES ON HOURLY EARNINGS FOR WOMEN re-expressed
+<small> The average hourly earnings for women is re-expressed by taking the squared root of the skewed values while the unemployed rates is re-expressed by taking log10 of the skewed values. This helps to reduce the impact of extreme values and make the distribution more symmetrical. This resulted in an insignificant correlation value increase by 0.103, with a correlation that is very close to zero, indicating that there is virtually no relationship between them.</small>
 
 ```{r}
 # JEANIE OH JUN NING
