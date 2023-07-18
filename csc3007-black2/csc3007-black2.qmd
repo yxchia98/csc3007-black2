@@ -724,9 +724,9 @@ We anticipate that having more women in managerial positions will increase the a
 -   Because in general, employees in a managerial position would receive higher income and with more women holding managerial positions, the average hourly earning for female employees will increase.
 
 ## **5.5.2 vs 8.5.1 Relation**
-<small>
-There seems to be a negative correlation between the percentage of female hourly earnings and women in managerial positions. However, this might be due to skewed distributions of female hourly earnings, hence we will re-express this data using logarithmic transformations .
-</small>
+
+<small> There seems to be a negative correlation between the percentage of female hourly earnings and women in managerial positions. However, this might be due to skewed distributions of female hourly earnings, hence we will re-express this data using logarithmic transformations . </small>
+
 ```{r}
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 
@@ -996,11 +996,11 @@ The relative importance of the predictors for classification are as follows:
 
 ## Summary of Quantitative Results
 
-- Moderate correlation between same-goal indicators.
-- Moderate correlation between legal employment and benefit frameworks for females and the representation of women in managerial positions.
-- Little correlations of statistical significance are observed between indicators for different goals.
-- Potentially influenced by the country's originally high unemployment rates across all genders.
-- Missing data for significant countries such as Russia and China.
+-   Moderate correlation between same-goal indicators.
+-   Moderate correlation between legal employment and benefit frameworks for females and the representation of women in managerial positions.
+-   Little correlations of statistical significance are observed between indicators for different goals.
+-   Potentially influenced by the country's originally high unemployment rates across all genders.
+-   Missing data for significant countries such as Russia and China.
 
 ## Policy Implications
 
