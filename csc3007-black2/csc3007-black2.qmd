@@ -716,6 +716,11 @@ merged_data <- formatted_8_5_2 |>
   left_join(formatted_5_5_2, by = c("ISO3", "Country")) |>
   left_join(formatted_8_5_1, by = c("ISO3", "Country"))
 
+# Perform sqrt transformation for "% Female Hourly Earnings" and log transformation for "% Females Unemployed"
+merged_data <- merged_data |>
+  mutate("sqrt(% Female Hourly Earnings)" = sqrt(`% Female Hourly Earnings`)) |>
+  mutate("log_10(% Females Unemployed)" = log10(`% Females Unemployed`))
+
 # Drop rows with NA values
 merged_data <- drop_na(merged_data)
 
@@ -723,7 +728,7 @@ merged_data <- drop_na(merged_data)
 grid_plots <- ggpairs(merged_data,
                       mapping = aes(alpha = 0.7, fill = Country),
                       title = "Relationship between Indicators",
-                      columns = c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings"),
+                      columns = c("% Female Legal Coverage", "log_10(% Females Unemployed)", "% Women in Managerial Positions", "sqrt(% Female Hourly Earnings)"),
                       diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
                       lower = list(continuous = wrap("points",
                                                     position = position_jitter(height = 1, width = 0.5),
@@ -749,14 +754,15 @@ merged_data <- formatted_8_5_2 |>
   left_join(formatted_8_5_1, 
             by = c("ISO3", "Country")) 
 
-# Perform log transformation for "% Female Hourly Earnings"
+# Perform sqrt transformation for "% Female Hourly Earnings" and log transformation for "% Females Unemployed"
 normalised_data <- merged_data |>
-  mutate("log(% Female Hourly Earnings)" = log(`% Female Hourly Earnings`))
+  mutate("sqrt(% Female Hourly Earnings)" = sqrt(`% Female Hourly Earnings`)) |>
+  mutate("log_10(% Females Unemployed)" = log10(`% Females Unemployed`))
 
 # Drop rows with NA values 
 normalised_data <- drop_na(normalised_data) 
 
-normalised_data_cols <- normalised_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings")]  
+normalised_data_cols <- normalised_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "sqrt(% Female Hourly Earnings)")]  
 set.seed(123) 
 
 # Elbow plot to determine the optimal k value
@@ -781,18 +787,18 @@ ggplot(elbow_data, aes(x = k, y = total_withinss)) +
 ```{r}
 # See project-sample slide 20
 
-# Perform k-means clustering with k = 3
+# Perform k-means clustering with k = 2
 set.seed(123)
-km.out <- kmeans(normalised_data_cols, centers = 3, nstart = 20)
+km.out <- kmeans(normalised_data_cols, centers = 2, nstart = 20)
 
 # Add cluster information to the merged_data dataframe
 normalised_data$Cluster <- km.out$cluster
 
 # Create a pair plot using ggpairs
 ggpairs(normalised_data,
-        columns = c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "log(% Female Hourly Earnings)"),
+        columns = c("% Female Legal Coverage", "log_10(% Females Unemployed)", "% Women in Managerial Positions", "sqrt(% Female Hourly Earnings)"),
         mapping = aes(color = as.factor(Cluster)),
-        title = "Pair Plot with K-means Clustering (k = 4)",
+        title = "Pair Plot with K-means Clustering (k = 2)",
         diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
         lower = list(continuous = wrap("points",
                                        position = position_jitter(height = 1, width = 0.5),
@@ -863,7 +869,7 @@ train_data <- training(data_split)
 test_data <- testing(data_split)
 
 # Step 3: Build the model
-tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit=3, minbucket=1)
+tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit=5, minbucket=1)
 rpart.plot(tree, box.palette="GnRd")
 ```
 
@@ -877,7 +883,7 @@ rpart.plot(tree, box.palette="GnRd")
 # Step 4: Evaluating Model
 
 ctrl <- trainControl(method = "cv", number = 10)
-model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=3, minbucket=1)
+model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=5, minbucket=1)
 model
 
 # Step 5: Get Relative Importance

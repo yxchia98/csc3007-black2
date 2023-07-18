@@ -496,12 +496,12 @@ CHIA YI XUAN, TSUI SAU CHI, JEANIE OH JUN NING, VARADHARAJAN JAYAPRIYA, GU JINMI
 <div class="cell">
 
 </div>
-<p>Ten-fold cross validation indicates that the decision tree has a low accuracy of</p>
+<p>Ten-fold cross validation indicates that the decision tree has a low accuracy of “Fill in”</p>
 <p>The relative importance of the predictors for classification are as follows:</p>
 <ul>
 <li>HPI: 1</li>
-<li>Continent: 0.4341865</li>
-<li>GDP size: 0.3025594</li>
+<li>Continent: 0.7463858</li>
+<li>GDP size: 0.5952265</li>
 </ul>
 </section>
 <section id="summary-of-quantitative-results" class="slide level2 center">
@@ -896,112 +896,118 @@ formatted_5_1_1 &lt;- indicator_5_1_1_employment_economic_benefits |&gt;
 /home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:709:81: style: [line_length_linter] Lines should not be more than 80 characters.
   select("Country" = geoAreaName, ISO3, "% Female Hourly Earnings" = latest_value) |&gt;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:726:81: style: [line_length_linter] Lines should not be more than 80 characters.
-                      columns = c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings"),
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:727:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:719:81: style: [line_length_linter] Lines should not be more than 80 characters.
+# Perform sqrt transformation for "% Female Hourly Earnings" and log transformation for "% Females Unemployed"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:731:81: style: [line_length_linter] Lines should not be more than 80 characters.
+                      columns = c("% Female Legal Coverage", "log_10(% Females Unemployed)", "% Women in Managerial Positions", "sqrt(% Female Hourly Earnings)"),
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:732:81: style: [line_length_linter] Lines should not be more than 80 characters.
                       diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:729:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:734:81: style: [line_length_linter] Lines should not be more than 80 characters.
                                                     position = position_jitter(height = 1, width = 0.5),
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:741:25: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:746:25: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # VARADHARAJAN JAYAPRIYA 
                         ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:742:51: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:747:51: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # merge data using left join, and drop all NA rows 
                                                   ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:744:34: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:749:34: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 merged_data &lt;- formatted_8_5_2 |&gt;   
                                  ^~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:745:29: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:750:29: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
   left_join(formatted_5_1_1, 
                             ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:746:42: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:751:42: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
             by = c("ISO3", "Country")) |&gt;   
                                          ^~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:747:29: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:752:29: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
   left_join(formatted_5_5_2, 
                             ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:748:42: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:753:42: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
             by = c("ISO3", "Country")) |&gt;   
                                          ^~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:749:29: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:754:29: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
   left_join(formatted_8_5_1, 
                             ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:750:39: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:755:39: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
             by = c("ISO3", "Country")) 
                                       ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:756:27: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:757:81: style: [line_length_linter] Lines should not be more than 80 characters.
+# Perform sqrt transformation for "% Female Hourly Earnings" and log transformation for "% Females Unemployed"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:762:27: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # Drop rows with NA values 
                           ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:757:44: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:763:44: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 normalised_data &lt;- drop_na(normalised_data) 
                                            ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:759:81: style: [line_length_linter] Lines should not be more than 80 characters.
-normalised_data_cols &lt;- normalised_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings")]  
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:759:159: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
-normalised_data_cols &lt;- normalised_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings")]  
-                                                                                                                                                              ^~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:760:14: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:765:81: style: [line_length_linter] Lines should not be more than 80 characters.
+normalised_data_cols &lt;- normalised_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "sqrt(% Female Hourly Earnings)")]  
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:765:165: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+normalised_data_cols &lt;- normalised_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "sqrt(% Female Hourly Earnings)")]  
+                                                                                                                                                                    ^~
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:766:14: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 set.seed(123) 
              ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:786:1: style: [object_name_linter] Variable and function name style should be snake_case or symbols.
-km.out &lt;- kmeans(normalised_data_cols, centers = 3, nstart = 20)
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:792:1: style: [object_name_linter] Variable and function name style should be snake_case or symbols.
+km.out &lt;- kmeans(normalised_data_cols, centers = 2, nstart = 20)
 ^~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:793:81: style: [line_length_linter] Lines should not be more than 80 characters.
-        columns = c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "log(% Female Hourly Earnings)"),
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:798:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:799:81: style: [line_length_linter] Lines should not be more than 80 characters.
+        columns = c("% Female Legal Coverage", "log_10(% Females Unemployed)", "% Women in Managerial Positions", "sqrt(% Female Hourly Earnings)"),
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:804:81: style: [line_length_linter] Lines should not be more than 80 characters.
                                        position = position_jitter(height = 1, width = 0.5),
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:813:26: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:819:26: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # Load Country Level Data 
                          ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:815:21: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:821:21: style: [trailing_whitespace_linter] Trailing whitespace is superfluous.
 # Step1: Import Data 
                     ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:816:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:822:81: style: [line_length_linter] Lines should not be more than 80 characters.
 happy_index &lt;- read_excel("data/happy-planet-index-2006-2020-public-data-set.xlsx", sheet = 2, skip = 7)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:856:25: warning: [seq_linter] 1:nrow(...) is likely to be wrong in the empty edge case. Use seq_len(nrow(...)) instead.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:862:25: warning: [seq_linter] 1:nrow(...) is likely to be wrong in the empty edge case. Use seq_len(nrow(...)) instead.
 shuffle_index &lt;- sample(1:nrow(merged_data))
                         ^~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:866:26: style: [infix_spaces_linter] Put spaces around all infix operators.
-tree &lt;- rpart(cluster_id ~., data = train_data, method="class", minsplit=3, minbucket=1)
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:872:26: style: [infix_spaces_linter] Put spaces around all infix operators.
+tree &lt;- rpart(cluster_id ~., data = train_data, method="class", minsplit=5, minbucket=1)
                          ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:866:55: style: [infix_spaces_linter] Put spaces around all infix operators.
-tree &lt;- rpart(cluster_id ~., data = train_data, method="class", minsplit=3, minbucket=1)
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:872:55: style: [infix_spaces_linter] Put spaces around all infix operators.
+tree &lt;- rpart(cluster_id ~., data = train_data, method="class", minsplit=5, minbucket=1)
                                                       ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:866:73: style: [infix_spaces_linter] Put spaces around all infix operators.
-tree &lt;- rpart(cluster_id ~., data = train_data, method="class", minsplit=3, minbucket=1)
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:872:73: style: [infix_spaces_linter] Put spaces around all infix operators.
+tree &lt;- rpart(cluster_id ~., data = train_data, method="class", minsplit=5, minbucket=1)
                                                                         ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:866:81: style: [line_length_linter] Lines should not be more than 80 characters.
-tree &lt;- rpart(cluster_id ~., data = train_data, method="class", minsplit=3, minbucket=1)
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:872:81: style: [line_length_linter] Lines should not be more than 80 characters.
+tree &lt;- rpart(cluster_id ~., data = train_data, method="class", minsplit=5, minbucket=1)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:866:86: style: [infix_spaces_linter] Put spaces around all infix operators.
-tree &lt;- rpart(cluster_id ~., data = train_data, method="class", minsplit=3, minbucket=1)
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:872:86: style: [infix_spaces_linter] Put spaces around all infix operators.
+tree &lt;- rpart(cluster_id ~., data = train_data, method="class", minsplit=5, minbucket=1)
                                                                                      ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:867:29: style: [infix_spaces_linter] Put spaces around all infix operators.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:873:29: style: [infix_spaces_linter] Put spaces around all infix operators.
 rpart.plot(tree, box.palette="GnRd")
                             ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:880:27: style: [infix_spaces_linter] Put spaces around all infix operators.
-model &lt;- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=1, minbucket=1)
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:886:27: style: [infix_spaces_linter] Put spaces around all infix operators.
+model &lt;- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=5, minbucket=1)
                           ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:880:81: style: [line_length_linter] Lines should not be more than 80 characters.
-model &lt;- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=1, minbucket=1)
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:886:81: style: [line_length_linter] Lines should not be more than 80 characters.
+model &lt;- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=5, minbucket=1)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:880:95: style: [infix_spaces_linter] Put spaces around all infix operators.
-model &lt;- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=1, minbucket=1)
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:886:95: style: [infix_spaces_linter] Put spaces around all infix operators.
+model &lt;- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=5, minbucket=1)
                                                                                               ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:880:108: style: [infix_spaces_linter] Put spaces around all infix operators.
-model &lt;- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=1, minbucket=1)
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:886:108: style: [infix_spaces_linter] Put spaces around all infix operators.
+model &lt;- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=5, minbucket=1)
                                                                                                            ^
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:885:11: warning: [seq_linter] 1:length(...) is likely to be wrong in the empty edge case. Use seq_along(...) instead.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:891:11: warning: [seq_linter] 1:length(...) is likely to be wrong in the empty edge case. Use seq_along(...) instead.
 for (i in 1:length(tree$variable.importance)) {
           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:886:81: style: [line_length_linter] Lines should not be more than 80 characters.
+/home/jamestsui/Last/CSC3007/project/csc3007-black2/csc3007-black2/csc3007-black2.qmd:892:81: style: [line_length_linter] Lines should not be more than 80 characters.
   relative_importance[i] &lt;- tree$variable.importance[i] / tree$variable.importance[1]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~</code></pre>
 </div>
