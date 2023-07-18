@@ -327,7 +327,7 @@ plot <- ggpairs(
     "% Female in Management Position"
   ),
   diag = list(continuous = wrap(
-    "barDiag", bins = 10, color = "black"
+    "barDiag", bins = 10, color = "black", alpha = 1
   )),
   lower = list(
     continuous = wrap(
@@ -337,7 +337,9 @@ plot <- ggpairs(
       fill = "black"
     )
   )
-)
+) +
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+
 
 plot
 ```
@@ -565,21 +567,21 @@ plot <- ggpairs(
     "% Female that is Unemployed"
   ),
   diag = list(continuous = wrap(
-    "barDiag", bins = 10, color = "black"
+    "barDiag", bins = 10, color = "black", alpha = 1
   )),
   lower = list(
     continuous = wrap(
       "points",
       position = position_jitter(height = 1,
-                                 width = 0.5),
-      fill = "black"
-    )
-  )
-)
+                                 width = 0.5)))) +
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+
+
+#ggplotly(plot)
 plot
 ```
 
-## **Table of Women Economical Success** {margin="10"}
+## Table of Women Economical Success
 
 ```{r}
 
@@ -611,9 +613,6 @@ merged_table <- table_5_1_1 |>
   left_join(table_8_5_1, by = c("ISO3", "Country")) |>
   select(Country, `% Legal Frameworks`, `% Managerial Positions`, `% Females Unemployed`, `Average Hourly Earnings $USD`)
 
-# kbl(merged_table, full_width = T) |>
-#   add_header_above(c(" " = 1, "Group 1" = 2, "Group 2" = 2))
-
 # merged_table |>
 # datatable(rownames = FALSE, options=list(
 #      initComplete = htmlwidgets::JS(
@@ -623,13 +622,13 @@ merged_table <- table_5_1_1 |>
 
 ```
 
-## **5.1.1 vs 8.5.2 Anticipation** {data-transitions="zoom"}
+## Anticipation of what having Fair Employment Frameworks does to Female Unemployment
 
 We anticipate that having a higher the nation's legal framework achievements in gender equality would result in lower unemployment rate for women.
 
 -   Because by decreasing gender discrimination for women, more companies would be willing to employ women.
 
-## **5.1.1 vs 8.5.2 Relation** {data-transitions="zoom"}
+## Fair Employment Frameworks vs Female Unemployment Rates
 
 <small>There doesn't seem to be any significant correlation between the percentage of legal employment and benefit frameworks for females, and the unemployment rate of females. However, this might be due to skewed distributions, hence we will re-express this data. </small>
 
@@ -667,20 +666,19 @@ plot <- ggpairs(merged_data,
         title = "Employment Legal Frameworks and Female Unemployment rate",
         columns = c("% Female Legal Coverage", 
             "% Females Unemployed"),
-        diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
+        diag = list(continuous = wrap("barDiag", bins = 10, color = "black", alpha = 1)),
         lower = list(continuous = wrap("points", 
                                      position=position_jitter(
                                        height = 1, 
-                                       width = 0.5),
-                                     fill = "black"))
-        ) 
-
-#ggplotly(plot)
+                                       width = 0.5)))
+        ) +
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+# ggplotly(plot)
 plot
 
 ```
 
-## **5.1.1 vs 8.5.2 Relation Re-Expressed** {data-transitions="slide"}
+## Fair Employment Frameworks vs Female Unemployment Rates Re-Expressed
 
 <small>After Box Cox and logarithmic transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant. </small>
 
@@ -707,13 +705,12 @@ plot <- ggpairs(merged_data,
         title = "Employment Legal Frameworks and Female Unemployment rate",
         columns = c("Box-Cox % Female Legal Coverage", 
             "log_10(% Females Unemployed)"),
-        diag = list(continuous = wrap("barDiag", bins = 8, color = "black")),
+        diag = list(continuous = wrap("barDiag", bins = 8, color = "black", alpha = 1)),
         lower = list(continuous = wrap("points", 
                                      position=position_jitter(
                                        height=1, 
-                                       width=0.5),
-                                     fill = "black"))
-        ) 
+                                       width=0.5)))) +
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
 
 # ggplotly(plot)
 plot
@@ -727,9 +724,9 @@ We anticipate that having more women in managerial positions will increase the a
 -   Because in general, employees in a managerial position would receive higher income and with more women holding managerial positions, the average hourly earning for female employees will increase.
 
 ## **5.5.2 vs 8.5.1 Relation**
-
+<small>
 There seems to be a negative correlation between the percentage of female hourly earnings and women in managerial positions. However, this might be due to skewed distributions of female hourly earnings, hence we will re-express this data using logarithmic transformations .
-
+</small>
 ```{r}
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 
@@ -756,13 +753,13 @@ grid_plots <- ggpairs(merged_data,
                       mapping = aes(alpha = 0.7, fill = Country),
                       title = "Proportion of Women in Managerial Positions vs Average Hourly Earnings (Female Employees)",
                       columns = c("% Women in Managerial Positions", "% Female Hourly Earnings"),
-                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
+                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black", alpha = 1)),
                       lower = list(continuous = wrap("points",
                                                     position = position_jitter(
                                                       height = 1,
-                                                      width = 0.5),
-                                                    fill = "black"))
-)
+                                                      width = 0.5)))) + 
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+
 
 # Print 4 grid plots
 grid_plots
@@ -811,6 +808,11 @@ merged_data <- formatted_8_5_2 |>
   left_join(formatted_5_5_2, by = c("ISO3", "Country")) |>
   left_join(formatted_8_5_1, by = c("ISO3", "Country"))
 
+# Perform sqrt transformation for "% Female Hourly Earnings" and log transformation for "% Females Unemployed"
+merged_data <- merged_data |>
+  mutate("sqrt(% Female Hourly Earnings)" = sqrt(`% Female Hourly Earnings`)) |>
+  mutate("log_10(% Females Unemployed)" = log10(`% Females Unemployed`))
+
 # Drop rows with NA values
 merged_data <- drop_na(merged_data)
 
@@ -819,11 +821,10 @@ grid_plots <- ggpairs(merged_data,
                       mapping = aes(alpha = 0.7, fill = Country),
                       title = "Relationship between Indicators",
                       columns = c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings"),
-                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
+                      diag = list(continuous = wrap("barDiag", bins = 10, color = "black", alpha = 1)),
                       lower = list(continuous = wrap("points",
-                                                    position = position_jitter(height = 1, width = 0.5),
-                                                    fill = "black"))
-)
+                                                    position = position_jitter(height = 1, width = 0.5)))) +
+  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
 
 # Print the grid plots
 grid_plots
@@ -844,14 +845,15 @@ merged_data <- formatted_8_5_2 |>
   left_join(formatted_8_5_1, 
             by = c("ISO3", "Country")) 
 
-# Perform log transformation for "% Female Hourly Earnings"
+# Perform sqrt transformation for "% Female Hourly Earnings" and log transformation for "% Females Unemployed"
 normalised_data <- merged_data |>
-  mutate("log(% Female Hourly Earnings)" = log(`% Female Hourly Earnings`))
+  mutate("sqrt(% Female Hourly Earnings)" = sqrt(`% Female Hourly Earnings`)) |>
+  mutate("log_10(% Females Unemployed)" = log10(`% Females Unemployed`))
 
 # Drop rows with NA values 
 normalised_data <- drop_na(normalised_data) 
 
-normalised_data_cols <- normalised_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings")]  
+normalised_data_cols <- normalised_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "sqrt(% Female Hourly Earnings)")]  
 set.seed(123) 
 
 # Elbow plot to determine the optimal k value
@@ -876,18 +878,18 @@ ggplot(elbow_data, aes(x = k, y = total_withinss)) +
 ```{r}
 # See project-sample slide 20
 
-# Perform k-means clustering with k = 3
+# Perform k-means clustering with k = 2
 set.seed(123)
-km.out <- kmeans(normalised_data_cols, centers = 3, nstart = 20)
+km.out <- kmeans(normalised_data_cols, centers = 2, nstart = 20)
 
 # Add cluster information to the merged_data dataframe
 normalised_data$Cluster <- km.out$cluster
 
 # Create a pair plot using ggpairs
 ggpairs(normalised_data,
-        columns = c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "log(% Female Hourly Earnings)"),
+        columns = c("% Female Legal Coverage", "log_10(% Females Unemployed)", "% Women in Managerial Positions", "sqrt(% Female Hourly Earnings)"),
         mapping = aes(color = as.factor(Cluster)),
-        title = "Pair Plot with K-means Clustering (k = 4)",
+        title = "Pair Plot with K-means Clustering (k = 2)",
         diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
         lower = list(continuous = wrap("points",
                                        position = position_jitter(height = 1, width = 0.5),
@@ -944,6 +946,7 @@ merged_data <- distinct(merged_data)
 
 merged_data$Continent <- as.factor(merged_data$Continent)
 merged_data$GDP <- round(as.numeric(merged_data$GDP), 2)
+merged_data$cluster_id <- as.factor(merged_data$cluster_id)
 merged_data <- merged_data %>% select(-ISO3)
 merged_data <- na.omit(merged_data)
 
@@ -958,7 +961,7 @@ train_data <- training(data_split)
 test_data <- testing(data_split)
 
 # Step 3: Build the model
-tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit=3, minbucket=1)
+tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit=5, minbucket=1)
 rpart.plot(tree, box.palette="GnRd")
 ```
 
@@ -972,7 +975,7 @@ rpart.plot(tree, box.palette="GnRd")
 # Step 4: Evaluating Model
 
 ctrl <- trainControl(method = "cv", number = 10)
-model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=3, minbucket=1)
+model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=5, minbucket=1)
 model
 
 # Step 5: Get Relative Importance
@@ -983,7 +986,7 @@ for (i in 1:length(tree$variable.importance)) {
 relative_importance
 ```
 
-Ten-fold cross validation indicates that the decision tree has a low accuracy of "Fill in"
+Ten-fold cross validation indicates that the decision tree has a low accuracy of `r model$results$Accuracy`
 
 The relative importance of the predictors for classification are as follows:
 
@@ -993,9 +996,11 @@ The relative importance of the predictors for classification are as follows:
 
 ## Summary of Quantitative Results
 
-\# See project-sample slide 23
-
-\# Last item, require above to be done
+- Moderate correlation between same-goal indicators.
+- Moderate correlation between legal employment and benefit frameworks for females and the representation of women in managerial positions.
+- Little correlations of statistical significance are observed between indicators for different goals.
+- Potentially influenced by the country's originally high unemployment rates across all genders.
+- Missing data for significant countries such as Russia and China.
 
 ## Policy Implications
 
