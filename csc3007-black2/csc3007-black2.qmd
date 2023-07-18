@@ -34,7 +34,6 @@ library(rpart)
 library(rpart.plot)
 library(caret)
 library(DT)
-library(kableExtra)
 ```
 
 ```{r}
@@ -482,8 +481,6 @@ plot <- ggpairs(
     )
   )
 )
-
-#ggplotly(plot)
 plot
 ```
 
@@ -518,15 +515,17 @@ merged_table <- table_5_1_1 |>
   left_join(table_8_5_2, by = c("ISO3", "Country")) |>
   left_join(table_8_5_1, by = c("ISO3", "Country")) |>
   select(Country, `% Legal Frameworks`, `% Managerial Positions`, `% Females Unemployed`, `Average Hourly Earnings $USD`)
-# 
+
 # kbl(merged_table, full_width = T) |>
 #   add_header_above(c(" " = 1, "Group 1" = 2, "Group 2" = 2))
-merged_table |>
-  datatable(rownames = FALSE, options=list(
-       initComplete = htmlwidgets::JS(
-          "function(settings, json) {",
-          paste0("$(this.api().table().container()).css({'font-size': '50%'});"),
-          "}")))
+
+# merged_table |>
+# datatable(rownames = FALSE, options=list(
+#      initComplete = htmlwidgets::JS(
+#         "function(settings, json) {",
+#         paste0("$(this.api().table().container()).css({'font-size': '50%'});"),
+#         "}")))
+
 ```
 
 ## **5.1.1 vs 8.5.2 Anticipation** {data-transitions="zoom"}
@@ -738,8 +737,6 @@ grid_plots
 
 ## K-Means Clustering
 
-\<\<\<\<\<\<\< Updated upstream
-
 ```{r}
 # VARADHARAJAN JAYAPRIYA 
 # merge data using left join, and drop all NA rows 
@@ -753,20 +750,20 @@ merged_data <- formatted_8_5_2 |>
             by = c("ISO3", "Country")) 
 
 # Perform log transformation for "% Female Hourly Earnings"
-merged_data <- merged_data |>
+normalised_data <- merged_data |>
   mutate("log(% Female Hourly Earnings)" = log(`% Female Hourly Earnings`))
 
 # Drop rows with NA values 
-merged_data <- drop_na(merged_data) 
+normalised_data <- drop_na(normalised_data) 
 
-merged_data_cols <- merged_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings")]  
+normalised_data_cols <- normalised_data[, c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "% Female Hourly Earnings")]  
 set.seed(123) 
 
 # Elbow plot to determine the optimal k value
 elbow_data <- data.frame(k = 1:10, total_withinss = numeric(10))
 
 for (k in 1:10) {
-  kmeans_result <- kmeans(merged_data_cols, centers = k)
+  kmeans_result <- kmeans(normalised_data_cols, centers = k)
   elbow_data[k, "total_withinss"] <- kmeans_result$tot.withinss
 }
 
@@ -786,13 +783,13 @@ ggplot(elbow_data, aes(x = k, y = total_withinss)) +
 
 # Perform k-means clustering with k = 3
 set.seed(123)
-km.out <- kmeans(merged_data_cols, centers = 3, nstart = 20)
+km.out <- kmeans(normalised_data_cols, centers = 3, nstart = 20)
 
 # Add cluster information to the merged_data dataframe
-merged_data$Cluster <- km.out$cluster
+normalised_data$Cluster <- km.out$cluster
 
 # Create a pair plot using ggpairs
-ggpairs(merged_data,
+ggpairs(normalised_data,
         columns = c("% Female Legal Coverage", "% Females Unemployed", "% Women in Managerial Positions", "log(% Female Hourly Earnings)"),
         mapping = aes(color = as.factor(Cluster)),
         title = "Pair Plot with K-means Clustering (k = 4)",
@@ -836,7 +833,7 @@ Can the cluster assignment be predicted based on the country's [GDP]{.underline}
 
 # Step1: Import Data & Data-preprocessing
 merged_data <- select(
-  merged_data, ISO3 = "ISO3", cluster_id = "Cluster",
+  normalised_data, ISO3 = "ISO3", cluster_id = "Cluster",
 ) |> drop_na()
 
 # Merge data using left join, and drop all NA rows
@@ -891,9 +888,7 @@ for (i in 1:length(tree$variable.importance)) {
 relative_importance
 ```
 
-The decision tree does not assign any country to cluster 2 (*Fill in*).
-
-Ten-fold cross validation indicates that the decision tree has a low accuracy of `r model$results$Accuracy`
+Ten-fold cross validation indicates that the decision tree has a low accuracy of "Fill in"
 
 The relative importance of the predictors for classification are as follows:
 
