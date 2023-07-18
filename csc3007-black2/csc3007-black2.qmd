@@ -821,17 +821,12 @@ ggplot(normalized_data, aes(x = latest_value, y = X, color = cluster_id)) +
 
 ```
 
-## Decision Tree
-
-```{r}
-# Checking (To be removed) 
-
-normalized_data <- arrange(normalized_data, geoAreaName)
-normalized_data
-```
+## Decision Tree {data-transitions="slide-in"}
 
 ```{r}
 #| echo: false
+#| message: FALSE
+#| results: 'hide'
 
 # TSUI SAU CHI (JAMES)
 
@@ -851,6 +846,8 @@ countries_sf <- st_drop_geometry(countries_sf)
 countries_sf <- as_tibble(countries_sf)
 
 ```
+
+Can the cluster assignment be predicted based on the country's [GDP]{.underline}, [Happy Planet Index Score]{.underline} and [Continent]{.underline}?
 
 ```{r}
 
@@ -874,7 +871,6 @@ merged_data <- distinct(merged_data)
 merged_data$Continent <- as.factor(merged_data$Continent)
 merged_data$GDP <- round(as.numeric(merged_data$GDP), 2)
 merged_data <- merged_data %>% select(-ISO3)
-
 merged_data <- na.omit(merged_data)
 
 # # Shuffle Data
@@ -888,29 +884,38 @@ train_data <- training(data_split)
 test_data <- testing(data_split)
 
 # Step 3: Build the model
-tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit=1, minbucket=1)
+tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit=2, minbucket=1)
 rpart.plot(tree, box.palette="GnRd")
-str(train_data)
 
 ```
 
+## Evaluation of Decision Tree
+
+The decision tree does not assign any country to cluster 2 (*Fill in*).
+
+Ten-fold cross validation indicates that the decision tree has a low accuracy of 0.91
+
+The relative importance of the predictors for classification are as follows:
+
+-   HPI: *Fill in*
+-   Continent: *Fill in*
+-   GDP size: *Fill in*
+
 ```{r}
+#| echo: false
+#| message: FALSE
+#| results: 'hide'
 
 # Step 4: Evaluating Model
 
 ctrl <- trainControl(method = "cv", number = 10)
-model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=1, minbucket=1)
+model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=2, minbucket=1)
 model
 
 # Step 5: Get Relative Importance
 as.data.frame(tree$variable.importance)
 
 ```
-
-
-## Evaluation of Decision Tree
-
-\# See project-sample slide 22
 
 ## Summary of Quantitative Results
 
