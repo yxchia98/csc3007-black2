@@ -1217,12 +1217,13 @@ ggplotly(plot, height = 590, width = 700)
 
 :::
 ::: {.column width="25%"}
-<span style="color:#f8766d">Low earnings and High Gender Equality Framework</span>
+<span style="color:#f8766d">1. Low earnings and High Gender Equality Framework</span>
 <br />
-<span style="color:#00bfc4">High Earnings</span>
+<span style="color:#00bfc4">2. High Earnings</span>
 :::
 ::::
-## Decision Tree {data-transitions="slide-in"}
+## Decision Tree (Classificiation) {data-transitions="slide-in"}
+:::: {.columns}
 
 ```{r}
 #| echo: false
@@ -1250,6 +1251,7 @@ countries_sf <- as_tibble(countries_sf)
 
 Can the cluster assignment be predicted based on the country's [GDP]{.underline}, [Happy Planet Index Score]{.underline} and [Continent]{.underline}?
 
+::: {.column width="75%"}
 ```{r}
 
 # Step1: Import Data & Data-preprocessing
@@ -1285,10 +1287,21 @@ train_data <- training(data_split)
 test_data <- testing(data_split)
 
 # Step 3: Build the model
-tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit=5, minbucket=1)
-rpart.plot(tree, box.palette="GnRd")
-```
+tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit=4, minbucket=1)
+train_data$predicted <- predict(tree, type = "class")
 
+# Plot the decision tree with a transparent background
+par(bg = NA)
+rpart.plot(tree, box.palette = c("#f8766d", "#00bfc4"), digits=-3)
+```
+:::
+
+::: {.column width="25%"}
+<span style="color:#f8766d">1. Low earnings and High Gender Equality Framework</span>
+<br />
+<span style="color:#00bfc4">2. High Earnings</span>
+:::
+::::
 ## Evaluation of Decision Tree
 
 ```{r}
@@ -1299,24 +1312,22 @@ rpart.plot(tree, box.palette="GnRd")
 # Step 4: Evaluating Model
 
 ctrl <- trainControl(method = "cv", number = 10)
-model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=5, minbucket=1)
-model
+model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=4, minbucket=1)
 
 # Step 5: Get Relative Importance
 relative_importance <- vector(length = length(tree$variable.importance))
 for (i in 1:length(tree$variable.importance)) {
   relative_importance[i] <- tree$variable.importance[i] / tree$variable.importance[1]
 }
-relative_importance
 ```
 
 Ten-fold cross validation indicates that the decision tree has a low accuracy of `r model$results$Accuracy`
 
 The relative importance of the predictors for classification are as follows:
 
--   HPI: `r relative_importance[1]`
--   Continent: `r relative_importance[2]`
--   GDP size: `r relative_importance[3]`
+-   `r names(tree$variable.importance)[1]`: `r relative_importance[1]`
+-   `r names(tree$variable.importance)[2]`: `r relative_importance[2]`
+-   `r names(tree$variable.importance)[3]`: `r relative_importance[3]`
 
 ## Summary of Quantitative Results
 
