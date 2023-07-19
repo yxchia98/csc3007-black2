@@ -184,16 +184,17 @@ Sheds light on the potential benefits and consequences of legal frameworks on ec
 
 ## UN Sustainable Development Goals
 
-Women participation in the economy is related to Goals 5 and 8.
+<small>Women participation in the economy is related to Goals 5 and 8.</small>
 
 ```{r}
 #| label: un-goals
+#| fig-align: center
 
 include_graphics("data/un_goals_img.jpg")
 ```
 
 ## Selected Indicators
-
+<small>
 **Indicator 5.1.1**: Legal frameworks that promote, enforce and monitor gender equality (percentage of achievement 0 - 100) \-- Area 3: employment and economic benefits
 
 **Indicator 5.5.2:** Proportion of women in managerial positions
@@ -201,11 +202,13 @@ include_graphics("data/un_goals_img.jpg")
 **Indicator 8.5.1:** Average hourly earnings of employees by sex, age, occupation and persons with disabilities
 
 **Indicator 8.5.2:** Unemployment rate by sex, age and persons with disabilities
+</small>
 
 ## Map of Percentage of Achievement in Gender Equality Legal Frameworks
 
 ```{r}
 #| label: ge-map
+#| fig-align: center
 
 # Wong Jun HAO
 
@@ -243,7 +246,7 @@ tm_poa_after_shape <-
     inner.margins = c(0.01, 0.2, 0.01, 0.01),
     bg.color = "lightblue",
     earth.boundary = TRUE,
-    space.color = "white",
+    space.color = "cornsilk1",
     frame = FALSE
   ) +
   tm_text("ISO3", size = "AREA") +
@@ -261,6 +264,7 @@ tm_poa
 
 ```{r}
 #| label: managerial-map
+#| fig-align: center
 
 # Wong Jun HAO
 
@@ -299,7 +303,7 @@ tm_poa_after_shape <-
     inner.margins = c(0.01, 0.2, 0.01, 0.01),
     bg.color = "lightblue",
     earth.boundary = TRUE,
-    space.color = "white",
+    space.color = "cornsilk1",
     frame = FALSE
   ) +
   tm_text("ISO3", size = "AREA") +
@@ -360,10 +364,14 @@ merged_data <- formatted_5_1_1 |>
 plot <- ggpairs(
   merged_data,
   mapping = aes(alpha = 0.7, fill = Country),
-  title = "Employment Legal Frameworks and Female Managerial Rate",
+  # title = "Employment Legal Frameworks and Female Managerial Rate",
   columns = c(
     "% Employment Legal Framework Achievement",
     "% Female in Management Position"
+  ),
+  columnLabels = c(
+        "% Employment Legal \nFramework Achievement",
+    "% Female in \nManagement Position"
   ),
   diag = list(continuous = wrap(
     "barDiag",
@@ -382,7 +390,8 @@ plot <- ggpairs(
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
 
-plot
+# plot
+ggplotly(plot, height = 400, width = 600)
 ```
 :::
 :::
@@ -390,10 +399,6 @@ plot
 ## Effect of Legal Gender Equality Frameworks on Women in Managerial Positions Re-expressed
 
 ::: columns
-::: {.column width="40%"}
-<small> The percentage of achievement in legal employment is re-expressed by taking the squared root of the skewed values. This helps to reduce the impact of extreme values and make the distribution more symmetrical. This resulted in an insignificant correlation value increase by 0.032</small>
-:::
-
 ::: {.column width="60%"}
 ```{r}
 #| label: ge-managerial-pp-re
@@ -409,10 +414,14 @@ merged_data <- merged_data |>
 plot <- ggpairs(
   merged_data,
   mapping = aes(alpha = 0.7, fill = Country),
-  title = "Employment Legal Frameworks and Female Managerial Rate",
+  # title = "Employment Legal Frameworks and Female Managerial Rate",
   columns = c(
     "sqrt % Employment Legal Framework Achievement",
     "% Female in Management Position"
+  ),
+  columnLabels = c(
+        "sqrt % Employment Legal \nFramework Achievement",
+    "% Female in Management \nPosition"
   ),
   diag = list(continuous = wrap(
     "barDiag",
@@ -431,8 +440,12 @@ plot <- ggpairs(
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
 
-plot
+# plot
+ggplotly(plot, height = 400, width = 600)
 ```
+:::
+::: {.column width="40%"}
+<small> The percentage of achievement in legal employment is re-expressed by taking the squared root of the skewed values. This helps to reduce the impact of extreme values and make the distribution more symmetrical. This resulted in an insignificant correlation value increase by 0.032</small>
 :::
 :::
 
@@ -507,7 +520,7 @@ tm_poa_after_shape <-
     inner.margins = c(0.01, 0.2, 0.01, 0.01),
     bg.color = "lightblue",
     earth.boundary = TRUE,
-    space.color = "white",
+    space.color = "cornsilk1",
     frame = FALSE
   ) +
   tm_text("ISO3", size = "AREA") +
@@ -571,7 +584,7 @@ tm_poa_after_shape <-
     inner.margins = c(0.01, 0.2, 0.01, 0.01),
     bg.color = "lightblue",
     earth.boundary = TRUE,
-    space.color = "white",
+    space.color = "cornsilk1",
     frame = FALSE
   ) +
   tm_text("ISO3", size = "AREA") +
@@ -660,10 +673,6 @@ plot
 ## EFFECTS OF UNEMPLOYMENT RATES ON HOURLY EARNINGS FOR WOMEN re-expressed
 
 ::: columns
-::: {.column width="40%"}
-<small> The average hourly earnings for women is re-expressed by taking the squared root of the skewed values while the unemployed rates is re-expressed by taking log10 of the skewed values. This helps to reduce the impact of extreme values and make the distribution more symmetrical. This resulted in an insignificant correlation value increase by 0.103, with a correlation that is very close to zero, indicating that there is virtually no relationship between them.</small>
-:::
-
 ::: {.column width="60%"}
 ```{r}
 #| label: unemploy-he-pp-re
@@ -708,6 +717,9 @@ plot <- ggpairs(
 
 plot
 ```
+:::
+::: {.column width="40%"}
+<small> The average hourly earnings for women is re-expressed by taking the squared root of the skewed values while the unemployed rates is re-expressed by taking log10 of the skewed values. This helps to reduce the impact of extreme values and make the distribution more symmetrical. This resulted in an insignificant correlation value increase by 0.103, with a correlation that is very close to zero, indicating that there is virtually no relationship between them.</small>
 :::
 :::
 
