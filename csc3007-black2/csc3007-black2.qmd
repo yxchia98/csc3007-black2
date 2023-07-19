@@ -737,8 +737,9 @@ We anticipate that having a higher the nation's legal framework achievements in 
 :::
 ::: {.column width="60%"}
 ```{r}
-#| fig-width: 10
-#| fig-height: 5
+#| fig-height: 4
+#| fig-width: 6
+
 # CHIA YI XUAN
 # Correlation Graph. See Sample-Project slide 11,12,15 
 
@@ -777,9 +778,10 @@ merged_data <- formatted_8_5_2 |>
 plot <- ggpairs(
   merged_data,
   mapping = aes(alpha = 0.7, fill = Country),
-  title = "Employment Legal Frameworks and Female Unemployment rate",
+  # title = "Gender Equality Frameworks and Female Unemployment rate",
   columns = c("% Gender Equality Frameworks",
               "% Females Unemployed"),
+  columnLabels = c("% Gender Equality \nFrameworks", "% Females \nUnemployed"),
   diag = list(continuous = wrap(
     "barDiag",
     bins = 10,
@@ -792,9 +794,12 @@ plot <- ggpairs(
                                    width = 0.5
                                  )))
 ) +
-  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
-# ggplotly(plot)
-plot
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
+  theme(
+    plot.background = element_rect(fill = "transparent",colour = NA)
+  )
+ggplotly(plot, height = 400, width = 600)
+# plot
 
 ```
 :::
@@ -807,8 +812,8 @@ plot
 :::
 ::: {.column width="60%"}
 ```{r}
-#| fig-width: 10
-#| fig-height: 5
+#| fig-height: 4
+#| fig-width: 6
 
 # Perform transformation
 merged_data <- merged_data |>
@@ -831,11 +836,12 @@ merged_data <- merged_data |>
 plot <- ggpairs(
   merged_data,
   mapping = aes(alpha = 0.7, fill = Country),
-  title = "Employment Legal Frameworks and Female Unemployment rate",
+  # title = "Employment Legal Frameworks and Female Unemployment rate",
   columns = c(
     "sqrt(% Gender Equality Frameworks)",
     "log_10(% Females Unemployed)"
   ),
+  columnLabels = c("% Gender Equality \nFrameworks", "% Females \nUnemployed"),
   diag = list(continuous = wrap(
     "barDiag",
     bins = 8,
@@ -848,10 +854,13 @@ plot <- ggpairs(
                                    width = 0.5
                                  )))
 ) +
-  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
+  theme(
+    plot.background = element_rect(fill = "transparent",colour = NA)
+  )
 
-# ggplotly(plot)
-plot
+ggplotly(plot, height = 400, width = 600)
+# plot
 
 ```
 :::
@@ -869,6 +878,9 @@ We anticipate that having more women in managerial positions will increase the a
 :::
 ::: {.column width="60%"}
 ```{r}
+#| fig-height: 4
+#| fig-width: 6
+
 # Correlation Graph.
 # Format 5.5.2 data into focused columns
 formatted_5_5_2 <- indicator_5_5_2_managerial |>
@@ -898,8 +910,10 @@ merged_data <- formatted_5_5_2 |>
 grid_plots <- ggpairs(
   merged_data,
   mapping = aes(alpha = 0.7, fill = Country),
-  title = "Relationship of women's Managerial Positions and Hourly Earnings",
+  # title = "Relationship of women's Managerial Positions and Hourly Earnings",
   columns = c("% Women in Managerial Positions", "Female Hourly Earnings"),
+  columnLabels = c("% Women in \nManagerial Positions", 
+                   "Female Hourly \nEarnings"),
   diag = list(continuous = wrap(
     "barDiag",
     bins = 8,
@@ -912,11 +926,14 @@ grid_plots <- ggpairs(
                                    width = 0.5
                                  )))
 ) +
-  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
+  theme(
+    plot.background = element_rect(fill = "transparent",colour = NA)
+  )
 
 # Print 4 grid plots
-grid_plots
-
+# grid_plots
+ggplotly(grid_plots, height = 400, width = 600)
 
 ```
 :::
@@ -929,6 +946,9 @@ grid_plots
 :::
 ::: {.column width="60%"}
 ```{r}
+#| fig-height: 4
+#| fig-width: 6
+
 # Correlation Graph
 
 merged_data <- merged_data |>
@@ -938,11 +958,13 @@ merged_data <- merged_data |>
 grid_plots <- ggpairs(
   merged_data,
   mapping = aes(alpha = 0.7, fill = Country),
-  title = "Relationship of women's Managerial Positions and Hourly Earnings",
+  # title = "Relationship of women's Managerial Positions and Hourly Earnings",
   columns = c(
     "% Women in Managerial Positions",
     "log(Female Hourly Earnings USD)"
   ),
+  columnLabels = c("% Women in \nManagerial Positions", 
+                   "Female Hourly \nEarnings"),
   diag = list(continuous = wrap(
     "barDiag",
     bins = 8,
@@ -955,10 +977,14 @@ grid_plots <- ggpairs(
                                    width = 0.5
                                  )))
 ) +
-  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
+  theme(
+    plot.background = element_rect(fill = "transparent",colour = NA)
+  )
 
 # Print 4 grid plots
-grid_plots
+# grid_plots
+ggplotly(grid_plots, height = 400, width = 600)
 
 ```
 :::
@@ -967,8 +993,7 @@ grid_plots
 ## Comparsion of the four indicators
 
 ```{r}
-#| fig-width: 10
-#| fig-height: 5
+
 
 # Yi Xuan and Jin Ming
 
@@ -1039,6 +1064,12 @@ grid_plots <- ggpairs(
     "% Women in Managerial Positions",
     "sqrt(Female Hourly Earnings USD)"
   ),
+  columnLabels = c(
+    "sqrt(% Gender \nEquality Frameworks)",
+    "log_10(% Females\n Unemployed)",
+    "% Women in \nManagerial Positions",
+    "sqrt(Female Hourly\n Earnings USD)"
+  ),
   diag = list(continuous = wrap(
     "barDiag",
     bins = 8,
@@ -1050,10 +1081,14 @@ grid_plots <- ggpairs(
                                    height = 1, width = 0.5
                                  )))
 ) +
-  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
+  theme(
+    plot.background = element_rect(fill = "transparent",colour = NA)
+  )
 
 # Print the grid plots
-grid_plots
+# grid_plots
+ggplotly(grid_plots, height = 600, width = 1000)
 
 ```
 
