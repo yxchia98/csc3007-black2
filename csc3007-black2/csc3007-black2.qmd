@@ -1360,6 +1360,7 @@ rpart.plot(tree, digits=-3, box.palette = list("#f8766d", "#00bfc4", "#56B4E9"))
 
 ctrl <- trainControl(method = "cv", number = 10)
 model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit = 6, minbucket = 1)
+model
 
 # Step 5: Get Relative Importance
 relative_importance <- vector(length = length(tree$variable.importance))
@@ -1368,8 +1369,8 @@ for (i in 1:length(tree$variable.importance)) {
 }
 ```
 
-Ten-fold cross validation indicates that the decision tree has a accuracy of `r model$results$Accuracy`.\
-Kappa Value is shown to be 0, entailing data imbalance.
+Ten-fold cross validation indicates that the decision tree has a accuracy of `r max(model$results$Accuracy)`.\
+Kappa Value is shown to be `r model$results$Kappa[which.max(model$results$Accuracy)]`.
 
 The relative importance of the predictors for classification are as follows:
 
