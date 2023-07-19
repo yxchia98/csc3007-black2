@@ -390,7 +390,10 @@ plot <- ggpairs(
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
   theme(
-    plot.background = element_rect(fill = "transparent", colour = NA)
+    plot.background = element_rect(fill = "transparent", colour = NA),
+    text = element_text(size = 8),
+    axis.text.x = element_text(size = 8),
+    axis.text.y = element_text(size = 8)
   )
 
 # plot
@@ -442,7 +445,10 @@ plot <- ggpairs(
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
   theme(
-    plot.background = element_rect(fill = "transparent", colour = NA)
+    plot.background = element_rect(fill = "transparent", colour = NA),
+    text = element_text(size = 8),
+    axis.text.x = element_text(size = 8),
+    axis.text.y = element_text(size = 8)
   )
 
 # plot
@@ -661,7 +667,10 @@ plot <- ggpairs(
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
   theme(
-    plot.background = element_rect(fill = "transparent", colour = NA)
+    plot.background = element_rect(fill = "transparent",colour = NA),
+    text = element_text(size = 8),
+    axis.text.x = element_text(size = 8),
+    axis.text.y = element_text(size = 8)
   )
 
 # plot
@@ -697,7 +706,7 @@ plot <- ggpairs(
     "log10 % Female that is Unemployed"
   ),
   columnLabels = c(
-    "sqrt Average Hourly \nEarning in USD \nfor Female",
+    "sqrt Average Hourly Earnings \nin USD for Female",
     "log10 % Female \nthat is Unemployed"
   ),
   diag = list(continuous = wrap(
@@ -717,7 +726,10 @@ plot <- ggpairs(
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
   theme(
-    plot.background = element_rect(fill = "transparent", colour = NA)
+    plot.background = element_rect(fill = "transparent",colour = NA),
+    text = element_text(size = 8),
+    axis.text.x = element_text(size = 8),
+    axis.text.y = element_text(size = 8)
   )
 
 
@@ -866,7 +878,10 @@ plot <- ggpairs(
                                  )))
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
-  theme(plot.background = element_rect(fill = "transparent", colour = NA))
+  theme(plot.background = element_rect(fill = "transparent", colour = NA),
+        text = element_text(size = 12),
+        axis.text.x = element_text(size = 8),
+        axis.text.y = element_text(size = 8))
 ggplotly(plot, height = 400, width = 600)
 # plot
 ```
@@ -900,7 +915,8 @@ plot <- ggpairs(
     "sqrt(% Gender Equality Frameworks)",
     "log_10(% Females Unemployed)"
   ),
-  columnLabels = c("% Gender Equality \nFrameworks", "% Females \nUnemployed"),
+  columnLabels = c("sqrt(% Gender \nEquality Frameworks)", 
+                   "log_10(% Females \nUnemployed)"),
   diag = list(continuous = wrap(
     "barDiag",
     bins = 8,
@@ -915,7 +931,10 @@ plot <- ggpairs(
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
   theme(
-    plot.background = element_rect(fill = "transparent", colour = NA))
+    plot.background = element_rect(fill = "transparent", colour = NA),
+        text = element_text(size = 10),
+        axis.text.x = element_text(size = 8),
+        axis.text.y = element_text(size = 8))
 
 ggplotly(plot, height = 400, width = 600)
 # plot
@@ -1140,7 +1159,10 @@ grid_plots <- ggpairs(
                                  )))
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
-  theme(plot.background = element_rect(fill = "transparent", colour = NA))
+  theme(plot.background = element_rect(fill = "transparent", colour = NA),
+        text = element_text(size = 8),
+        axis.text.x = element_text(size = 8),
+        axis.text.y = element_text(size = 8))
 
 # Print the grid plots
 # grid_plots
@@ -1242,7 +1264,10 @@ plot <- ggpairs(normalised_data,
 ) +
   scale_fill_manual(values = c("#f8766d", "#00bfc4", "#56B4E9", "#E69F00")) +
   theme(
-    plot.background = element_rect(fill = "transparent", colour = NA)
+    plot.background = element_rect(fill = "transparent", colour = NA),
+    text = element_text(size = 8),
+    axis.text.x = element_text(size = 8),
+    axis.text.y = element_text(size = 8)
   )
 
 ggplotly(plot, height = 600, width = 700)
