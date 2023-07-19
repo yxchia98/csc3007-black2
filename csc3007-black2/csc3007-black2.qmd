@@ -7,6 +7,18 @@ format:
     transition: slide
     theme: solarized
     center: true
+    include-in-header: 
+      text: |
+        <style>
+        .center-xy {
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -ms-transform: translateY(-50%), translateX(-50%);
+          transform: translateY(-50%), translateX(-50%);
+        }
+        </style>
 ---
 
 ```{r}
@@ -33,6 +45,7 @@ library(rpart)
 library(rpart.plot)
 library(caret)
 library(DT)
+library(knitr)
 ```
 
 ```{r}
@@ -163,6 +176,11 @@ Sheds light on the potential benefits and consequences of legal frameworks on ec
 
 Women participation in the economy is related to Goals 5 and 8.
 
+```{r}
+include_graphics("data/un_goals_img.jpg")
+```
+
+
 ## Selected Indicators
 
 **Indicator 5.1.1**: Legal frameworks that promote, enforce and monitor gender equality (percentage of achievement 0 - 100) \-- Area 3: employment and economic benefits
@@ -286,8 +304,13 @@ We anticipate that the higher the nation's legal framework achievements in gende
 
 ## Effect of Legal Gender Equality Frameworks on Women in Managerial Positions
 
-<small>There seem to be a moderate correlation between the percentage of achievement in legal employment and benefit frameworks for females, and the percentage of woman in managerial position. The data distribution for the percentage of achievement in legal employment is left skewed and percentage of woman in managerial position is normally distributed.</small>
+:::: {.columns}
 
+::: {.column width="40%"}
+<small>There seem to be a moderate correlation between the percentage of achievement in legal employment and benefit frameworks for females, and the percentage of woman in managerial position. The data distribution for the percentage of achievement in legal employment is left skewed and percentage of woman in managerial position is normally distributed.</small>
+:::
+
+::: {.column width="60%"}
 ```{r}
 # Wong Jun HAO
 
@@ -343,11 +366,18 @@ plot <- ggpairs(
 
 plot
 ```
+:::
+
+::::
+
 
 ## Effect of Legal Gender Equality Frameworks on Women in Managerial Positions Re-expressed
+:::: {.columns}
 
+::: {.column width="40%"}
 <small> The percentage of achievement in legal employment is re-expressed by taking the squared root of the skewed values. This helps to reduce the impact of extreme values and make the distribution more symmetrical. This resulted in an insignificant correlation value increase by 0.032</small>
-
+:::
+::: {.column width="60%"}
 ```{r}
 # Wong Jun HAO
 
@@ -381,6 +411,10 @@ plot <- ggpairs(
 
 plot
 ```
+:::
+
+::::
+
 
 ## Map of Average Hourly Earning by Women
 
@@ -525,7 +559,11 @@ We anticipate that countries with lower unemployment rates for women should have
 -   Because countries with lower unemployment rates have a better economic environment which should result in higher average income for their citizens
 
 ## EFFECTS OF UNEMPLOYMENT RATES ON HOURLY EARNINGS FOR WOMEN
+:::: {.columns}
+::: {.column width="40%"}
 <small>A correlation of -0.097 indicates a weak negative relationship between unemployment rate for women and average hourly earning (USD) for women. Both data distribution are left skewed.</small>
+:::
+::: {.column width="60%"}
 ```{r}
 formatted_8_5_1 <-
   select(
@@ -574,12 +612,15 @@ plot <- ggpairs(
 plot
 
 ```
-
-
+:::
+::::
 
 ## EFFECTS OF UNEMPLOYMENT RATES ON HOURLY EARNINGS FOR WOMEN re-expressed
+:::: {.columns}
+::: {.column width="40%"}
 <small> The average hourly earnings for women is re-expressed by taking the squared root of the skewed values while the unemployed rates is re-expressed by taking log10 of the skewed values. This helps to reduce the impact of extreme values and make the distribution more symmetrical. This resulted in an insignificant correlation value increase by 0.103, with a correlation that is very close to zero, indicating that there is virtually no relationship between them.</small>
-
+:::
+::: {.column width="60%"}
 ```{r}
 # JEANIE OH JUN NING
 # Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
@@ -619,7 +660,8 @@ plot <- ggpairs(
 
 plot
 ```
-
+:::
+::::
 ## Table of Women Economical Success
 
 ```{r}
@@ -689,9 +731,11 @@ We anticipate that having a higher the nation's legal framework achievements in 
 -   Because by decreasing gender discrimination for women, more companies would be willing to employ women.
 
 ## Gender Equality Frameworks vs Female Unemployment
-
+:::: {.columns}
+::: {.column width="40%"}
 <small>There doesn't seem to be any significant correlation between the percentage of legal employment and benefit frameworks for females, and the unemployment rate of females. However, this might be due to skewed distributions, hence we will re-express this data. </small>
-
+:::
+::: {.column width="60%"}
 ```{r}
 #| fig-width: 10
 #| fig-height: 5
@@ -753,11 +797,15 @@ plot <- ggpairs(
 plot
 
 ```
+:::
+::::
 
 ## Gender Equality Frameworks vs Female Unemployment Re-Expressed
-
+:::: {.columns}
+::: {.column width="40%"}
 <small>After Box Cox and logarithmic transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant. </small>
-
+:::
+::: {.column width="60%"}
 ```{r}
 #| fig-width: 10
 #| fig-height: 5
@@ -806,7 +854,8 @@ plot <- ggpairs(
 plot
 
 ```
-
+:::
+::::
 ## Anticipation of women in managerial positions on women average hourly earnings
 
 We anticipate that having more women in managerial positions will increase the average hourly earning for female employees.
@@ -814,9 +863,11 @@ We anticipate that having more women in managerial positions will increase the a
 -   Because in general, employees in a managerial position would receive higher income and with more women holding managerial positions, the average hourly earning for female employees will increase.
 
 ## women in managerial positions vs women average hourly earnings
-
+:::: {.columns}
+::: {.column width="40%"}
 <small> There seems to be a negative correlation between the percentage of female hourly earnings and women in managerial positions. However, this might be due to skewed distributions of female hourly earnings, hence we will re-express this data using logarithmic transformations . </small>
-
+:::
+::: {.column width="60%"}
 ```{r}
 # Correlation Graph.
 # Format 5.5.2 data into focused columns
@@ -868,10 +919,15 @@ grid_plots
 
 
 ```
+:::
+::::
+
 ## women in managerial positions vs women average hourly earnings re-expressed
-
+:::: {.columns}
+::: {.column width="40%"}
 <small> There still seems to be a negative correlation between the percentage of female hourly earnings and women in managerial positions after logarithmic transformations . </small>
-
+:::
+::: {.column width="60%"}
 ```{r}
 # Correlation Graph
 
@@ -905,6 +961,8 @@ grid_plots <- ggpairs(
 grid_plots
 
 ```
+:::
+::::
 
 ## Comparsion of the four indicators
 
@@ -1015,7 +1073,7 @@ merged_data <- formatted_8_5_2 |>
 
 # Perform sqrt transformation for "% Female Hourly Earnings" and log transformation for "% Females Unemployed"
 normalised_data <- merged_data |>
-  mutate("sqrt(Female Hourly Earnings USD)" = sqrt(`% Female Hourly Earnings`)) |>
+  mutate("sqrt(Female Hourly Earnings USD)" = sqrt(`Female Hourly Earnings`)) |>
   mutate("log_10(% Females Unemployed)" = log10(`% Females Unemployed`)) |>
   mutate("sqrt(% Gender Equality Frameworks)" = sqrt(`% Gender Equality Frameworks`))
 
