@@ -961,7 +961,8 @@ We anticipate that having more women in managerial positions will increase the a
 #| fig-height: 4
 #| fig-width: 6
 
-# Correlation Graph.
+# Gu jin ming
+
 # Format 5.5.2 data into focused columns
 formatted_5_5_2 <- indicator_5_5_2_managerial |>
   drop_na(latest_value) |>
@@ -1022,6 +1023,7 @@ ggplotly(grid_plots, height = 400, width = 600)
 #| fig-height: 4
 #| fig-width: 6
 
+# Gu jin ming
 # Correlation Graph
 
 merged_data <- merged_data |>
