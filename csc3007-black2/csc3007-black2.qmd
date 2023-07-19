@@ -475,26 +475,22 @@ indicator_8_5_1_average_hourly <-
     indicator_8_5_1_average_hourly,
     currency_code = countrycode(
       ISO3,
-      origin = 'iso3c',
-      destination = 'iso4217c',
+      origin = "iso3c",
+      destination = "iso4217c",
       warn = FALSE
     )
   )
 
 # get value in USD
 indicator_8_5_1_average_hourly$exchange_usd <-
-  exchange_rate$one_usd_is_equivalent_to[match(indicator_8_5_1_average_hourly$currency_code,
-                                               exchange_rate$currency)]
+  exchange_rate$one_usd_is_equivalent_to[
+    match(indicator_8_5_1_average_hourly$currency_code,
+          exchange_rate$currency)]
 
 indicator_8_5_1_average_hourly$amount_usd <-
-  indicator_8_5_1_average_hourly$latest_value / indicator_8_5_1_average_hourly$exchange_usd
+  indicator_8_5_1_average_hourly$latest_value /
+  indicator_8_5_1_average_hourly$exchange_usd
 
-# max USD = 64.19665
-# min value = 0
-# max(indicator_8_5_1_average_hourly$amount_usd, na.rm = T)
-# min(indicator_8_5_1_average_hourly$amount_usd, na.rm = T)
-
-# graph from 1-65
 cmap_851 <-
   world |> left_join(indicator_8_5_1_average_hourly, by = c("ISO3"))
 
@@ -549,15 +545,6 @@ tm_poa
 # retrieving only Females
 indicator_8_5_2_unemployment <-
   filter(indicator_8_5_2_unemployment, sex_code == "F")
-
-# nrow(indicator_8_5_2_unemployment)
-# count <- sum(!is.na(indicator_8_5_2_unemployment$latest_value) & indicator_8_5_2_unemployment$latest_value >= 40 & indicator_8_5_2_unemployment$latest_value <= 50)
-# count
-
-# max percent =  50
-# min value = 0.9
-# max(indicator_8_5_2_unemployment$latest_value, na.rm = T)
-# min(indicator_8_5_2_unemployment$latest_value, na.rm = T)
 
 cmap_852 <-
   world |> left_join(indicator_8_5_2_unemployment, by = c("ISO3"))
@@ -645,14 +632,13 @@ formatted_8_5_2 <-
 
 merged_data <- formatted_8_5_1 |>
   left_join(formatted_8_5_2,
-            by = c('ISO3', 'Country'),
+            by = c("ISO3", "Country"),
             relationship = "many-to-many") |>
   drop_na()
 
 plot <- ggpairs(
   merged_data,
   mapping = aes(alpha = 0.7, fill = Country),
-  # title = "Women Average Hourly Earning (USD) and Women Unemployment Rate",
   columns = c(
     "Average Hourly Earning in USD for Female",
     "% Female that is Unemployed"
@@ -675,7 +661,7 @@ plot <- ggpairs(
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
   theme(
-    plot.background = element_rect(fill = "transparent",colour = NA)
+    plot.background = element_rect(fill = "transparent", colour = NA)
   )
 
 # plot
@@ -706,7 +692,6 @@ merged_data <- merged_data |>
 plot <- ggpairs(
   merged_data,
   mapping = aes(alpha = 0.7, fill = Country),
-  # title = "Female Average Hourly Earning (USD) and Female Unemployment Rate",
   columns = c(
     "sqrt Average Hourly Earning in USD for Female",
     "log10 % Female that is Unemployed"
