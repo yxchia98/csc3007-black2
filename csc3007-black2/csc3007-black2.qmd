@@ -7,19 +7,6 @@ format:
     transition: slide
     theme: solarized
     center: true
-    include-in-header: 
-      text: |
-        <style>
-        .center-xy {
-          margin: 0;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          -ms-transform: translateY(-50%), translateX(-50%);
-          transform: translateY(-50%), translateX(-50%);
-        }
-        </style>
----
 ---
 
 ```{r}
@@ -667,7 +654,7 @@ plot <- ggpairs(
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
   theme(
-    plot.background = element_rect(fill = "transparent",colour = NA),
+    plot.background = element_rect(fill = "transparent", colour = NA),
     text = element_text(size = 8),
     axis.text.x = element_text(size = 8),
     axis.text.y = element_text(size = 8)
@@ -726,7 +713,7 @@ plot <- ggpairs(
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
   theme(
-    plot.background = element_rect(fill = "transparent",colour = NA),
+    plot.background = element_rect(fill = "transparent", colour = NA),
     text = element_text(size = 8),
     axis.text.x = element_text(size = 8),
     axis.text.y = element_text(size = 8)
@@ -915,7 +902,7 @@ plot <- ggpairs(
     "sqrt(% Gender Equality Frameworks)",
     "log_10(% Females Unemployed)"
   ),
-  columnLabels = c("sqrt(% Gender \nEquality Frameworks)", 
+  columnLabels = c("sqrt(% Gender \nEquality Frameworks)",
                    "log_10(% Females \nUnemployed)"),
   diag = list(continuous = wrap(
     "barDiag",
@@ -1416,7 +1403,7 @@ The relative importance of the predictors for classification are as follows:
 -   `r names(tree$variable.importance)[2]`: `r relative_importance[2]`
 -   `r names(tree$variable.importance)[3]`: `r relative_importance[3]`
 
-## Summary of Quantitative Results
+## Summary of Quantitative Results {.smaller}
 
 -   Correlation between same-goal indicators.
 -   Correlation between legal employment and benefit frameworks for females and the representation of women in managerial positions.
@@ -1425,12 +1412,14 @@ The relative importance of the predictors for classification are as follows:
 -   Potentially influenced by the country's originally high unemployment rates across all genders.
 -   Many missing. Only 35 of 68 countries have data for all four indicators.
 
-## Policy Implications
+## Policy Implications {.smaller}
 
 -   Achievement of Legal Frameworks on Gender Equality does indeed affect Economic Growth for women.
 -   Higher Achievement of Legal Frameworks on Gender Equality has a strong correlation with higher Average Hourly Earnings for Women.
 -   GDP does serve as a predictor for a nation's legal framework achievements in gender equality & proportion of women in managerial positions.
 -   Assist nations in enhancing their data gathering methods to facilitate informed decision-making.
+
+# Thank You
 
 ```{r}
 #| label: lint
