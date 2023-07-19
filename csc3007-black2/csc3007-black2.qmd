@@ -150,7 +150,7 @@ In a report published by the International Monetary Fund titled "Tackling Legal 
 
 [^1]: Christopherson Puh, K. M., Yiadom, A., Johnson, J., Fernando, F., Yazid, H., & Thiemann, C. (2022). Tackling Legal Impediments to Women's Economic Empowerment, IMF Working Papers, 2022(037), A001. Retrieved Jul 19, 2023, from https://doi.org/10.5089/9798400203640.001.A001
 
-## Purpose of This Presentation
+## Purpose of This Presentation (cont)
 
 This presentation thus aims to explore the relationship between nation's legal framework achievements in gender equality and woman's success in the economy. offering insights into the significance of legal framework in gender equality and woman's status in a country economy.
 
@@ -184,7 +184,7 @@ Sheds light on the potential benefits and consequences of legal frameworks on ec
 
 ## UN Sustainable Development Goals
 
-<small>Women participation in the economy is related to Goals 5 and 8.</small>
+Women participation in the economy is related to Goals 5 and 8.
 
 ```{r}
 #| label: un-goals
@@ -204,7 +204,7 @@ include_graphics("data/un_goals_img.jpg")
 **Indicator 8.5.2:** Unemployment rate by sex, age and persons with disabilities
 </small>
 
-## Map of Percentage of Achievement in Gender Equality Legal Frameworks
+## Map of Percentage of Achievement in Legal Frameworks on Gender Equality
 
 ```{r}
 #| label: ge-map
@@ -323,11 +323,11 @@ We anticipate that the higher the nation's legal framework achievements in gende
 
 -   Because the chance of gender-based discrimination should be reduced as a result of the legal frameworks in place, this should result in better opportunities for women to hold managerial positions.
 
-## Effect of Legal Gender Equality Frameworks on Women in Managerial Positions
+## Legal Frameworks on Gender Equality vs Women in Managerial Positions
 
 ::: columns
 ::: {.column width="40%"}
-<small>There seem to be a moderate correlation between the percentage of achievement in legal employment and benefit frameworks for females, and the percentage of woman in managerial position. The data distribution for the percentage of achievement in legal employment is left skewed and percentage of woman in managerial position is normally distributed.</small>
+<small>There seem to be a weak correlation between the percentage of achievement in legal employment and benefit frameworks for females, and the percentage of woman in managerial position. The data distribution for the percentage of achievement in legal employment is left skewed and percentage of woman in managerial position is normally distributed.</small>
 :::
 
 ::: {.column width="60%"}
@@ -388,7 +388,10 @@ plot <- ggpairs(
     )
   )
 ) +
-  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
+  theme(
+    plot.background = element_rect(fill = "transparent",colour = NA)
+  )
 
 # plot
 ggplotly(plot, height = 400, width = 600)
@@ -396,7 +399,7 @@ ggplotly(plot, height = 400, width = 600)
 :::
 :::
 
-## Effect of Legal Gender Equality Frameworks on Women in Managerial Positions Re-expressed
+## Legal Frameworks on Gender Equality  vs Women in Managerial Positions Re-expressed
 
 ::: columns
 ::: {.column width="60%"}
@@ -438,14 +441,17 @@ plot <- ggpairs(
     )
   )
 ) +
-  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
+  theme(
+    plot.background = element_rect(fill = "transparent",colour = NA)
+  )
 
 # plot
 ggplotly(plot, height = 400, width = 600)
 ```
 :::
 ::: {.column width="40%"}
-<small> The percentage of achievement in legal employment is re-expressed by taking the squared root of the skewed values. This helps to reduce the impact of extreme values and make the distribution more symmetrical. This resulted in an insignificant correlation value increase by 0.032</small>
+<small> The percentage of achievement in legal employment is re-expressed by taking the squared root of the skewed values. This helps to reduce the impact of extreme values and make the distribution more symmetrical. This resulted in an higher correlation significance value increase by 0.021, making it slightly more correlated.</small>
 :::
 :::
 
@@ -604,11 +610,11 @@ We anticipate that countries with lower unemployment rates for women should have
 
 -   Because countries with lower unemployment rates have a better economic environment which should result in higher average income for their citizens
 
-## EFFECTS OF UNEMPLOYMENT RATES ON HOURLY EARNINGS FOR WOMEN
+## UNEMPLOYMENT RATES vs HOURLY EARNINGS FOR WOMEN
 
 ::: columns
 ::: {.column width="40%"}
-<small>A correlation of -0.097 indicates a weak negative relationship between unemployment rate for women and average hourly earning (USD) for women. Both data distribution are left skewed.</small>
+<small>A correlation of -0.097 indicates a weak negative relationship between unemployment rate for women and average hourly earning (USD) for women. Both data distribution are right-skewed.</small>
 :::
 
 ::: {.column width="60%"}
@@ -646,10 +652,14 @@ merged_data <- formatted_8_5_1 |>
 plot <- ggpairs(
   merged_data,
   mapping = aes(alpha = 0.7, fill = Country),
-  title = "Women Average Hourly Earning (USD) and Women Unemployment Rate",
+  # title = "Women Average Hourly Earning (USD) and Women Unemployment Rate",
   columns = c(
     "Average Hourly Earning in USD for Female",
     "% Female that is Unemployed"
+  ),
+  columnLabels = c(
+        "Average Hourly Earning \nin USD for Female",
+    "% Female that \nis Unemployed"
   ),
   diag = list(continuous = wrap(
     "barDiag",
@@ -663,14 +673,18 @@ plot <- ggpairs(
                                    width = 0.5
                                  )))
 ) +
-  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
+  theme(
+    plot.background = element_rect(fill = "transparent",colour = NA)
+  )
 
-plot
+# plot
+ggplotly(plot, height = 400, width = 600)
 ```
 :::
 :::
 
-## EFFECTS OF UNEMPLOYMENT RATES ON HOURLY EARNINGS FOR WOMEN re-expressed
+## UNEMPLOYMENT RATES vs HOURLY EARNINGS FOR WOMEN re-expressed
 
 ::: columns
 ::: {.column width="60%"}
@@ -692,10 +706,14 @@ merged_data <- merged_data |>
 plot <- ggpairs(
   merged_data,
   mapping = aes(alpha = 0.7, fill = Country),
-  title = "Female Average Hourly Earning (USD) and Female Unemployment Rate",
+  # title = "Female Average Hourly Earning (USD) and Female Unemployment Rate",
   columns = c(
     "sqrt Average Hourly Earning in USD for Female",
     "log10 % Female that is Unemployed"
+  ),
+  columnLabels = c(
+    "sqrt Average Hourly \nEarning in USD \nfor Female",
+    "log10 % Female \nthat is Unemployed"
   ),
   diag = list(continuous = wrap(
     "barDiag",
@@ -712,14 +730,18 @@ plot <- ggpairs(
     )
   )
 ) +
-  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
+  theme(
+    plot.background = element_rect(fill = "transparent",colour = NA)
+  )
 
 
-plot
+# plot
+ggplotly(plot, height = 400, width = 600)
 ```
 :::
 ::: {.column width="40%"}
-<small> The average hourly earnings for women is re-expressed by taking the squared root of the skewed values while the unemployed rates is re-expressed by taking log10 of the skewed values. This helps to reduce the impact of extreme values and make the distribution more symmetrical. This resulted in an insignificant correlation value increase by 0.103, with a correlation that is very close to zero, indicating that there is virtually no relationship between them.</small>
+<small>The two indicators are transformed using square root and logarithm respectively, making extreme values more symmetrical. This resulted in an insignificant correlation value increase by 0.103, with a correlation that is very close to zero, indicating that there is virtually no relationship between them.</small>
 :::
 :::
 
@@ -785,13 +807,13 @@ merged_table |>
             )))
 ```
 
-## Anticipation of what Extensive Gender Equality Frameworks does to Female Unemployment
+## Anticipation of what Achievement of Legal Frameworks on Gender Equality does to Female Unemployment
 
-We anticipate that having a higher the nation's legal framework achievements in gender equality would result in lower unemployment rate for women.
+We anticipate that having a higher the nation's legal framework achievements on gender equality would result in lower unemployment rate for women.
 
 -   Because by decreasing gender discrimination for women, more companies would be willing to employ women.
 
-## Gender Equality Frameworks vs Female Unemployment
+## Legal Frameworks on Gender Equality  vs Female Unemployment
 
 ::: columns
 ::: {.column width="40%"}
@@ -807,7 +829,7 @@ We anticipate that having a higher the nation's legal framework achievements in 
 
 # format 5.1.1 data into focused columns
 formatted_5_1_1 <- indicator_5_1_1_frameworks |>
-  drop_na(latest_value) |>
+  # drop_na(latest_value) |>
   select("Country" = geoAreaName,
          ISO3,
          "% Gender Equality Frameworks" = latest_value) |>
@@ -864,7 +886,7 @@ ggplotly(plot, height = 400, width = 600)
 :::
 :::
 
-## Gender Equality Frameworks vs Female Unemployment Re-Expressed
+## Legal Frameworks on Gender Equality vs Female Unemployment Re-Expressed
 
 ::: columns
 ::: {.column width="60%"}
@@ -923,7 +945,7 @@ ggplotly(plot, height = 400, width = 600)
 ```
 :::
 ::: {.column width="40%"}
-<small>After Box Cox and logarithmic transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant. </small>
+<small>After logarithmic and square root transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant. </small>
 :::
 :::
 
@@ -961,7 +983,7 @@ formatted_8_5_1 <- indicator_8_5_1_average_hourly |>
   filter(sex_desc == "Female") |>
   select("Country" = geoAreaName,
          ISO3,
-         "Female Hourly Earnings" = latest_value) |>
+         "Female Hourly Earnings" = amount_usd) |>
   distinct(ISO3, .keep_all = TRUE)
 
 # Merge data using left join, and drop all NA rows
@@ -1015,7 +1037,7 @@ ggplotly(grid_plots, height = 400, width = 600)
 # Correlation Graph
 
 merged_data <- merged_data |>
-  mutate("log(Female Hourly Earnings USD)" = log(`Female Hourly Earnings`))
+  mutate("sqrt(Female Hourly Earnings USD)" = sqrt(`Female Hourly Earnings`))
 
 # Create 4 grid plots using ggpairs()
 grid_plots <- ggpairs(
@@ -1024,10 +1046,10 @@ grid_plots <- ggpairs(
   # title = "Relationship of women's Managerial Positions and Hourly Earnings",
   columns = c(
     "% Women in Managerial Positions",
-    "log(Female Hourly Earnings USD)"
+    "sqrt(Female Hourly Earnings USD)"
   ),
   columnLabels = c("% Women in \nManagerial Positions", 
-                   "Female Hourly \nEarnings"),
+                   "sqrt(Female Hourly \nEarnings)"),
   diag = list(continuous = wrap(
     "barDiag",
     bins = 8,
@@ -1100,7 +1122,7 @@ formatted_8_5_1 <- indicator_8_5_1_average_hourly |>
   filter(sex_desc == "Female") |>
   select("Country" = geoAreaName,
          ISO3,
-         "Female Hourly Earnings" = latest_value) |>
+         "Female Hourly Earnings" = amount_usd) |>
   distinct(ISO3, .keep_all = TRUE)
 
 
@@ -1204,7 +1226,8 @@ ggplotly(plot, height = 400, width = 600)
 ```
 :::
 ::: {.column width="40%"}
-The ‘elbow criterion’ suggests k=2.
+The ‘elbow criterion’ suggests k = 2 or 3.
+We choose k=3, but this decision is admittedly subjective.
 :::
 ::::
 
@@ -1218,9 +1241,9 @@ The ‘elbow criterion’ suggests k=2.
 
 # See project-sample slide 20
 
-# Perform k-means clustering with k = 2
+# Perform k-means clustering with k = 3
 set.seed(123)
-km.out <- kmeans(normalised_data_cols, centers = 2, nstart = 20)
+km.out <- kmeans(normalised_data_cols, centers = 3, nstart = 20)
 
 # Add cluster information to the merged_data dataframe
 normalised_data$Cluster <- km.out$cluster
@@ -1239,7 +1262,7 @@ plot <- ggpairs(normalised_data,
           "sqrt(Female Hourly\n Earnings USD)"
         ),
         mapping = aes(color = as.factor(Cluster)),
-        title = "Pair Plot with K-means Clustering (k = 2)",
+        title = "Pair Plot with K-means Clustering (k = 3)",
         diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
         lower = list(continuous = wrap("points",
                                        position = position_jitter(height = 1, width = 0.5),
@@ -1250,15 +1273,21 @@ plot <- ggpairs(normalised_data,
     plot.background = element_rect(fill = "transparent",colour = NA)
   )
 
-ggplotly(plot, height = 590, width = 700)
+ggplotly(plot, height = 600, width = 700)
 
 ```
 
 :::
 ::: {.column width="25%"}
-<span style="color:#f8766d">1. Low earnings and High Gender Equality Framework</span>
+<small>
+<span style="color:#f8766d">1. High earnings and High Achievement of Legal Frameworks on Gender Equality</span>
 <br />
-<span style="color:#00bfc4">2. High Earnings</span>
+<br />
+<span style="color:#00bfc4">2. High Achievement of Legal Frameworks on Gender Equality and Low Women in Managerial Positions</span>
+<br />
+<br />
+<span style="color:#56B4E9">3. High Percentage of Women in Managerial Positions</span>
+</small>
 :::
 ::::
 ## Decision Tree (Classificiation) {data-transitions="slide-in"}
@@ -1327,19 +1356,25 @@ train_data <- training(data_split)
 test_data <- testing(data_split)
 
 # Step 3: Build the model
-tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit=4, minbucket=1)
+tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit = 5, minbucket = 1)
 train_data$predicted <- predict(tree, type = "class")
 
 # Plot the decision tree with a transparent background
 par(bg = NA)
-rpart.plot(tree, box.palette = c("#f8766d", "#00bfc4"), digits=-3)
+rpart.plot(tree, digits=-3)
 ```
 :::
 
 ::: {.column width="25%"}
-<span style="color:#f8766d">1. Low earnings and High Gender Equality Framework</span>
+<small>
+<span style="color:#f8766d">1. High earnings and High Achievement of Legal Frameworks on Gender Equality</span>
 <br />
-<span style="color:#00bfc4">2. High Earnings</span>
+<br />
+<span style="color:#00bfc4">2. High Achievement of Legal Frameworks on Gender Equality and Low Women in Managerial Positions</span>
+<br />
+<br />
+<span style="color:#56B4E9">3. High Percentage of Women in Managerial Positions</span>
+</small>
 :::
 ::::
 ## Evaluation of Decision Tree
@@ -1353,7 +1388,7 @@ rpart.plot(tree, box.palette = c("#f8766d", "#00bfc4"), digits=-3)
 # Step 4: Evaluating Model
 
 ctrl <- trainControl(method = "cv", number = 10)
-model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit=4, minbucket=1)
+model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit = 5, minbucket = 1)
 
 # Step 5: Get Relative Importance
 relative_importance <- vector(length = length(tree$variable.importance))
@@ -1362,7 +1397,8 @@ for (i in 1:length(tree$variable.importance)) {
 }
 ```
 
-Ten-fold cross validation indicates that the decision tree has a low accuracy of `r model$results$Accuracy`
+Ten-fold cross validation indicates that the decision tree has a accuracy of `r model$results$Accuracy`. \
+Kappa Value is shown to be 0, entailing data imbalance.
 
 The relative importance of the predictors for classification are as follows:
 
@@ -1371,19 +1407,18 @@ The relative importance of the predictors for classification are as follows:
 -   `r names(tree$variable.importance)[3]`: `r relative_importance[3]`
 
 ## Summary of Quantitative Results
-
--   Moderate correlation between same-goal indicators.
--   Moderate correlation between legal employment and benefit frameworks for females and the representation of women in managerial positions.
+-   Correlation between same-goal indicators.
+-   Correlation between legal employment and benefit frameworks for females and the representation of women in managerial positions.
 -   No correlation between female hourly earnings USD and females unemployment rate.
 -   Little correlations of statistical significance are observed between indicators for different goals.
 -   Potentially influenced by the country's originally high unemployment rates across all genders.
--   Missing data for significant countries such as Russia and China.
+-   Many missing. Only 35 of 68 countries have data for all four indicators.
 
 ## Policy Implications
-
-\# See project-sample slide 24
-
-\# Last item, require above to be done
+- Achievement of Legal Frameworks on Gender Equality does indeed affect Economic Growth for women.
+- Higher Achievement of Legal Frameworks on Gender Equality has a strong correlation with higher Average Hourly Earnings for Women.
+- GDP does serve as a predictor for a nation's legal framework achievements in gender equality & proportion of women in managerial positions.
+- Assist nations in enhancing their data gathering methods to facilitate informed decision-making.
 
 ```{r}
 #| label: lint
