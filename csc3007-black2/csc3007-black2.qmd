@@ -1267,7 +1267,7 @@ ggplotly(plot, height = 600, width = 700)
 :::
 
 ::: {.column width="25%"}
-<small> [1. High Achievement of Legal Frameworks on Gender Equality and High Female earnings]{style="color:#f8766d"} <br /> <br /> [2. High Achievement of Legal Frameworks on Gender Equality and Low Women in Managerial Positions]{style="color:#00bfc4"} <br /> <br /> [3. High Achievement of Legal Frameworks on Gender Equality and High Percentage of Women in Managerial Positions]{style="color:#56B4E9"} </small>
+<small> [1. <b>High Achievement of Legal Frameworks on Gender Equality</b> and <b>High Female earnings</b>]{style="color:#f8766d"} <br /> <br /> [2. <b>High Achievement of Legal Frameworks on Gender Equality</b> and <b>Low Women in Managerial Positions</b>]{style="color:#00bfc4"} <br /> <br /> [3. <b>High Achievement of Legal Frameworks on Gender Equality</b> and <b>High Percentage of Women in Managerial Positions</b>]{style="color:#56B4E9"} </small>
 :::
 :::
 
@@ -1304,9 +1304,9 @@ countries_sf <- as_tibble(countries_sf)
 
 ```
 
+::: {.column width="75%"}
 Can the cluster assignment be predicted based on the country's [GDP]{.underline}, [Happy Planet Index Score]{.underline} and [Continent]{.underline}?
 
-::: {.column width="75%"}
 ```{r}
 #| label: d-tree-extended
 # Step1: Import Data & Data-preprocessing
@@ -1361,7 +1361,7 @@ rpart.plot(tree,
 :::
 
 ::: {.column width="25%"}
-<small> [1. High earnings and High Achievement of Legal Frameworks on Gender Equality]{style="color:#f8766d"} <br /> <br /> [2. High Achievement of Legal Frameworks on Gender Equality and Low Women in Managerial Positions]{style="color:#00bfc4"} <br /> <br /> [3. High Percentage of Women in Managerial Positions]{style="color:#56B4E9"} </small>
+<small> [1. <b>High Achievement of Legal Frameworks on Gender Equality</b> and <b>High Female earnings</b>]{style="color:#f8766d"} <br /> <br /> [2. <b>High Achievement of Legal Frameworks on Gender Equality</b> and <b>Low Women in Managerial Positions</b>]{style="color:#00bfc4"} <br /> <br /> [3. <b>High Achievement of Legal Frameworks on Gender Equality</b> and <b>High Percentage of Women in Managerial Positions</b>]{style="color:#56B4E9"} </small>
 :::
 :::
 
