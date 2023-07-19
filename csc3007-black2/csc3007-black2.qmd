@@ -610,7 +610,7 @@ We anticipate that countries with lower unemployment rates for women should have
 
 -   Because countries with lower unemployment rates have a better economic environment which should result in higher average income for their citizens
 
-## UNEMPLOYMENT RATES vs HOURLY EARNINGS FOR WOMEN
+## Unemployment Rates vs Hourly Earnings FOR Women
 
 ::: columns
 ::: {.column width="40%"}
@@ -684,7 +684,7 @@ ggplotly(plot, height = 400, width = 600)
 :::
 :::
 
-## UNEMPLOYMENT RATES vs HOURLY EARNINGS FOR WOMEN re-expressed
+## Unemployment Rates vs Hourly Earnings FOR Women re-expressed
 
 ::: columns
 ::: {.column width="60%"}
@@ -768,9 +768,11 @@ table_5_2_2 <- indicator_5_5_2_managerial |>
 table_8_5_1 <- indicator_8_5_1_average_hourly |>
   select("Country" = geoAreaName,
          ISO3,
-         "Average Hourly Earnings $USD" = amount_usd) |>
+         "Average Hourly Earnings $USD" = amount_usd, 2) |>
   distinct(ISO3, .keep_all = TRUE)
 
+table_8_5_1$`Average Hourly Earnings $USD` <-
+  round(table_8_5_1$`Average Hourly Earnings $USD`, 2)
 
 table_8_5_2 <- indicator_8_5_2_unemployment |>
   select(
