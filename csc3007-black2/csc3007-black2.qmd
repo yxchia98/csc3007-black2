@@ -851,7 +851,8 @@ plot <- ggpairs(
   mapping = aes(alpha = 0.7, fill = Country),
   columns = c("% Legal Frameworks on Gender Equality",
               "% Females Unemployed"),
-  columnLabels = c("% Legal Frameworks \non Gender Equality", "% Females \nUnemployed"),
+  columnLabels = c(
+    "% Legal Frameworks \non Gender Equality", "% Females \nUnemployed"),
   diag = list(continuous = wrap(
     "barDiag",
     bins = 10,
@@ -1346,7 +1347,8 @@ tree <-
     data = train_data,
     method = "class",
     minsplit = 6,
-    minbucket = 2
+    minbucket = 2,
+    cp = 0.07142857
   )
 train_data$predicted <- predict(tree, type = "class")
 
@@ -1386,13 +1388,6 @@ model <-
   )
 model
 
-# Step 5: Get Relative Importance
-relative_importance <-
-  vector(length = length(tree$variable.importance))
-for (i in seq_along(length(tree$variable.importance))) {
-  relative_importance[i] <- tree$variable.importance[i] /
-    tree$variable.importance[1]
-}
 ```
 
 Ten-fold cross validation indicates that the decision tree has a accuracy of `r max(model$results$Accuracy)`.\
@@ -1400,9 +1395,9 @@ Kappa Value is shown to be `r model$results$Kappa[which.max(model$results$Accura
 
 The relative importance of the predictors for classification are as follows:
 
--   `r names(tree$variable.importance)[1]`: `r relative_importance[1]`
--   `r names(tree$variable.importance)[2]`: `r relative_importance[2]`
--   `r names(tree$variable.importance)[3]`: `r relative_importance[3]`
+-   `r names(tree$variable.importance)[1]`: `r tree$variable.importance[1] / tree$variable.importance[1]`
+-   `r names(tree$variable.importance)[2]`: `r tree$variable.importance[2] / tree$variable.importance[1]`
+-   `r names(tree$variable.importance)[3]`: `r tree$variable.importance[3] / tree$variable.importance[1]`
 
 ## Summary of Quantitative Results {.smaller}
 
@@ -1417,7 +1412,7 @@ The relative importance of the predictors for classification are as follows:
 
 -   Achievement of Legal Frameworks on Gender Equality does indeed affect Economic Growth for women.
 -   Higher Achievement of Legal Frameworks on Gender Equality has a strong correlation with higher Average Hourly Earnings for Women.
--   GDP does serve as a predictor for a nation's legal framework achievements in gender equality & proportion of women in managerial positions.
+-   `r names(tree$variable.importance)[1]` does serve as a predictor for a nation's legal framework achievements in gender equality & proportion of women in managerial positions.
 -   Assist nations in enhancing their data gathering methods to facilitate informed decision-making.
 
 # Thank You
