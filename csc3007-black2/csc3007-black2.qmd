@@ -1374,6 +1374,7 @@ The relative importance of the predictors for classification are as follows:
 
 -   Moderate correlation between same-goal indicators.
 -   Moderate correlation between legal employment and benefit frameworks for females and the representation of women in managerial positions.
+-   No correlation between female hourly earnings USD and females unemployment rate.
 -   Little correlations of statistical significance are observed between indicators for different goals.
 -   Potentially influenced by the country's originally high unemployment rates across all genders.
 -   Missing data for significant countries such as Russia and China.
