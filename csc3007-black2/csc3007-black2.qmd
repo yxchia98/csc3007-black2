@@ -50,6 +50,7 @@ library(factoextra)
 ```
 
 ```{r}
+#| label: prepare-data
 #| echo: false
 
 # Load & Clean the dataset / prepare it here.
@@ -186,6 +187,8 @@ Sheds light on the potential benefits and consequences of legal frameworks on ec
 Women participation in the economy is related to Goals 5 and 8.
 
 ```{r}
+#| label: un-goals
+
 include_graphics("data/un_goals_img.jpg")
 ```
 
@@ -202,6 +205,8 @@ include_graphics("data/un_goals_img.jpg")
 ## Map of Percentage of Achievement in Gender Equality Legal Frameworks
 
 ```{r}
+#| label: ge-map
+
 # Wong Jun HAO
 
 cmap_511 <-
@@ -255,6 +260,8 @@ tm_poa
 ## Map of Proportion of Women in Managerial Positions
 
 ```{r}
+#| label: managerial-map
+
 # Wong Jun HAO
 
 cmap_552 <-
@@ -321,6 +328,8 @@ We anticipate that the higher the nation's legal framework achievements in gende
 
 ::: {.column width="60%"}
 ```{r}
+#| label: ge-managerial-pp
+
 # Wong Jun HAO
 
 formatted_5_1_1 <-
@@ -387,6 +396,8 @@ plot
 
 ::: {.column width="60%"}
 ```{r}
+#| label: ge-managerial-pp-re
+
 # Wong Jun HAO
 
 merged_data <- merged_data |>
@@ -428,6 +439,8 @@ plot
 ## Map of Average Hourly Earning by Women
 
 ```{r}
+#| label: he-map
+
 # JEANIE OH JUN NING
 
 # getting exchange rate for USD
@@ -510,6 +523,8 @@ tm_poa
 ## Map of Unemployment Rate of Women
 
 ```{r}
+#| label: unemploy-map
+
 # JEANIE OH JUN NING
 
 # retrieving only Females
@@ -585,6 +600,8 @@ We anticipate that countries with lower unemployment rates for women should have
 
 ::: {.column width="60%"}
 ```{r}
+#| label: unemploy-he-pp
+
 # JEANIE OH JUN NING
 
 formatted_8_5_1 <-
@@ -649,6 +666,8 @@ plot
 
 ::: {.column width="60%"}
 ```{r}
+#| label: unemploy-he-pp-re
+
 # JEANIE OH JUN NING
 
 merged_data <- merged_data |>
@@ -695,6 +714,8 @@ plot
 ## Table of Women Economical Success
 
 ```{r}
+#| label: indicators
+
 # CHIA YI XUAN
 
 table_5_1_1 <- indicator_5_1_1_frameworks |>
@@ -767,6 +788,7 @@ We anticipate that having a higher the nation's legal framework achievements in 
 
 ::: {.column width="60%"}
 ```{r}
+#| label: ge-unemploy-pp
 #| fig-height: 4
 #| fig-width: 6
 # CHIA YI XUAN
@@ -833,12 +855,9 @@ ggplotly(plot, height = 400, width = 600)
 ## Gender Equality Frameworks vs Female Unemployment Re-Expressed
 
 ::: columns
-::: {.column width="40%"}
-<small>After Box Cox and logarithmic transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant. </small>
-:::
-
 ::: {.column width="60%"}
 ```{r}
+#| label: ge-unemploy-pp-re
 #| fig-height: 4
 #| fig-width: 6
 # CHIA YI XUAN
@@ -891,6 +910,9 @@ ggplotly(plot, height = 400, width = 600)
 # plot
 ```
 :::
+::: {.column width="40%"}
+<small>After Box Cox and logarithmic transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant. </small>
+:::
 :::
 
 ## Anticipation of women in managerial positions on women average hourly earnings
@@ -908,6 +930,7 @@ We anticipate that having more women in managerial positions will increase the a
 
 ::: {.column width="60%"}
 ```{r}
+#| label: managerial-he-pp
 #| fig-height: 4
 #| fig-width: 6
 
@@ -971,12 +994,9 @@ ggplotly(grid_plots, height = 400, width = 600)
 ## women in managerial positions vs women average hourly earnings re-expressed
 
 ::: columns
-::: {.column width="40%"}
-<small> There still seems to be a negative correlation between the percentage of female hourly earnings and women in managerial positions after logarithmic transformations . </small>
-:::
-
 ::: {.column width="60%"}
 ```{r}
+#| label: managerial-he-pp-re
 #| fig-height: 4
 #| fig-width: 6
 
@@ -1019,12 +1039,15 @@ ggplotly(grid_plots, height = 400, width = 600)
 
 ```
 :::
+::: {.column width="40%"}
+<small> There still seems to be a negative correlation between the percentage of female hourly earnings and women in managerial positions after logarithmic transformations . </small>
+:::
 :::
 
 ## Comparsion of the four indicators
 
 ```{r}
-
+#| label: four-indicator-pp
 
 # Yi Xuan and Jin Ming
 
@@ -1130,6 +1153,8 @@ Considering the four selected Sustainable Development Goals, what is an appropri
 
 ::: {.column width="60%"}
 ```{r}
+#| label: k-means-plot
+
 # VARADHARAJAN JAYAPRIYA 
 # merge data using left join, and drop all NA rows 
 
@@ -1177,6 +1202,8 @@ The ‘elbow criterion’ suggests k=2.
 
 ::: {.column width="75%"}
 ```{r}
+#| label: cluster-pp
+
 # See project-sample slide 20
 
 # Perform k-means clustering with k = 2
@@ -1226,6 +1253,7 @@ ggplotly(plot, height = 590, width = 700)
 :::: {.columns}
 
 ```{r}
+#| label: d-tree
 #| echo: false
 #| message: FALSE
 #| results: 'hide'
@@ -1253,7 +1281,7 @@ Can the cluster assignment be predicted based on the country's [GDP]{.underline}
 
 ::: {.column width="75%"}
 ```{r}
-
+#| label: d-tree-extended
 # Step1: Import Data & Data-preprocessing
 merged_data <- select(
   normalised_data, ISO3 = "ISO3", cluster_id = "Cluster",
@@ -1305,6 +1333,7 @@ rpart.plot(tree, box.palette = c("#f8766d", "#00bfc4"), digits=-3)
 ## Evaluation of Decision Tree
 
 ```{r}
+#| label: d-tree-eval
 #| echo: false
 #| message: FALSE
 #| results: 'hide'
