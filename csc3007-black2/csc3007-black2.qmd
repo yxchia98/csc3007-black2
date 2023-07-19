@@ -19,7 +19,7 @@ format:
           transform: translateY(-50%), translateX(-50%);
         }
         </style>
----2
+---
 ---
 
 ```{r}
@@ -1262,7 +1262,7 @@ ggplotly(plot, height = 600, width = 700)
 :::
 
 ::: {.column width="25%"}
-<small> [1. High earnings and High Achievement of Legal Frameworks on Gender Equality]{style="color:#f8766d"} <br /> <br /> [2. High Achievement of Legal Frameworks on Gender Equality and Low Women in Managerial Positions]{style="color:#00bfc4"} <br /> <br /> [3. High Percentage of Women in Managerial Positions]{style="color:#56B4E9"} </small>
+<small> [1. High Achievement of Legal Frameworks on Gender Equality and High Female earnings]{style="color:#f8766d"} <br /> <br /> [2. High Achievement of Legal Frameworks on Gender Equality and Low Women in Managerial Positions]{style="color:#00bfc4"} <br /> <br /> [3. High Achievement of Legal Frameworks on Gender Equality and High Percentage of Women in Managerial Positions]{style="color:#56B4E9"} </small>
 :::
 :::
 
@@ -1334,12 +1334,12 @@ train_data <- training(data_split)
 test_data <- testing(data_split)
 
 # Step 3: Build the model
-tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit = 5, minbucket = 1)
+tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit = 6, minbucket = 2)
 train_data$predicted <- predict(tree, type = "class")
 
 # Plot the decision tree with a transparent background
 par(bg = NA)
-rpart.plot(tree, digits=-3)
+rpart.plot(tree, digits=-3, box.palette = list("#f8766d", "#00bfc4", "#56B4E9"))
 ```
 :::
 
@@ -1359,7 +1359,7 @@ rpart.plot(tree, digits=-3)
 # Step 4: Evaluating Model
 
 ctrl <- trainControl(method = "cv", number = 10)
-model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit = 5, minbucket = 1)
+model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit = 6, minbucket = 1)
 
 # Step 5: Get Relative Importance
 relative_importance <- vector(length = length(tree$variable.importance))
