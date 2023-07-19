@@ -732,7 +732,7 @@ plot <- ggpairs(
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
   theme(
-    plot.background = element_rect(fill = "transparent",colour = NA)
+    plot.background = element_rect(fill = "transparent", colour = NA)
   )
 
 
@@ -1280,17 +1280,20 @@ ggplotly(plot, height = 600, width = 700)
 # Load Country Level Data
 
 # Step1: Import Data
-happy_index <- read_excel("data/happy-planet-index-2006-2020-public-data-set.xlsx",
-                          sheet = 2,
-                          skip = 7)
-happy_index <- select(
-  happy_index, ISO3 = "ISO", GDP = "GDP per capita ($)", HPI
+happy_index <-
+  read_excel(
+    "data/happy-planet-index-2006-2020-public-data-set.xlsx",
+    sheet = 2,
+    skip = 7
   )
+happy_index <-
+  select(
+    happy_index, ISO3 = "ISO", GDP = "GDP per capita ($)", HPI
+    )
 
 countries_sf <- st_read("data/WB_countries_Admin0.geojson")
-countries_sf  <- select(
-  countries_sf, Continent = "CONTINENT", ISO3 = "ISO_A3"
-  )
+countries_sf  <-
+  select(countries_sf, Continent = "CONTINENT", ISO3 = "ISO_A3")
 countries_sf <- st_drop_geometry(countries_sf)
 countries_sf <- as_tibble(countries_sf)
 
@@ -1303,8 +1306,7 @@ Can the cluster assignment be predicted based on the country's [GDP]{.underline}
 #| label: d-tree-extended
 # Step1: Import Data & Data-preprocessing
 merged_data <- select(
-  normalised_data, ISO3 = "ISO3", cluster_id = "Cluster",
-) |> drop_na()
+  normalised_data, ISO3 = "ISO3", cluster_id = "Cluster") |> drop_na()
 
 # Merge data using left join, and drop all NA rows
 merged_data <-  merged_data |>
@@ -1324,7 +1326,7 @@ merged_data <- merged_data %>% select(-ISO3)
 merged_data <- na.omit(merged_data)
 
 # # Shuffle Data
-shuffle_index <- sample(1:nrow(merged_data))
+shuffle_index <- sample(seq_len(nrow(merged_data)))
 merged_data <- merged_data[shuffle_index, ]
 
 # Step 2: Create training / Test Set
@@ -1334,12 +1336,21 @@ train_data <- training(data_split)
 test_data <- testing(data_split)
 
 # Step 3: Build the model
-tree <- rpart(cluster_id ~., data = train_data, method="class", minsplit = 6, minbucket = 2)
+tree <-
+  rpart(
+    cluster_id ~ .,
+    data = train_data,
+    method = "class",
+    minsplit = 6,
+    minbucket = 2
+  )
 train_data$predicted <- predict(tree, type = "class")
 
 # Plot the decision tree with a transparent background
 par(bg = NA)
-rpart.plot(tree, digits=-3, box.palette = list("#f8766d", "#00bfc4", "#56B4E9"))
+rpart.plot(tree,
+           digits = -3,
+           box.palette = list("#f8766d", "#00bfc4", "#56B4E9"))
 ```
 :::
 
@@ -1358,14 +1369,25 @@ rpart.plot(tree, digits=-3, box.palette = list("#f8766d", "#00bfc4", "#56B4E9"))
 
 # Step 4: Evaluating Model
 
+
 ctrl <- trainControl(method = "cv", number = 10)
-model <- train(cluster_id ~., data = merged_data, method = "rpart", trControl = ctrl, minsplit = 6, minbucket = 1)
+model <-
+  train(
+    cluster_id ~ .,
+    data = merged_data,
+    method = "rpart",
+    trControl = ctrl,
+    minsplit = 6,
+    minbucket = 1
+  )
 model
 
 # Step 5: Get Relative Importance
-relative_importance <- vector(length = length(tree$variable.importance))
-for (i in 1:length(tree$variable.importance)) {
-  relative_importance[i] <- tree$variable.importance[i] / tree$variable.importance[1]
+relative_importance <-
+  vector(length = length(tree$variable.importance))
+for (i in seq_along(length(tree$variable.importance))) {
+  relative_importance[i] <- tree$variable.importance[i] /
+    tree$variable.importance[1]
 }
 ```
 
