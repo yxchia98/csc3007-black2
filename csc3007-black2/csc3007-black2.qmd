@@ -247,7 +247,7 @@ tm_poa_after_shape <-
     inner.margins = c(0.01, 0.2, 0.01, 0.01),
     bg.color = "lightblue",
     earth.boundary = TRUE,
-    space.color = "cornsilk1",
+    space.color = "#fdf6e3",
     frame = FALSE
   ) +
   tm_text("ISO3", size = "AREA") +
@@ -304,7 +304,7 @@ tm_poa_after_shape <-
     inner.margins = c(0.01, 0.2, 0.01, 0.01),
     bg.color = "lightblue",
     earth.boundary = TRUE,
-    space.color = "cornsilk1",
+    space.color = "#fdf6e3",
     frame = FALSE
   ) +
   tm_text("ISO3", size = "AREA") +
@@ -528,7 +528,7 @@ tm_poa_after_shape <-
     inner.margins = c(0.01, 0.2, 0.01, 0.01),
     bg.color = "lightblue",
     earth.boundary = TRUE,
-    space.color = "cornsilk1",
+    space.color = "#fdf6e3",
     frame = FALSE
   ) +
   tm_text("ISO3", size = "AREA") +
@@ -583,7 +583,7 @@ tm_poa_after_shape <-
     inner.margins = c(0.01, 0.2, 0.01, 0.01),
     bg.color = "lightblue",
     earth.boundary = TRUE,
-    space.color = "cornsilk1",
+    space.color = "#fdf6e3",
     frame = FALSE
   ) +
   tm_text("ISO3", size = "AREA") +
@@ -942,7 +942,9 @@ ggplotly(plot, height = 400, width = 600)
 :::
 
 ::: {.column width="40%"}
-<small>After logarithmic and square root transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant. </small>
+<small>After logarithmic and square root transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant.
+\
+This might be due to countries having an already-high unemployment rate irregardless of gender.</small>
 :::
 :::
 
