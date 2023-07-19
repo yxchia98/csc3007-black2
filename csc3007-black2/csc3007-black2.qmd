@@ -46,6 +46,7 @@ library(rpart.plot)
 library(caret)
 library(DT)
 library(knitr)
+library(factoextra)
 ```
 
 ```{r}
@@ -1123,7 +1124,11 @@ ggplotly(grid_plots, height = 600, width = 1000)
 ```
 
 ## K-Means Clustering
+:::: {.columns}
 
+Considering the four selected Sustainable Development Goals, what is an appropriate number, k, of clusters for countries?
+
+::: {.column width="60%"}
 ```{r}
 # VARADHARAJAN JAYAPRIYA 
 # merge data using left join, and drop all NA rows 
@@ -1136,7 +1141,7 @@ merged_data <- formatted_8_5_2 |>
   left_join(formatted_8_5_1, 
             by = c("ISO3", "Country"))
 
-# Perform sqrt transformation for "% Female Hourly Earnings" and log transformation for "% Females Unemployed"
+# Perform re-scaling
 normalised_data <- merged_data |>
   mutate("sqrt(Female Hourly Earnings USD)" = sqrt(`Female Hourly Earnings`)) |>
   mutate("log_10(% Females Unemployed)" = log10(`% Females Unemployed`)) |>
@@ -1151,22 +1156,26 @@ set.seed(123)
 # Elbow plot to determine the optimal k value
 elbow_data <- data.frame(k = 1:10, total_withinss = numeric(10))
 
-for (k in 1:10) {
-  kmeans_result <- kmeans(normalised_data_cols, centers = k)
-  elbow_data[k, "total_withinss"] <- kmeans_result$tot.withinss
-}
+#Elbow Method 
+plot <- fviz_nbclust(normalised_data_cols, kmeans, method = "wss") +
+  theme(
+    plot.background = element_rect(fill = "transparent",colour = NA)
+  )
 
-# Create the elbow plot
-ggplot(elbow_data, aes(x = k, y = total_withinss)) +
-  geom_line(color = "blue") +
-  geom_point(color = "blue") +
-  labs(x = "Number of Clusters (k)", y = "Total Within Sum of Squares") +
-  theme_minimal()
+ggplotly(plot, height = 400, width = 600)
 
 ```
+:::
+::: {.column width="40%"}
+The ‘elbow criterion’ suggests k=2.
+:::
+::::
 
 ## Pairs Plot Highlighting Clusters
 
+:::: {.columns}
+
+::: {.column width="75%"}
 ```{r}
 # See project-sample slide 20
 
@@ -1178,17 +1187,41 @@ km.out <- kmeans(normalised_data_cols, centers = 2, nstart = 20)
 normalised_data$Cluster <- km.out$cluster
 
 # Create a pair plot using ggpairs
-ggpairs(normalised_data,
-        columns = c("sqrt(% Gender Equality Frameworks)", "log_10(% Females Unemployed)", "% Women in Managerial Positions", "sqrt(Female Hourly Earnings USD)"),
+plot <- ggpairs(normalised_data,
+        columns = c(
+          "sqrt(% Gender Equality Frameworks)", 
+          "log_10(% Females Unemployed)", 
+          "% Women in Managerial Positions", 
+          "sqrt(Female Hourly Earnings USD)"),
+        columnLabels = c(
+          "sqrt(% Gender \nEquality Frameworks)",
+          "log_10(% Females\n Unemployed)",
+          "% Women in \nManagerial Positions",
+          "sqrt(Female Hourly\n Earnings USD)"
+        ),
         mapping = aes(color = as.factor(Cluster)),
         title = "Pair Plot with K-means Clustering (k = 2)",
         diag = list(continuous = wrap("barDiag", bins = 10, color = "black")),
         lower = list(continuous = wrap("points",
                                        position = position_jitter(height = 1, width = 0.5),
                                        fill = "black"))
-)
+) +
+  scale_fill_manual(values = c("#f8766d", "#00bfc4", "#56B4E9", "#E69F00")) +
+  theme(
+    plot.background = element_rect(fill = "transparent",colour = NA)
+  )
+
+ggplotly(plot, height = 590, width = 700)
+
 ```
 
+:::
+::: {.column width="25%"}
+<span style="color:#f8766d">Low earnings and High Gender Equality Framework</span>
+<br />
+<span style="color:#00bfc4">High Earnings</span>
+:::
+::::
 ## Decision Tree {data-transitions="slide-in"}
 
 ```{r}
