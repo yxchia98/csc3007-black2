@@ -862,7 +862,6 @@ merged_data <- formatted_8_5_2 |>
 plot <- ggpairs(
   merged_data,
   mapping = aes(alpha = 0.7, fill = Country),
-  # title = "Gender Equality Frameworks and Female Unemployment rate",
   columns = c("% Gender Equality Frameworks",
               "% Females Unemployed"),
   columnLabels = c("% Gender Equality \nFrameworks", "% Females \nUnemployed"),
@@ -904,20 +903,11 @@ merged_data <- merged_data |>
       sqrt(`% Gender Equality Frameworks`)
   )
 
-# x <- merged_data$`% Gender Equality Frameworks`
-# b <- MASS::boxcox(x ~ 1, plotit = FALSE, )
-# lambda <- b$x[which.max(b$y)] # -0.02
-#
-# new_x_exact <- (x ^ lambda - 1) / lambda
-# new_x <- log(x)
-# merged_data <- merged_data |>
-#   mutate("Box-Cox % Gender Equality Frameworks" = new_x)
 
 # re-expressed plot
 plot <- ggpairs(
   merged_data,
   mapping = aes(alpha = 0.7, fill = Country),
-  # title = "Employment Legal Frameworks and Female Unemployment rate",
   columns = c(
     "sqrt(% Gender Equality Frameworks)",
     "log_10(% Females Unemployed)"
@@ -937,8 +927,7 @@ plot <- ggpairs(
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
   theme(
-    plot.background = element_rect(fill = "transparent",colour = NA)
-  )
+    plot.background = element_rect(fill = "transparent", colour = NA))
 
 ggplotly(plot, height = 400, width = 600)
 # plot
@@ -997,9 +986,8 @@ merged_data <- formatted_5_5_2 |>
 grid_plots <- ggpairs(
   merged_data,
   mapping = aes(alpha = 0.7, fill = Country),
-  # title = "Relationship of women's Managerial Positions and Hourly Earnings",
   columns = c("% Women in Managerial Positions", "Female Hourly Earnings"),
-  columnLabels = c("% Women in \nManagerial Positions", 
+  columnLabels = c("% Women in \nManagerial Positions",
                    "Female Hourly \nEarnings"),
   diag = list(continuous = wrap(
     "barDiag",
@@ -1014,12 +1002,8 @@ grid_plots <- ggpairs(
                                  )))
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
-  theme(
-    plot.background = element_rect(fill = "transparent",colour = NA)
-  )
+  theme(plot.background = element_rect(fill = "transparent", colour = NA))
 
-# Print 4 grid plots
-# grid_plots
 ggplotly(grid_plots, height = 400, width = 600)
 ```
 :::
@@ -1043,13 +1027,14 @@ merged_data <- merged_data |>
 grid_plots <- ggpairs(
   merged_data,
   mapping = aes(alpha = 0.7, fill = Country),
-  # title = "Relationship of women's Managerial Positions and Hourly Earnings",
   columns = c(
     "% Women in Managerial Positions",
     "sqrt(Female Hourly Earnings USD)"
   ),
-  columnLabels = c("% Women in \nManagerial Positions", 
-                   "sqrt(Female Hourly \nEarnings)"),
+  columnLabels = c(
+    "% Women in \nManagerial Positions",
+    "sqrt(Female Hourly \nEarnings)"
+  ),
   diag = list(continuous = wrap(
     "barDiag",
     bins = 8,
@@ -1063,14 +1048,10 @@ grid_plots <- ggpairs(
                                  )))
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
-  theme(
-    plot.background = element_rect(fill = "transparent",colour = NA)
-  )
+  theme(plot.background = element_rect(fill = "transparent", colour = NA))
 
-# Print 4 grid plots
-# grid_plots
+
 ggplotly(grid_plots, height = 400, width = 600)
-
 ```
 :::
 ::: {.column width="40%"}
@@ -1084,7 +1065,6 @@ ggplotly(grid_plots, height = 400, width = 600)
 #| label: four-indicator-pp
 
 # Yi Xuan and Jin Ming
-
 # format 5.1.1 data into focused columns
 formatted_5_1_1 <- indicator_5_1_1_frameworks |>
   drop_na(latest_value) |>
@@ -1132,16 +1112,13 @@ merged_data <- formatted_8_5_2 |>
   left_join(formatted_5_5_2, by = c("ISO3", "Country")) |>
   left_join(formatted_8_5_1, by = c("ISO3", "Country"))
 
-# Perform sqrt transformation and log transformation 
+# Perform sqrt transformation and log transformation
 merged_data <- merged_data |>
   mutate("sqrt(Female Hourly Earnings USD)" = sqrt(`Female Hourly Earnings`)) |>
   mutate("log_10(% Females Unemployed)" = log10(`% Females Unemployed`)) |>
   mutate("sqrt(% Gender Equality Frameworks)" = sqrt(`% Gender Equality Frameworks`))
 
-# Drop rows with NA values
 merged_data <- drop_na(merged_data)
-
-# Create grid plots using ggpairs()
 grid_plots <- ggpairs(
   merged_data,
   mapping = aes(alpha = 0.7, fill = Country),
@@ -1170,14 +1147,11 @@ grid_plots <- ggpairs(
                                  )))
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
-  theme(
-    plot.background = element_rect(fill = "transparent",colour = NA)
-  )
+  theme(plot.background = element_rect(fill = "transparent", colour = NA))
 
 # Print the grid plots
 # grid_plots
 ggplotly(grid_plots, height = 600, width = 1000)
-
 ```
 
 ## K-Means Clustering
