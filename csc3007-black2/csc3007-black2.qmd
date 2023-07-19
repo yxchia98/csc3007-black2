@@ -53,7 +53,7 @@ library(knitr)
 
 # Load & Clean the dataset / prepare it here.
 # Load 5.1.1 data - Legal frameworks that promote enforce and monitor gender
-# equality (percentage of achievement 0 - 100) \-- 
+# equality (percentage of achievement 0 - 100) \--
 # Area 3: employment and economic benefits
 indicator_5_1_1_frameworks <-
   read_csv(
@@ -144,6 +144,14 @@ World <- select(World, ISO3 = "iso_a3", geometry = "geometry")
 
 ## Purpose of This Presentation
 
+In a report published by the International Monetary Fund titled "Tackling Legal Impediments to Women's Economic Empowerment"[^1] 2022, The report highlighted how legal framework has help improve woman's success in the economy of various countries such as Iceland, Peru & Rwanda.
+
+[^1]: Christopherson Puh, K. M., Yiadom, A., Johnson, J., Fernando, F., Yazid, H., & Thiemann, C. (2022). Tackling Legal Impediments to Women's Economic Empowerment, IMF Working Papers, 2022(037), A001. Retrieved Jul 19, 2023, from https://doi.org/10.5089/9798400203640.001.A001
+
+## Purpose of This Presentation
+
+This presentation thus aims to explore the relationship between nation's legal framework achievements in gender equality and woman's success in the economy. offering insights into the significance of legal framework in gender equality and woman's status in a country economy.
+
 ## Research Questions
 
 To what extent does a nation's legal framework on gender equality affect economic growth for women?
@@ -180,7 +188,6 @@ Women participation in the economy is related to Goals 5 and 8.
 include_graphics("data/un_goals_img.jpg")
 ```
 
-
 ## Selected Indicators
 
 **Indicator 5.1.1**: Legal frameworks that promote, enforce and monitor gender equality (percentage of achievement 0 - 100) \-- Area 3: employment and economic benefits
@@ -195,6 +202,7 @@ include_graphics("data/un_goals_img.jpg")
 
 ```{r}
 # Wong Jun HAO
+
 cmap_511 <-
   World |>
   left_join(indicator_5_1_1_frameworks, by = c("ISO3"))
@@ -247,6 +255,7 @@ tm_poa
 
 ```{r}
 # Wong Jun HAO
+
 cmap_552 <-
   World |>
   left_join(indicator_5_5_2_managerial, by = c("ISO3"))
@@ -304,8 +313,7 @@ We anticipate that the higher the nation's legal framework achievements in gende
 
 ## Effect of Legal Gender Equality Frameworks on Women in Managerial Positions
 
-:::: {.columns}
-
+::: columns
 ::: {.column width="40%"}
 <small>There seem to be a moderate correlation between the percentage of achievement in legal employment and benefit frameworks for females, and the percentage of woman in managerial position. The data distribution for the percentage of achievement in legal employment is left skewed and percentage of woman in managerial position is normally distributed.</small>
 :::
@@ -367,16 +375,15 @@ plot <- ggpairs(
 plot
 ```
 :::
-
-::::
-
+:::
 
 ## Effect of Legal Gender Equality Frameworks on Women in Managerial Positions Re-expressed
-:::: {.columns}
 
+::: columns
 ::: {.column width="40%"}
 <small> The percentage of achievement in legal employment is re-expressed by taking the squared root of the skewed values. This helps to reduce the impact of extreme values and make the distribution more symmetrical. This resulted in an insignificant correlation value increase by 0.032</small>
 :::
+
 ::: {.column width="60%"}
 ```{r}
 # Wong Jun HAO
@@ -396,7 +403,10 @@ plot <- ggpairs(
     "% Female in Management Position"
   ),
   diag = list(continuous = wrap(
-    "barDiag", bins = 10, color = "black", alpha = 1
+    "barDiag",
+    bins = 10,
+    color = "black",
+    alpha = 1
   )),
   lower = list(
     continuous = wrap(
@@ -407,85 +417,91 @@ plot <- ggpairs(
     )
   )
 ) +
-  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
 
 plot
 ```
 :::
-
-::::
-
+:::
 
 ## Map of Average Hourly Earning by Women
 
 ```{r}
 # JEANIE OH JUN NING
 
-# getting exchange rate for USD 
-exchange_rate <- exchange_rate_latest("USD")  
+# getting exchange rate for USD
+exchange_rate <- exchange_rate_latest("USD")
 
-# retrieving only Females 
-indicator_8_5_1_average_hourly <- filter(indicator_8_5_1_average_hourly, sex_code == "F")  
+# retrieving only Females
+indicator_8_5_1_average_hourly <-
+  filter(indicator_8_5_1_average_hourly, sex_code == "F")
 
-# get currency code and country code from country name 
-indicator_8_5_1_average_hourly <- mutate(indicator_8_5_1_average_hourly,   
+# get currency code and country code from country name
+indicator_8_5_1_average_hourly <-
+  mutate(
+    indicator_8_5_1_average_hourly,
     currency_code = countrycode(
       ISO3,
       origin = 'iso3c',
       destination = 'iso4217c',
-      warn = FALSE))  
+      warn = FALSE
+    )
+  )
 
-# get value in USD 
-indicator_8_5_1_average_hourly$exchange_usd <- exchange_rate$one_usd_is_equivalent_to[match(indicator_8_5_1_average_hourly$currency_code, exchange_rate$currency)] 
+# get value in USD
+indicator_8_5_1_average_hourly$exchange_usd <-
+  exchange_rate$one_usd_is_equivalent_to[match(indicator_8_5_1_average_hourly$currency_code,
+                                               exchange_rate$currency)]
 
-indicator_8_5_1_average_hourly$amount_usd <- indicator_8_5_1_average_hourly$latest_value / indicator_8_5_1_average_hourly$exchange_usd   
+indicator_8_5_1_average_hourly$amount_usd <-
+  indicator_8_5_1_average_hourly$latest_value / indicator_8_5_1_average_hourly$exchange_usd
 
-# max USD = 64.19665 
-# min value = 0 
-# max(indicator_8_5_1_average_hourly$amount_usd, na.rm = T) 
-# min(indicator_8_5_1_average_hourly$amount_usd, na.rm = T)  
+# max USD = 64.19665
+# min value = 0
+# max(indicator_8_5_1_average_hourly$amount_usd, na.rm = T)
+# min(indicator_8_5_1_average_hourly$amount_usd, na.rm = T)
 
-# graph from 1-65 
-cmap_851 <-   
-  World |> left_join(indicator_8_5_1_average_hourly, by = c("ISO3"))  
+# graph from 1-65
+cmap_851 <-
+  World |> left_join(indicator_8_5_1_average_hourly, by = c("ISO3"))
 
-cmap_851 <- mutate(cmap_851, 
-    usd_earning = cut(
-      amount_usd,
-      breaks = c(0,1,2,3,5,8,13,21,34,55,
-          max(amount_usd, na.rm = TRUE)), 
-      labels = c(
-        "0 to 1",
-        "1 to 2",
-        "2 to 3",
-        "3 to 5",
-        "5 to 8", 
-        "8 to 13",
-        "13 to 21",
-        "21 to 34",
-        "34 to 55",
-        "55 and above" 
-        )
-      ))   
+cmap_851 <- mutate(cmap_851,
+                   usd_earning = cut(
+                     amount_usd,
+                     breaks = c(0, 1, 2, 3, 5, 8, 13, 21, 34, 55,
+                                max(amount_usd, na.rm = TRUE)),
+                     labels = c(
+                       "0 to 1",
+                       "1 to 2",
+                       "2 to 3",
+                       "3 to 5",
+                       "5 to 8",
+                       "8 to 13",
+                       "13 to 21",
+                       "21 to 34",
+                       "34 to 55",
+                       "55 and above"
+                     )
+                   ))
 
-tm_poa_after_shape <- 
+tm_poa_after_shape <-
   tm_polygons(col = "usd_earning",
-      palette = "Greens",
-      title = "Earnings in USD") + 
+              palette = "Greens",
+              title = "Earnings in USD") +
   tm_layout(
-      legend.position = c("left", "top"),
-      inner.margins = c(0.01, 0.2, 0.01, 0.01), 
-      bg.color = "lightblue", 
-      earth.boundary = TRUE,
-      space.color = "white",
-      frame = FALSE   
-    ) + 
-  tm_text("ISO3", size = "AREA") +   
+    legend.position = c("left", "top"),
+    inner.margins = c(0.01, 0.2, 0.01, 0.01),
+    bg.color = "lightblue",
+    earth.boundary = TRUE,
+    space.color = "white",
+    frame = FALSE
+  ) +
+  tm_text("ISO3", size = "AREA") +
   tm_credits("Source: United Nations Statistics Division",
-      position = c("left", "bottom"))  
+             position = c("left", "bottom"))
 
-tm_poa <- tm_shape(cmap_851, projection = "ESRI:54012") + 
-  tm_poa_after_shape  
+tm_poa <- tm_shape(cmap_851, projection = "ESRI:54012") +
+  tm_poa_after_shape
 
 tm_poa
 ```
@@ -495,8 +511,9 @@ tm_poa
 ```{r}
 # JEANIE OH JUN NING
 
-# retrieving only Females 
-indicator_8_5_2_unemployment <- filter(indicator_8_5_2_unemployment, sex_code == "F") 
+# retrieving only Females
+indicator_8_5_2_unemployment <-
+  filter(indicator_8_5_2_unemployment, sex_code == "F")
 
 # nrow(indicator_8_5_2_unemployment)
 # count <- sum(!is.na(indicator_8_5_2_unemployment$latest_value) & indicator_8_5_2_unemployment$latest_value >= 40 & indicator_8_5_2_unemployment$latest_value <= 50)
@@ -504,11 +521,11 @@ indicator_8_5_2_unemployment <- filter(indicator_8_5_2_unemployment, sex_code ==
 
 # max percent =  50
 # min value = 0.9
-# max(indicator_8_5_2_unemployment$latest_value, na.rm = T) 
-# min(indicator_8_5_2_unemployment$latest_value, na.rm = T) 
+# max(indicator_8_5_2_unemployment$latest_value, na.rm = T)
+# min(indicator_8_5_2_unemployment$latest_value, na.rm = T)
 
-cmap_852 <-   
-  World |> left_join(indicator_8_5_2_unemployment, by = c("ISO3"))  
+cmap_852 <-
+  World |> left_join(indicator_8_5_2_unemployment, by = c("ISO3"))
 
 cmap_852 <-
   mutate(cmap_852,
@@ -559,12 +576,16 @@ We anticipate that countries with lower unemployment rates for women should have
 -   Because countries with lower unemployment rates have a better economic environment which should result in higher average income for their citizens
 
 ## EFFECTS OF UNEMPLOYMENT RATES ON HOURLY EARNINGS FOR WOMEN
-:::: {.columns}
+
+::: columns
 ::: {.column width="40%"}
 <small>A correlation of -0.097 indicates a weak negative relationship between unemployment rate for women and average hourly earning (USD) for women. Both data distribution are left skewed.</small>
 :::
+
 ::: {.column width="60%"}
 ```{r}
+# JEANIE OH JUN NING
+
 formatted_8_5_1 <-
   select(
     indicator_8_5_1_average_hourly,
@@ -600,36 +621,40 @@ plot <- ggpairs(
     "% Female that is Unemployed"
   ),
   diag = list(continuous = wrap(
-    "barDiag", bins = 10, color = "black", alpha = 1
+    "barDiag",
+    bins = 10,
+    color = "black",
+    alpha = 1
   )),
-  lower = list(
-    continuous = wrap(
-      "points",
-      position = position_jitter(height = 1,
-                                 width = 0.5)))) +
-  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+  lower = list(continuous = wrap("points",
+                                 position = position_jitter(
+                                   height = 1,
+                                   width = 0.5
+                                 )))
+) +
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
 
 plot
-
 ```
 :::
-::::
+:::
 
 ## EFFECTS OF UNEMPLOYMENT RATES ON HOURLY EARNINGS FOR WOMEN re-expressed
-:::: {.columns}
+
+::: columns
 ::: {.column width="40%"}
 <small> The average hourly earnings for women is re-expressed by taking the squared root of the skewed values while the unemployed rates is re-expressed by taking log10 of the skewed values. This helps to reduce the impact of extreme values and make the distribution more symmetrical. This resulted in an insignificant correlation value increase by 0.103, with a correlation that is very close to zero, indicating that there is virtually no relationship between them.</small>
 :::
+
 ::: {.column width="60%"}
 ```{r}
 # JEANIE OH JUN NING
-# Correlation Graph. See Sample-Project slide 11,12,15 *Please Judge if is approriate. Goal is to see if there is any significant statitical correlation 
 
 merged_data <- merged_data |>
   mutate(
     "sqrt Average Hourly Earning in USD for Female" =
       sqrt(`Average Hourly Earning in USD for Female`),
-    "log10 % Female that is Unemployed" = 
+    "log10 % Female that is Unemployed" =
       log10(`% Female that is Unemployed`),
   ) |>
   distinct(ISO3, .keep_all = TRUE)
@@ -644,7 +669,10 @@ plot <- ggpairs(
     "log10 % Female that is Unemployed"
   ),
   diag = list(continuous = wrap(
-    "barDiag", bins = 10, color = "black", alpha = 1
+    "barDiag",
+    bins = 10,
+    color = "black",
+    alpha = 1
   )),
   lower = list(
     continuous = wrap(
@@ -654,20 +682,20 @@ plot <- ggpairs(
       fill = "black"
     )
   )
-) + 
-  scale_fill_manual(values=c(rep("burlywood3", nrow(merged_data))))
+) +
+  scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data))))
 
 
 plot
 ```
 :::
-::::
+:::
+
 ## Table of Women Economical Success
 
 ```{r}
+# CHIA YI XUAN
 
-
-# Table of performances. See Sample-Project slide 16
 table_5_1_1 <- indicator_5_1_1_frameworks |>
   select("Country" = geoAreaName, ISO3, "% Legal Frameworks" = latest_value) |>
   distinct(ISO3, .keep_all = TRUE)
@@ -721,7 +749,6 @@ merged_table |>
               ),
               "}"
             )))
-
 ```
 
 ## Anticipation of what Extensive Gender Equality Frameworks does to Female Unemployment
@@ -731,17 +758,17 @@ We anticipate that having a higher the nation's legal framework achievements in 
 -   Because by decreasing gender discrimination for women, more companies would be willing to employ women.
 
 ## Gender Equality Frameworks vs Female Unemployment
-:::: {.columns}
+
+::: columns
 ::: {.column width="40%"}
 <small>There doesn't seem to be any significant correlation between the percentage of legal employment and benefit frameworks for females, and the unemployment rate of females. However, this might be due to skewed distributions, hence we will re-express this data. </small>
 :::
+
 ::: {.column width="60%"}
 ```{r}
 #| fig-height: 4
 #| fig-width: 6
-
 # CHIA YI XUAN
-# Correlation Graph. See Sample-Project slide 11,12,15 
 
 # format 5.1.1 data into focused columns
 formatted_5_1_1 <- indicator_5_1_1_frameworks |>
@@ -795,25 +822,25 @@ plot <- ggpairs(
                                  )))
 ) +
   scale_fill_manual(values = c(rep("burlywood3", nrow(merged_data)))) +
-  theme(
-    plot.background = element_rect(fill = "transparent",colour = NA)
-  )
+  theme(plot.background = element_rect(fill = "transparent", colour = NA))
 ggplotly(plot, height = 400, width = 600)
 # plot
-
 ```
 :::
-::::
+:::
 
 ## Gender Equality Frameworks vs Female Unemployment Re-Expressed
-:::: {.columns}
+
+::: columns
 ::: {.column width="40%"}
 <small>After Box Cox and logarithmic transformations, correlation coefficient seems to have improved positively. However, it still appears to be insignificant. </small>
 :::
+
 ::: {.column width="60%"}
 ```{r}
 #| fig-height: 4
 #| fig-width: 6
+# CHIA YI XUAN
 
 # Perform transformation
 merged_data <- merged_data |>
@@ -861,10 +888,10 @@ plot <- ggpairs(
 
 ggplotly(plot, height = 400, width = 600)
 # plot
-
 ```
 :::
-::::
+:::
+
 ## Anticipation of women in managerial positions on women average hourly earnings
 
 We anticipate that having more women in managerial positions will increase the average hourly earning for female employees.
@@ -872,10 +899,12 @@ We anticipate that having more women in managerial positions will increase the a
 -   Because in general, employees in a managerial position would receive higher income and with more women holding managerial positions, the average hourly earning for female employees will increase.
 
 ## women in managerial positions vs women average hourly earnings
-:::: {.columns}
+
+::: columns
 ::: {.column width="40%"}
 <small> There seems to be a negative correlation between the percentage of female hourly earnings and women in managerial positions. However, this might be due to skewed distributions of female hourly earnings, hence we will re-express this data using logarithmic transformations . </small>
 :::
+
 ::: {.column width="60%"}
 ```{r}
 #| fig-height: 4
@@ -934,16 +963,17 @@ grid_plots <- ggpairs(
 # Print 4 grid plots
 # grid_plots
 ggplotly(grid_plots, height = 400, width = 600)
-
 ```
 :::
-::::
+:::
 
 ## women in managerial positions vs women average hourly earnings re-expressed
-:::: {.columns}
+
+::: columns
 ::: {.column width="40%"}
 <small> There still seems to be a negative correlation between the percentage of female hourly earnings and women in managerial positions after logarithmic transformations . </small>
 :::
+
 ::: {.column width="60%"}
 ```{r}
 #| fig-height: 4
@@ -988,7 +1018,7 @@ ggplotly(grid_plots, height = 400, width = 600)
 
 ```
 :::
-::::
+:::
 
 ## Comparsion of the four indicators
 
