@@ -1201,7 +1201,8 @@ elbow_data <- data.frame(k = 1:10, total_withinss = numeric(10))
 #Elbow Method
 plot <- fviz_nbclust(normalised_data_cols, kmeans, method = "wss") +
   theme(
-    plot.background = element_rect(fill = "transparent", colour = NA)
+    plot.background = element_rect(fill = "transparent", colour = NA),
+    panel.background = element_rect(fill = "transparent", colour = NA)
   )
 
 ggplotly(plot, height = 400, width = 600)
