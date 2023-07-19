@@ -1347,7 +1347,7 @@ tree <-
     data = train_data,
     method = "class",
     minsplit = 6,
-    minbucket = 2,
+    minbucket = 1,
     cp = 0.07142857
   )
 train_data$predicted <- predict(tree, type = "class")
